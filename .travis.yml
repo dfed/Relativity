@@ -1,0 +1,7 @@
+language: objective-c
+osx_image: xcode8
+before_script:
+    - bundle install
+script:
+    - xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone SE"
+    - pod lib lint --verbose --fail-fast

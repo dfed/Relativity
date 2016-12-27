@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3713FC091E11BA720075109A /* Relativity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3713FBFF1E11BA720075109A /* Relativity.framework */; };
+		3782F0EF1E12130E006F76B8 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0EA1E12130E006F76B8 /* FontMetrics.swift */; };
+		3782F0F11E12130E006F76B8 /* PixelRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0EC1E12130E006F76B8 /* PixelRounder.swift */; };
+		3782F0F21E12130E006F76B8 /* Relativity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3782F0ED1E12130E006F76B8 /* Relativity.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3782F0F31E12130E006F76B8 /* ViewPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0EE1E12130E006F76B8 /* ViewPosition.swift */; };
+		3782F0F61E121321006F76B8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3782F0F41E121321006F76B8 /* Info.plist */; };
+		3782F0F71E121321006F76B8 /* RelativityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0F51E121321006F76B8 /* RelativityTests.swift */; };
+		3782F0F91E1218C1006F76B8 /* Relativity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0F81E1218C1006F76B8 /* Relativity.swift */; };
+		3782F0FB1E122074006F76B8 /* ViewPositionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0FA1E122074006F76B8 /* ViewPositionOperators.swift */; };
+		3782F0FD1E123626006F76B8 /* CGFloat+Relativity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0FC1E123626006F76B8 /* CGFloat+Relativity.swift */; };
+		3782F0FF1E123707006F76B8 /* UIOffsetOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0FE1E123707006F76B8 /* UIOffsetOperators.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3713FC0A1E11BA720075109A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3713FBF61E11BA720075109A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3713FBFE1E11BA720075109A;
+			remoteInfo = Relativity;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3713FBFF1E11BA720075109A /* Relativity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Relativity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3713FC081E11BA720075109A /* RelativityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelativityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3782F0EA1E12130E006F76B8 /* FontMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontMetrics.swift; path = Sources/FontMetrics.swift; sourceTree = SOURCE_ROOT; };
+		3782F0EB1E12130E006F76B8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
+		3782F0EC1E12130E006F76B8 /* PixelRounder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PixelRounder.swift; path = Sources/PixelRounder.swift; sourceTree = SOURCE_ROOT; };
+		3782F0ED1E12130E006F76B8 /* Relativity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Relativity.h; path = Sources/Relativity.h; sourceTree = SOURCE_ROOT; };
+		3782F0EE1E12130E006F76B8 /* ViewPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewPosition.swift; path = Sources/ViewPosition.swift; sourceTree = SOURCE_ROOT; };
+		3782F0F41E121321006F76B8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
+		3782F0F51E121321006F76B8 /* RelativityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RelativityTests.swift; path = Tests/RelativityTests.swift; sourceTree = SOURCE_ROOT; };
+		3782F0F81E1218C1006F76B8 /* Relativity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Relativity.swift; path = Sources/Relativity.swift; sourceTree = SOURCE_ROOT; };
+		3782F0FA1E122074006F76B8 /* ViewPositionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewPositionOperators.swift; path = Sources/ViewPositionOperators.swift; sourceTree = SOURCE_ROOT; };
+		3782F0FC1E123626006F76B8 /* CGFloat+Relativity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGFloat+Relativity.swift"; path = "Sources/CGFloat+Relativity.swift"; sourceTree = SOURCE_ROOT; };
+		3782F0FE1E123707006F76B8 /* UIOffsetOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIOffsetOperators.swift; path = Sources/UIOffsetOperators.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3713FBFB1E11BA720075109A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3713FC051E11BA720075109A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3713FC091E11BA720075109A /* Relativity.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3713FBF51E11BA720075109A = {
+			isa = PBXGroup;
+			children = (
+				3713FC011E11BA720075109A /* Relativity */,
+				3713FC0C1E11BA720075109A /* RelativityTests */,
+				3713FC001E11BA720075109A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3713FC001E11BA720075109A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3713FBFF1E11BA720075109A /* Relativity.framework */,
+				3713FC081E11BA720075109A /* RelativityTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3713FC011E11BA720075109A /* Relativity */ = {
+			isa = PBXGroup;
+			children = (
+				3782F0EA1E12130E006F76B8 /* FontMetrics.swift */,
+				3782F0FC1E123626006F76B8 /* CGFloat+Relativity.swift */,
+				3782F0EB1E12130E006F76B8 /* Info.plist */,
+				3782F0EC1E12130E006F76B8 /* PixelRounder.swift */,
+				3782F0ED1E12130E006F76B8 /* Relativity.h */,
+				3782F0F81E1218C1006F76B8 /* Relativity.swift */,
+				3782F0FE1E123707006F76B8 /* UIOffsetOperators.swift */,
+				3782F0EE1E12130E006F76B8 /* ViewPosition.swift */,
+				3782F0FA1E122074006F76B8 /* ViewPositionOperators.swift */,
+			);
+			path = Relativity;
+			sourceTree = "<group>";
+		};
+		3713FC0C1E11BA720075109A /* RelativityTests */ = {
+			isa = PBXGroup;
+			children = (
+				3782F0F41E121321006F76B8 /* Info.plist */,
+				3782F0F51E121321006F76B8 /* RelativityTests.swift */,
+			);
+			path = RelativityTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3713FBFC1E11BA720075109A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3782F0F21E12130E006F76B8 /* Relativity.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3713FBFE1E11BA720075109A /* Relativity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3713FC131E11BA720075109A /* Build configuration list for PBXNativeTarget "Relativity" */;
+			buildPhases = (
+				3713FBFA1E11BA720075109A /* Sources */,
+				3713FBFB1E11BA720075109A /* Frameworks */,
+				3713FBFC1E11BA720075109A /* Headers */,
+				3713FBFD1E11BA720075109A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Relativity;
+			productName = Relativity;
+			productReference = 3713FBFF1E11BA720075109A /* Relativity.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3713FC071E11BA720075109A /* RelativityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3713FC161E11BA720075109A /* Build configuration list for PBXNativeTarget "RelativityTests" */;
+			buildPhases = (
+				3713FC041E11BA720075109A /* Sources */,
+				3713FC051E11BA720075109A /* Frameworks */,
+				3713FC061E11BA720075109A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3713FC0B1E11BA720075109A /* PBXTargetDependency */,
+			);
+			name = RelativityTests;
+			productName = RelativityTests;
+			productReference = 3713FC081E11BA720075109A /* RelativityTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3713FBF61E11BA720075109A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Dan Federman";
+				TargetAttributes = {
+					3713FBFE1E11BA720075109A = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					3713FC071E11BA720075109A = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3713FBF91E11BA720075109A /* Build configuration list for PBXProject "Relativity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3713FBF51E11BA720075109A;
+			productRefGroup = 3713FC001E11BA720075109A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3713FBFE1E11BA720075109A /* Relativity */,
+				3713FC071E11BA720075109A /* RelativityTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3713FBFD1E11BA720075109A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3713FC061E11BA720075109A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3782F0F61E121321006F76B8 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3713FBFA1E11BA720075109A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3782F0F91E1218C1006F76B8 /* Relativity.swift in Sources */,
+				3782F0F11E12130E006F76B8 /* PixelRounder.swift in Sources */,
+				3782F0FB1E122074006F76B8 /* ViewPositionOperators.swift in Sources */,
+				3782F0FF1E123707006F76B8 /* UIOffsetOperators.swift in Sources */,
+				3782F0FD1E123626006F76B8 /* CGFloat+Relativity.swift in Sources */,
+				3782F0EF1E12130E006F76B8 /* FontMetrics.swift in Sources */,
+				3782F0F31E12130E006F76B8 /* ViewPosition.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3713FC041E11BA720075109A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3782F0F71E121321006F76B8 /* RelativityTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3713FC0B1E11BA720075109A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3713FBFE1E11BA720075109A /* Relativity */;
+			targetProxy = 3713FC0A1E11BA720075109A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3713FC111E11BA720075109A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3713FC121E11BA720075109A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3713FC141E11BA720075109A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dfed.Relativity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3713FC151E11BA720075109A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Sources/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dfed.Relativity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3713FC171E11BA720075109A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dfed.RelativityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3713FC181E11BA720075109A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dfed.RelativityTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3713FBF91E11BA720075109A /* Build configuration list for PBXProject "Relativity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3713FC111E11BA720075109A /* Debug */,
+				3713FC121E11BA720075109A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3713FC131E11BA720075109A /* Build configuration list for PBXNativeTarget "Relativity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3713FC141E11BA720075109A /* Debug */,
+				3713FC151E11BA720075109A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3713FC161E11BA720075109A /* Build configuration list for PBXNativeTarget "RelativityTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3713FC171E11BA720075109A /* Debug */,
+				3713FC181E11BA720075109A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3713FBF61E11BA720075109A /* Project object */;
+}
