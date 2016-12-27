@@ -23,7 +23,10 @@ import Foundation
 
 public struct ViewPosition {
     
+    // MARK: – Anchor
+    
     public enum Anchor {
+        
         case topLeft
         case topCenter
         case topRight
@@ -61,14 +64,32 @@ public struct ViewPosition {
         }
     }
     
+    // MARK: – OffsetAnchor
+    
+    public struct OffsetAnchor {
+        
+        // MARK: Initialization
+        
+        public init(offset: UIOffset, anchor: Anchor) {
+            self.offset = offset
+            self.anchor = anchor
+        }
+        
+        // MARK: Internal Properties
+        
+        internal var offset: UIOffset
+        internal var anchor: Anchor
+        
+    }
+    
     // MARK: Initialization
     
-    public init(_ view: UIView, _ anchor: Anchor) {
+    public init(view: UIView, anchor: Anchor) {
         self = ViewPosition(view: view, position: anchor.anchorPoint(onRect: view.bounds))
     }
     
-    public init(_ label: UILabel, _ anchor: Anchor) {
-        self = ViewPosition(view: label as UIView, position: anchor.anchorPoint(onRect: FontMetrics(for: label.font).textFrame(within: label.bounds)))
+    public init(label: UILabel, anchor: Anchor) {
+        self = ViewPosition(view: label, position: anchor.anchorPoint(onRect: FontMetrics(for: label.font).textFrame(within: label.bounds)))
     }
     
     public init(view: UIView, position: CGPoint) {
@@ -80,8 +101,8 @@ public struct ViewPosition {
     // MARK: Public Methods
     
     /// Aligns the receiver's view to the passed in view/anchor.
-    public func align(to view: UIView, _ anchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
-        align(to: ViewPosition(view, anchor), xOffset: xOffset, yOffset: yOffset)
+    public func align(to view: UIView, anchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
+        align(to: ViewPosition(view: view, anchor: anchor), xOffset: xOffset, yOffset: yOffset)
     }
     
     /// Aligns the receiver's view to the passed in ViewPosition.
@@ -117,7 +138,7 @@ public struct ViewPosition {
             return
         }
         
-        align(to: superview, superviewAnchor, xOffset: xOffset, yOffset: yOffset)
+        align(to: superview, anchor: superviewAnchor, xOffset: xOffset, yOffset: yOffset)
     }
     
     // MARK: Internal Properties

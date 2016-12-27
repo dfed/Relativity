@@ -31,7 +31,7 @@ PlaygroundPage.current.liveView = containerView
 containerView.addSubview(topAlignmentMargin)
 containerView.addSubview(bottomAlignmentMargin)
 
-ViewPosition(topAlignmentMargin, .bottomCenter) --> ViewPosition(label, .topCenter)
-ViewPosition(bottomAlignmentMargin, .topCenter) --> ViewPosition(label, .bottomCenter)
+topAlignmentMargin.bottomCenter --> label.topCenter
+bottomAlignmentMargin.topCenter --> label.bottomCenter
 
 containerView.sendSubview(toBack: label)

@@ -2,5 +2,10 @@
 <Timeline
    version = "3.0">
    <TimelineItems>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/dan/Documents/source/Relativity/RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage#CharacterRangeLen=52&amp;CharacterRangeLoc=938&amp;EndingLineNumber=33&amp;StartingLineNumber=33&amp;Timestamp=504521213.682907"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
    </TimelineItems>
 </Timeline>

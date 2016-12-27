@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
 [![Platform](https://img.shields.io/cocoapods/p/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
 
-Relativity makes it easy to position views relative to one another without using Auto Layout.
+A DSL for laying out views without Auto Layout in Swift.
 
 ## Installation
 
@@ -45,10 +45,16 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 ### Positioning UIViews
 
-To align view `a` to be 10 points to the right of view `b`, all you need is:
+To align view `a` to be 10 points to the right of view `b`:
 
 ```swift
-  align(view: a, .leftCenter, to: b, .rightCenter, xOffset: 10.0)
+  a.leftCenter --> b.rightCenter + 10.horizontalOffset
+```
+
+To align view `a` to be 10 points below its superview’s top center:
+
+```swift
+  a.topCenter --> .topCenter + 10.verticalOffset
 ```
 
 For more examples, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
@@ -58,22 +64,10 @@ For more examples, check out the [ViewPositionVisualization](RelativityVisualiza
 Relativity makes it easy to position your `UILabel`s to your designer’s spec. Design teams (and design products like [Sketch](https://www.sketchapp.com) and [Zeplin](https://zeplin.io)) measure the vertical distance to a label using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)). Relativity’s `align` methods measure `UILabel` distances the same way. So if your spec says that label `b` should be eight vertical points below label `a`, all you need is:
 
 ```swift
-  align(view: a, .bottomCenter, to: b, .topCenter, yOffset: 8.0)
+  a.bottomCenter --> b.topCenter + 8.verticalOffset
 ```
 
 For a visual example, check out the [FontMetricsVisualization](RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage/Contents.swift) playground page.
-
-### Alternative Syntax
-
-For those who don’t like using global methods, I’ve included a few alternatives for you. The following lines are all equivalent:
-
-```swift
-  align(view: a, .topLeft, to: b, .bottomRight, yOffset: 10.0, xOffset: 15.0)
-  ViewPosition(a, .topLeft).align(to: b, .bottomRight, yOffset: 10.0, xOffset: 15.0)
-  ViewPosition(a, .topLeft).align(to: ViewPosition(b, .bottomRight), yOffset: 10.0, xOffset: 15.0)
-  ViewPosition(a, .topLeft) --> ViewPosition(b, .bottomRight) + UIOffset(horizontal: 10.0, vertical: 15.0)
-  ViewPosition(a, .topLeft) --> ViewPosition(b, .bottomRight) + 10.0.horizontalOffset + 15.0.verticalOffset
-```
 
 ### Pixel Rounding
 
