@@ -18,7 +18,8 @@
 //  limitations under the License.
 //
 
-import Foundation
+import CoreGraphics
+import UIKit
 
 
 public extension UIView {
@@ -59,6 +60,16 @@ public extension UIView {
     
     public var center: ViewPosition {
         return position(with: .center)
+    }
+    
+    // MARK: Public Methods
+    
+    public func distributeSubviewsVertically(within rect: CGRect = .zero, subviewDistributionCreationBlock: () -> [DistributionItem]) {
+        SubviewDistributor.newVerticalSubviewDistributor(with: self).distribute(subviewDistribution: subviewDistributionCreationBlock(), within: rect)
+    }
+    
+    public func distributeSubviewsHorizontally(within rect: CGRect = .zero, subviewDistributionCreationBlock: () -> [DistributionItem]) {
+        SubviewDistributor.newHorizontalSubviewDistributor(with: self).distribute(subviewDistribution: subviewDistributionCreationBlock(), within: rect)
     }
     
     // MARK: Private Methods

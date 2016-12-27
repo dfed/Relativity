@@ -18,7 +18,9 @@
 //  limitations under the License.
 //
 
+import CoreGraphics
 import Foundation
+import UIKit
 
 
 // MARK: – ViewPosition Operators
@@ -72,6 +74,32 @@ public func -(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.Off
 }
 
 
+// MARK: - DistributionItem Operators
+
+
+public func +(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
+    return [lhs, rhs]
+}
+
+public func +(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionItem] {
+    var bothSides = lhs
+    bothSides.append(rhs)
+    return bothSides
+}
+
+public func +(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
+    return lhs + .view(rhs)
+}
+
+public func +(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
+    return .view(lhs) + rhs
+}
+
+public func +(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
+    return lhs + .view(rhs)
+}
+
+
 // MARK: – UIOffset Operators
 
 
@@ -92,17 +120,43 @@ public func *(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
 }
 
 
-// MARK: – CGFloat Extension
+// MARK: CGFloatConvertible
 
 
-public extension CGFloat {
+public protocol CGFloatConvertible {}
+
+
+public extension CGFloatConvertible {
     
     public var horizontalOffset: UIOffset {
-        return UIOffset(horizontal: self, vertical: 0.0)
+        return UIOffset(horizontal: CGFloat(self), vertical: 0.0)
     }
     
     public var verticalOffset: UIOffset {
-        return UIOffset(horizontal: 0.0, vertical: self)
+        return UIOffset(horizontal: 0.0, vertical: CGFloat(self))
+    }
+    
+}
+
+
+// MARK: – CGFloat Extension
+
+
+extension CGFloat: CGFloatConvertible {
+    
+    public init(_ convertible: CGFloatConvertible) {
+        if let cgFloat = convertible as? CGFloat {
+            self = cgFloat
+        } else if let double = convertible as? Double {
+            self = CGFloat(double)
+        } else if let float = convertible as? Float {
+            self = CGFloat(float)
+        } else if let int = convertible as? Int {
+            self = CGFloat(int)
+        } else {
+            assertionFailure("Can not convert \(convertible) to CGFloat!")
+            self = 0.0
+        }
     }
     
 }
@@ -111,46 +165,16 @@ public extension CGFloat {
 // MARK: – Double Extension
 
 
-public extension Double {
-    
-    public var horizontalOffset: UIOffset {
-        return UIOffset(horizontal: CGFloat(self), vertical: 0.0)
-    }
-    
-    public var verticalOffset: UIOffset {
-        return UIOffset(horizontal: 0.0, vertical: CGFloat(self))
-    }
-    
-}
+extension Double: CGFloatConvertible {}
 
 
 // MARK: – Float Extension
 
 
-public extension Float {
-    
-    public var horizontalOffset: UIOffset {
-        return UIOffset(horizontal: CGFloat(self), vertical: 0.0)
-    }
-    
-    public var verticalOffset: UIOffset {
-        return UIOffset(horizontal: 0.0, vertical: CGFloat(self))
-    }
-    
-}
+extension Float: CGFloatConvertible {}
 
 
 // MARK: – Int Extension
 
 
-public extension Int {
-    
-    public var horizontalOffset: UIOffset {
-        return UIOffset(horizontal: CGFloat(self), vertical: 0.0)
-    }
-    
-    public var verticalOffset: UIOffset {
-        return UIOffset(horizontal: 0.0, vertical: CGFloat(self))
-    }
-    
-}
+extension Int: CGFloatConvertible {}

@@ -69,6 +69,27 @@ Relativity makes it easy to position your `UILabel`s to your designer’s spec. 
 
 For a visual example, check out the [FontMetricsVisualization](RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage/Contents.swift) playground page.
 
+### Distributing subviews
+
+To equally distribute subviews `a`, `b`, and `c` at equal distances along a horizontal axis:
+
+```swift
+  superview.distributeSubviewsHorizontally() {
+    a + .relative(1) + b + .relative(1) + c
+  }
+```
+
+To pin `a` to be 8pts from the left side, and distribute `b` and `c` with equal spacing over the remaining space:
+
+```swift
+  superview.distributeSubviewsHorizontally() {
+    .fixed(1) + a + .relative(1) + b + .relative(1) + c
+  }
+```
+
+
+For a visual example, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
+
 ### Pixel Rounding
 
 Relativity ensures that you never align a frame to a non-integral pixel, so no need to worry about blurry UI! I’ve also vended a public [PixelRounder](Sources/PixelRounder.h) for those who want to use it for frame sizing.
