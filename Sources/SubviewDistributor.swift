@@ -148,7 +148,7 @@ public struct SubviewDistributor {
         for case let .relative(space) in distributionItems {
             relativeSpacers.append(space)
         }
-        let smallestRelativeSpacer = relativeSpacers.min() ?? 1
+        
         let cumulativeRelativeSpace: Int = {
             var cumulativeRelativeSpace = 0
             relativeSpacers.forEach { cumulativeRelativeSpace += $0 }
@@ -165,8 +165,7 @@ public struct SubviewDistributor {
         }
         
         func offset(forRelativeSpacer relativeSpacer: Int) -> UIOffset {
-            let relativeSpacePerUnit = CGFloat(smallestRelativeSpacer) / CGFloat(cumulativeRelativeSpace)
-            return offset(forFixedSpacer: totalRelativeSpaceForDistribution * CGFloat(relativeSpacer) * relativeSpacePerUnit)
+            return offset(forFixedSpacer: totalRelativeSpaceForDistribution * CGFloat(relativeSpacer) / CGFloat(cumulativeRelativeSpace))
         }
         
         // Calculate the ViewPosition (e.g. the Anchor) on `superview` for aligning. Make sure to take the `rect` into account.
@@ -206,7 +205,5 @@ public struct SubviewDistributor {
     
     private let direction: Direction
     private let superview: UIView
-    
-    // MARK: Private Methods
     
 }

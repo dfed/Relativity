@@ -69,6 +69,9 @@ DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterva
                 containerView.distributeSubviewsVertically() {
                     .relative(1) <|> .fixed(50) <|> blueRect <|> .relative(2) <|> greenRect
                 }
+                containerView.distributeSubviewsHorizontally() {
+                    .relative(17) <|> redRect <|> .relative(3) <|> yellowRect <|> .relative(17)
+                }
             })
         }
     }
