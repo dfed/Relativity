@@ -27,6 +27,7 @@ import UIKit
 
 
 infix operator --> : AssignmentPrecedence
+infix operator <|> : AdditionPrecedence
 
 /// Aligns lhs to rhs.
 /// - parameter lhs: The ViewPosition to align.
@@ -77,26 +78,26 @@ public func -(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.Off
 // MARK: - DistributionItem Operators
 
 
-public func +(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
+public func <|>(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
     return [lhs, rhs]
 }
 
-public func +(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionItem] {
+public func <|>(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionItem] {
     var bothSides = lhs
     bothSides.append(rhs)
     return bothSides
 }
 
-public func +(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
-    return lhs + .view(rhs)
+public func <|>(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
+    return lhs <|> .view(rhs)
 }
 
-public func +(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
-    return .view(lhs) + rhs
+public func <|>(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
+    return .view(lhs) <|> rhs
 }
 
-public func +(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
-    return lhs + .view(rhs)
+public func <|>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
+    return lhs <|> .view(rhs)
 }
 
 

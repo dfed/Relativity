@@ -43,36 +43,31 @@ containerView.addSubview(greenRect)
 PlaygroundPage.current.liveView = containerView
 
 containerView.distributeSubviewsVertically() {
-    [
-        // Swift can get a little cranky when we have 7+ additions in a row, so just make the array manually.
-        .view(blueRect),
-        .relative(2),
-        .view(redRect),
-        .fixed(20),
-        .view(yellowRect),
-        .relative(1),
-        .view(greenRect)
-    ]
+    .view(blueRect)
+        <|> .relative(2)
+        <|> .view(redRect)
+        <|> .fixed(20)
+        <|> .view(yellowRect)
+        <|> .relative(1)
+        <|> .view(greenRect)
 }
 
 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(500)) {
     UIView.animate(withDuration: 1.0, animations: {
         containerView.distributeSubviewsHorizontally() {
-            // Swift can get a little cranky when we have 7+ additions in a row, so just make the array manually.
-            [.fixed(20), .view(blueRect), .relative(1), .view(redRect), .relative(10), .view(yellowRect), .relative(1), .view(greenRect), .fixed(20)]
+            .fixed(20) <|> blueRect <|> .relative(1) <|> redRect <|> .relative(10) <|> yellowRect <|> .relative(1) <|> greenRect <|> .fixed(20)
         }
         
     }) { (_) in
         UIView.animate(withDuration: 1.0, animations: {
             containerView.distributeSubviewsHorizontally() {
-                // Swift can get a little cranky when we have 7+ additions in a row, so just make the array manually.
-                [.view(blueRect), .fixed(20), .view(redRect), .fixed(20), .view(yellowRect), .fixed(20), .view(greenRect)]
+                blueRect <|> .fixed(20) <|> redRect <|> .fixed(20) <|> yellowRect <|> .fixed(20) <|> greenRect
             }
             
         }) { (_) in
             UIView.animate(withDuration: 1.0, animations: {
                 containerView.distributeSubviewsVertically() {
-                    .relative(1) + .fixed(50) + blueRect + .relative(2) + greenRect
+                    .relative(1) <|> .fixed(50) <|> blueRect <|> .relative(2) <|> greenRect
                 }
             })
         }

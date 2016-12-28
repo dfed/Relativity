@@ -71,11 +71,21 @@ For a visual example, check out the [FontMetricsVisualization](RelativityVisuali
 
 ### Distributing subviews
 
+Since view controllers need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with relative positioning along an axis.
+
 To equally distribute subviews `a`, `b`, and `c` at equal distances along a horizontal axis:
 
 ```swift
   superview.distributeSubviewsHorizontally() {
-    a + .relative(1) + b + .relative(1) + c
+    a <|> .relative(1) <|> b <|> .relative(1) <|> c
+  }
+```
+
+To make the space between `a` and `b` twice as large as the space between `b` and `c`:
+
+```swift
+  superview.distributeSubviewsHorizontally() {
+    a <|> .relative(2) <|> b <|> .relative(1) <|> c
   }
 ```
 
@@ -83,10 +93,17 @@ To pin `a` to be 8pts from the left side, and distribute `b` and `c` with equal 
 
 ```swift
   superview.distributeSubviewsHorizontally() {
-    .fixed(1) + a + .relative(1) + b + .relative(1) + c
+    .fixed(1) <|> a <|> .relative(1) <|> b <|> .relative(1) <|> c
   }
 ```
 
+To equally distribute subviews `a`, `b`, and `c` at equal distances along a vertical axis, but align the subviews within the left half of `superview`:
+
+```swift
+  superview.distributeSubviewsVertically(within: CGRect(x: 0.0, y: 0.0, width: superview.frame.width / 2.0, height: superview.frame.height)) {
+    a <|> .relative(1) <|> b <|> .relative(1) <|> c
+  }
+```
 
 For a visual example, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
 
