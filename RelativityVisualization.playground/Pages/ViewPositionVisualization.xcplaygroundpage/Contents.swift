@@ -19,8 +19,10 @@
 //
 
 import PlaygroundSupport
-import Relativity
 import UIKit
+
+// This import will only work when the Playground is run within Relativity.xcworkspace.
+import Relativity
 
 
 let containerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 375, height: 667)))
