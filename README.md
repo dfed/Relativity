@@ -93,7 +93,7 @@ To pin `a` to be 8pts from the left side, and distribute `b` and `c` with equal 
 
 ```swift
   superview.distributeSubviewsHorizontally() {
-    .fixed(1) <|> a <|> .relative(1) <|> b <|> .relative(1) <|> c
+    .fixed(8) <|> a <|> .relative(1) <|> b <|> .relative(1) <|> c
   }
 ```
 
@@ -115,7 +115,7 @@ Relativity ensures that you never align a frame to a non-integral pixel, so no n
 
 * Xcode 8.0 or later.
 * iOS 8 or later.
-• Swift 3.0 or later.
+* Swift 3.0 or later.
 
 ## Contributing
 
