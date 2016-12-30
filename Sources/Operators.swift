@@ -58,12 +58,20 @@ public func -(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
     return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchor.x - rhs.horizontal, y: lhs.anchor.y - rhs.vertical))
 }
 
+public func +(lhs: UIOffset, rhs: ViewPosition) -> ViewPosition {
+    return rhs + lhs
+}
+
 public func +(lhs: ViewPosition.Anchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
     return ViewPosition.OffsetAnchor(offset: rhs, anchor: lhs)
 }
 
 public func -(lhs: ViewPosition.Anchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
-    return ViewPosition.OffsetAnchor(offset: rhs, anchor: lhs)
+    return ViewPosition.OffsetAnchor(offset: -rhs, anchor: lhs)
+}
+
+public func +(lhs: UIOffset, rhs: ViewPosition.Anchor) -> ViewPosition.OffsetAnchor {
+    return rhs + lhs
 }
 
 public func +(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
@@ -72,6 +80,10 @@ public func +(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.Off
 
 public func -(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
     return ViewPosition.OffsetAnchor(offset: lhs.offset - rhs, anchor: lhs.anchor)
+}
+
+public func +(lhs: UIOffset, rhs: ViewPosition.OffsetAnchor) -> ViewPosition.OffsetAnchor {
+    return rhs + lhs
 }
 
 
@@ -118,6 +130,10 @@ public func /(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
 
 public func *(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
     return UIOffset(horizontal: lhs.horizontal * rhs.horizontal, vertical: lhs.vertical * rhs.vertical)
+}
+
+public prefix func -(offset: UIOffset) -> UIOffset {
+    return UIOffset(horizontal: -offset.horizontal, vertical: -offset.vertical)
 }
 
 
