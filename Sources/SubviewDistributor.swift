@@ -63,9 +63,9 @@ public struct SubviewDistributor {
                 case .fixed:
                     return true
                     
-                case let .relative(spacer):
+                case let .flexible(spacer):
                     guard spacer > 0 else {
-                        assertionFailure("Attempting to distribute a relative spacer \(spacer), which is less than 1!")
+                        assertionFailure("Attempting to distribute a flexible spacer \(spacer), which is less than 1!")
                         return false
                     }
                     
@@ -84,75 +84,75 @@ public struct SubviewDistributor {
             // Ensure our first element is a spacer.
             if let firstDistributionItem = distributionItems.first {
                 switch firstDistributionItem {
-                case .fixed, .relative:
+                case .fixed, .flexible:
                     // Nothing to do here. Our first element is already a spacer.
                     break
                     
                 case .view:
-                    distributionItems.insert(.relative(1), at: 0)
+                    distributionItems.insert(.flexible(1), at: 0)
                 }
             }
                 
             if let lastDistributionItem = distributionItems.last {
                 switch lastDistributionItem {
-                case .fixed, .relative:
+                case .fixed, .flexible:
                     // Nothing to do here. Our last element is already a spacer.
                     break
                     
                 case .view:
-                    distributionItems.append(.relative(1))
+                    distributionItems.append(.flexible(1))
                 }
             }
             
             return distributionItems
         }()
         
-        let totalRelativeSpaceForDistribution: CGFloat = {
-            var totalRelativeSpace: CGFloat
+        let totalFlexibleSpaceForDistribution: CGFloat = {
+            var totalFlexibleSpace: CGFloat
             
             switch direction {
             case .vertical:
-                totalRelativeSpace = distributionRect.size.height
+                totalFlexibleSpace = distributionRect.size.height
             case .horizontal:
-                totalRelativeSpace = distributionRect.size.width
+                totalFlexibleSpace = distributionRect.size.width
             }
             
             for case let .fixed(space) in distributionItems {
-                totalRelativeSpace -= CGFloat(space)
+                totalFlexibleSpace -= CGFloat(space)
             }
             
             for case let .view(view) in distributionItems {
                 switch direction {
                 case .vertical:
-                    totalRelativeSpace -= view.frame.size.height
+                    totalFlexibleSpace -= view.frame.size.height
                 case .horizontal:
-                    totalRelativeSpace -= view.frame.size.width
+                    totalFlexibleSpace -= view.frame.size.width
                 }
             }
             
-            return totalRelativeSpace
+            return totalFlexibleSpace
         }()
         
-        if totalRelativeSpaceForDistribution < 0 {
+        if totalFlexibleSpaceForDistribution < 0 {
             assertionFailure("Views are too large to fit in distribution.")
             // Make the space we're distributing in big enough to fit the views. This will look bad, but it is a better option than bailing out entirely.
             switch direction {
             case .vertical:
-                distributionRect = distributionRect.insetBy(dx: 0.0, dy: totalRelativeSpaceForDistribution)
+                distributionRect = distributionRect.insetBy(dx: 0.0, dy: totalFlexibleSpaceForDistribution)
             case .horizontal:
-                distributionRect = distributionRect.insetBy(dx: totalRelativeSpaceForDistribution, dy: 0.0)
+                distributionRect = distributionRect.insetBy(dx: totalFlexibleSpaceForDistribution, dy: 0.0)
             }
         }
         
-        var relativeSpacers = [Int]()
-        for case let .relative(space) in distributionItems {
-            relativeSpacers.append(space)
+        var flexibleSpacers = [Int]()
+        for case let .flexible(space) in distributionItems {
+            flexibleSpacers.append(space)
         }
         
-        let cumulativeRelativeSpace: Int = {
-            var cumulativeRelativeSpace = 0
-            relativeSpacers.forEach { cumulativeRelativeSpace += $0 }
-            return cumulativeRelativeSpace
+        let cumulativeFlexibleSpace: Int = {
+            var cumulativeFlexibleSpace = 0
+            flexibleSpacers.forEach { cumulativeFlexibleSpace += $0 }
+            return cumulativeFlexibleSpace
         }()
         
         func offset(forFixedSpacer fixedSpacer: CGFloat) -> UIOffset {
@@ -164,8 +164,8 @@ public struct SubviewDistributor {
             }
         }
         
-        func offset(forRelativeSpacer relativeSpacer: Int) -> UIOffset {
-            return offset(forFixedSpacer: totalRelativeSpaceForDistribution * CGFloat(relativeSpacer) / CGFloat(cumulativeRelativeSpace))
+        func offset(forFlexibleSpacer flexibleSpacer: Int) -> UIOffset {
+            return offset(forFixedSpacer: totalFlexibleSpaceForDistribution * CGFloat(flexibleSpacer) / CGFloat(cumulativeFlexibleSpace))
         }
         
         // Calculate the ViewPosition (e.g. the Anchor) on `superview` for aligning. Make sure to take the `rect` into account.
@@ -185,8 +185,8 @@ public struct SubviewDistributor {
             case let .fixed(spacer):
                 leadingViewPosition = leadingViewPosition + offset(forFixedSpacer: CGFloat(spacer))
                 
-            case let .relative(spacer):
-                leadingViewPosition = leadingViewPosition + offset(forRelativeSpacer: spacer)
+            case let .flexible(spacer):
+                leadingViewPosition = leadingViewPosition + offset(forFlexibleSpacer: spacer)
                 
             case let .view(view):
                 switch direction {

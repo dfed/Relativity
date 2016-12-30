@@ -170,14 +170,14 @@ public func <>(lhs: CGFloatConvertible, rhs: UIView) -> [DistributionItem] {
     return .fixed(lhs) <> .view(rhs)
 }
 
-/// Create a .relative DistributionItem from a HalfRelativeDistributionItem.
-public prefix func ~(relativeSpacerHalf: HalfRelativeDistributionItem) -> DistributionItem {
-    return .relative(relativeSpacerHalf.relativeSpacerValue)
+/// Create a .flexible DistributionItem from a HalfFlexibleDistributionItem.
+public prefix func ~(flexibleSpacerHalf: HalfFlexibleDistributionItem) -> DistributionItem {
+    return .flexible(flexibleSpacerHalf.flexibleSpacerValue)
 }
 
-/// Create half of a .relative DistributionItem from an integer.
-public postfix func ~(relativeSpacer: Int) -> HalfRelativeDistributionItem {
-    return HalfRelativeDistributionItem(relativeSpacerValue: relativeSpacer)
+/// Create half of a .flexible DistributionItem from an integer.
+public postfix func ~(flexibleSpacer: Int) -> HalfFlexibleDistributionItem {
+    return HalfFlexibleDistributionItem(flexibleSpacerValue: flexibleSpacer)
 }
 
 

@@ -29,17 +29,17 @@ import UIKit
 public enum DistributionItem {
     
     case fixed(CGFloatConvertible)
-    case relative(Int)
+    case flexible(Int)
     case view(UIView)
     
 }
 
 
-// MARK: – HalfRelativeDistributionItem
+// MARK: – HalfFlexibleDistributionItem
 
 
-public struct HalfRelativeDistributionItem {
+public struct HalfFlexibleDistributionItem {
     
-    let relativeSpacerValue: Int
+    internal let flexibleSpacerValue: Int
     
 }
