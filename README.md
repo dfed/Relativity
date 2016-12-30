@@ -45,12 +45,9 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 ### Positioning UIViews
 
-#### Key
+Positioning views are done by anchoring a corner or edge of a view to another view’s corner or edge, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side.
 
-##### -->
-A rightward anchor. Moves the view on the left side to the position described on the right side.
-##### <--
-A leftward anchor. Moves the view on the right side to the position described on the left side.
+#### Examples
 
 To align view `a` to be 10 points to the left of view `b`:
 
@@ -86,14 +83,7 @@ For a visual example, check out the [FontMetricsVisualization](RelativityVisuali
 
 Since view controllers need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with flexible positioning along an axis.
 
-#### Key
-
-##### <>
-A bidirectional anchor. Views, flexible spacers, and fixed spacers on either side of this operator will be anchored to one another.
-##### Int
-Creates a fixed spacer. Fixed spacers can be created with types `Int`, `Float`, `CGFloat`, and `Double`.
-##### ~Int~
-Creates a flexible spacer. The `Int` is used to determine relative flexibility. If both `~1~` and `~2~` are used in a distribution, `~1~` represents half the space that `~2~` does. Flexible spacers can only be created from an `Int`.
+Subview distribution can be controlled by positioning fixed and flexible spacers in between views. Fixed spaces represent points on screen, and are created with types `Int`, `Float`, `CGFloat`, and `Double`. Flexible spacers represent proportions of the remaining space in the superview after the subviews and fixed spacers have been accounted for. You can create flexible spacers by surrounding an `Int` with a spring `~` operator. A `~2~` represents twice the space that `~1~` does. Views, fixed spacers, and flexible spacers are bound together by a bidirectional anchor `<>` operator.
 
 #### Examples
 
@@ -118,14 +108,6 @@ To pin `a` to be 8pts from the left side, and distribute `b` and `c` with equal 
 ```swift
   superview.distributeSubviewsHorizontally() {
     8 <> a <> ~1~ <> b <> ~1~ <> c
-  }
-```
-
-To equally distribute subviews `a`, `b`, and `c` vertically, with the space between `b` and `c` twice as big as the space between `a` and `b`:
-
-```swift
-  superview.distributeSubviewsVertically() {
-    a <> ~1~ <> b <> ~2~ <> c
   }
 ```
 
