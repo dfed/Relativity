@@ -45,10 +45,10 @@ containerView.addSubview(greenRect)
 
 PlaygroundPage.current.liveView = containerView
 
-blueRect.topLeft --> .topLeft
-redRect.topRight --> .topRight
-yellowRect.bottomRight --> .bottomRight
-greenRect.bottomLeft --> .bottomLeft
+8.horizontalOffset + 8.verticalOffset + .topLeft    <--     blueRect.topLeft
+redRect.topRight                                    -->     -8.horizontalOffset + 8.verticalOffset + .topRight
+yellowRect.bottomRight                              -->     .bottomRight - 8.horizontalOffset - 8.verticalOffset
+8.horizontalOffset - 8.verticalOffset + .bottomLeft <--     greenRect.bottomLeft
 
 let anotherContainerView = UIView()
 containerView.addSubview(anotherContainerView)
@@ -72,8 +72,8 @@ orangeCircle.topCenter --> containerView.bottomCenter
 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(200)) {
     UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
         blueRect.center --> containerView.center + (-blueRect.frame.width / 2.0).horizontalOffset + (-blueRect.frame.height / 2.0).verticalOffset
-        redRect.leftCenter --> blueRect.rightCenter
-        yellowRect.topLeft --> blueRect.bottomRight
+        blueRect.rightCenter <-- redRect.leftCenter
+        blueRect.bottomRight <-- yellowRect.topLeft
         greenRect.topCenter --> blueRect.bottomCenter
         purpleCircle.center --> greenRect.bottomCenter
         orangeCircle.center --> yellowRect.bottomCenter

@@ -27,6 +27,7 @@ import UIKit
 
 
 infix operator --> : AssignmentPrecedence
+infix operator <-- : AssignmentPrecedence
 infix operator <|> : AdditionPrecedence
 
 /// Aligns lhs to rhs.
@@ -48,6 +49,27 @@ public func -->(lhs: ViewPosition, rhs: ViewPosition.Anchor) {
 /// - parameter rhs: The position on the lhs's superview to which lhs is aligned.
 public func -->(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) {
     lhs.align(toSuperviewAnchor: rhs.anchor, xOffset: rhs.offset.horizontal, yOffset: rhs.offset.vertical)
+}
+
+/// Aligns rhs to lhs.
+/// - parameter lhs: The position to which rhs is aligned.
+/// - parameter rhs: The ViewPosition to align.
+public func <--(lhs: ViewPosition, rhs: ViewPosition) {
+    rhs --> lhs
+}
+
+/// Aligns rhs to the lhs's position on the rhs's superview.
+/// - parameter lhs: The ViewPosition to align.
+/// - parameter rhs: The position on the rhs's superview to which lhs is aligned.
+public func <--(lhs: ViewPosition.Anchor, rhs: ViewPosition) {
+    rhs --> lhs
+}
+
+/// Aligns rhs to the lhs's position on the rhs's superview.
+/// - parameter lhs: The position on the hhs's superview to which hhs is aligned.
+/// - parameter rhs: The ViewPosition to align.
+public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
+    rhs --> lhs
 }
 
 public func +(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {

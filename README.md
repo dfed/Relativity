@@ -45,16 +45,22 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 ### Positioning UIViews
 
+To align view `a` to be 10 points to the left of view `b`:
+
+```swift
+  a.rightCenter --> 10.horizontalOffset + b.leftCenter
+```
+
 To align view `a` to be 10 points to the right of view `b`:
 
 ```swift
-  a.leftCenter --> b.rightCenter + 10.horizontalOffset
+  b.rightCenter + 10.horizontalOffset <-- a.leftCenter
 ```
 
 To align view `a` to be 10 points below its superview’s top center:
 
 ```swift
-  a.topCenter --> .topCenter + 10.verticalOffset
+  a.topCenter --> 10.verticalOffset + .topCenter
 ```
 
 For more examples, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
@@ -64,7 +70,7 @@ For more examples, check out the [ViewPositionVisualization](RelativityVisualiza
 Relativity makes it easy to position your `UILabel`s to your designer’s spec. Design teams (and design products like [Sketch](https://www.sketchapp.com) and [Zeplin](https://zeplin.io)) measure the vertical distance to a label using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)). Relativity’s `align` methods measure `UILabel` distances the same way. So if your spec says that label `b` should be eight vertical points below label `a`, all you need is:
 
 ```swift
-  a.bottomCenter --> b.topCenter + 8.verticalOffset
+  a.bottomCenter --> 8.verticalOffset + b.topCenter
 ```
 
 For a visual example, check out the [FontMetricsVisualization](RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage/Contents.swift) playground page.
