@@ -25,10 +25,21 @@ import UIKit
 
 // MARK: – DistributionItem
 
+
 public enum DistributionItem {
     
     case fixed(CGFloatConvertible)
     case relative(Int)
     case view(UIView)
+    
+}
+
+
+// MARK: – HalfRelativeDistributionItem
+
+
+public struct HalfRelativeDistributionItem {
+    
+    let relativeSpacerValue: Int
     
 }

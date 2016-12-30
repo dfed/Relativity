@@ -28,7 +28,8 @@ import UIKit
 
 infix operator --> : AssignmentPrecedence
 infix operator <-- : AssignmentPrecedence
-infix operator <|> : AdditionPrecedence
+infix operator <> : AdditionPrecedence
+postfix operator ~
 
 /// Aligns lhs to rhs.
 /// - parameter lhs: The ViewPosition to align.
@@ -112,26 +113,71 @@ public func +(lhs: UIOffset, rhs: ViewPosition.OffsetAnchor) -> ViewPosition.Off
 // MARK: - DistributionItem Operators
 
 
-public func <|>(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
     return [lhs, rhs]
 }
 
-public func <|>(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionItem] {
+/// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
+public func <>(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionItem] {
     var bothSides = lhs
     bothSides.append(rhs)
     return bothSides
 }
 
-public func <|>(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
-    return lhs <|> .view(rhs)
+/// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
+public func <>(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
+    return lhs <> .view(rhs)
 }
 
-public func <|>(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
-    return .view(lhs) <|> rhs
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
+    return .view(lhs) <> rhs
 }
 
-public func <|>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
-    return lhs <|> .view(rhs)
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: UIView, rhs: UIView) -> [DistributionItem] {
+    return .view(lhs) <> .view(rhs)
+}
+
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
+    return lhs <> .view(rhs)
+}
+
+/// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
+public func <>(lhs: [DistributionItem], rhs: CGFloatConvertible) -> [DistributionItem] {
+    return lhs <> .fixed(rhs)
+}
+
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: CGFloatConvertible, rhs: DistributionItem) -> [DistributionItem] {
+    return .fixed(lhs) <> rhs
+}
+
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: DistributionItem, rhs: CGFloatConvertible) -> [DistributionItem] {
+    return lhs <> .fixed(rhs)
+}
+
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: UIView, rhs: CGFloatConvertible) -> [DistributionItem] {
+    return .view(lhs) <> .fixed(rhs)
+}
+
+/// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+public func <>(lhs: CGFloatConvertible, rhs: UIView) -> [DistributionItem] {
+    return .fixed(lhs) <> .view(rhs)
+}
+
+/// Create a .relative DistributionItem from a HalfRelativeDistributionItem.
+public prefix func ~(relativeSpacerHalf: HalfRelativeDistributionItem) -> DistributionItem {
+    return .relative(relativeSpacerHalf.relativeSpacerValue)
+}
+
+/// Create half of a .relative DistributionItem from an integer.
+public postfix func ~(relativeSpacer: Int) -> HalfRelativeDistributionItem {
+    return HalfRelativeDistributionItem(relativeSpacerValue: relativeSpacer)
 }
 
 

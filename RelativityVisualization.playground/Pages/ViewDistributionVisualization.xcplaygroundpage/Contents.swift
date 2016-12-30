@@ -46,34 +46,40 @@ containerView.addSubview(greenRect)
 PlaygroundPage.current.liveView = containerView
 
 containerView.distributeSubviewsVertically() {
-    .view(blueRect)
-        <|> .relative(2)
-        <|> .view(redRect)
-        <|> .fixed(20)
-        <|> .view(yellowRect)
-        <|> .relative(1)
-        <|> .view(greenRect)
+    blueRect
+        <>
+        ~2~
+        <>
+        redRect
+        <>
+        20
+        <>
+        yellowRect
+        <>
+        ~1~
+        <>
+    greenRect
 }
 
 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(500)) {
     UIView.animate(withDuration: 1.0, animations: {
         containerView.distributeSubviewsHorizontally() {
-            .fixed(20) <|> blueRect <|> .relative(1) <|> redRect <|> .relative(10) <|> yellowRect <|> .relative(1) <|> greenRect <|> .fixed(20)
+            20 <> blueRect <> ~1~ <> redRect <> ~10~ <> yellowRect <> ~1~ <> greenRect <> 20
         }
         
     }) { (_) in
         UIView.animate(withDuration: 1.0, animations: {
             containerView.distributeSubviewsHorizontally() {
-                blueRect <|> .fixed(20) <|> redRect <|> .fixed(20) <|> yellowRect <|> .fixed(20) <|> greenRect
+                blueRect <> 20 <> redRect <> 20 <> yellowRect <> 20 <> greenRect
             }
             
         }) { (_) in
             UIView.animate(withDuration: 1.0, animations: {
                 containerView.distributeSubviewsVertically() {
-                    .relative(1) <|> .fixed(50) <|> blueRect <|> .relative(2) <|> greenRect
+                    ~1~ <> 50 <> blueRect <> ~2~ <> greenRect
                 }
                 containerView.distributeSubviewsHorizontally() {
-                    .relative(17) <|> redRect <|> .relative(3) <|> yellowRect <|> .relative(17)
+                    ~17~ <> redRect <> ~3~ <> yellowRect <> ~17~
                 }
             })
         }

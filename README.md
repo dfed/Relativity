@@ -45,6 +45,13 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 ### Positioning UIViews
 
+#### Key
+
+##### -->
+A rightward anchor. Moves the view on the left side to the position described on the right side.
+##### <--
+A leftward anchor. Moves the view on the right side to the position described on the left side.
+
 To align view `a` to be 10 points to the left of view `b`:
 
 ```swift
@@ -77,13 +84,24 @@ For a visual example, check out the [FontMetricsVisualization](RelativityVisuali
 
 ### Distributing subviews
 
-Since view controllers need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with relative positioning along an axis.
+Since view controllers need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with flexible positioning along an axis.
+
+#### Key
+
+##### <>
+A bidirectional anchor. Views, flexible spacers, and fixed spacers on either side of this operator will be anchored to one another.
+##### Int
+Creates a fixed spacer. Fixed spacers can be created with types `Int`, `Float`, `CGFloat`, and `Double`.
+##### ~Int~
+Creates a flexible spacer. The `Int` is used to determine relative flexibility. If both `~1~` and `~2~` are used in a distribution, `~1~` represents half the space that `~2~` does. Flexible spacers can only be created from an `Int`.
+
+#### Examples
 
 To equally distribute subviews `a`, `b`, and `c` at equal distances along a horizontal axis:
 
 ```swift
   superview.distributeSubviewsHorizontally() {
-    a <|> .relative(1) <|> b <|> .relative(1) <|> c
+    a <> ~1~ <> b <> ~1~ <> c
   }
 ```
 
@@ -91,7 +109,7 @@ To make the space between `a` and `b` twice as large as the space between `b` an
 
 ```swift
   superview.distributeSubviewsHorizontally() {
-    a <|> .relative(2) <|> b <|> .relative(1) <|> c
+    a <> ~2~ <> b <> ~1~ <> c
   }
 ```
 
@@ -99,7 +117,15 @@ To pin `a` to be 8pts from the left side, and distribute `b` and `c` with equal 
 
 ```swift
   superview.distributeSubviewsHorizontally() {
-    .fixed(8) <|> a <|> .relative(1) <|> b <|> .relative(1) <|> c
+    8 <> a <> ~1~ <> b <> ~1~ <> c
+  }
+```
+
+To equally distribute subviews `a`, `b`, and `c` vertically, with the space between `b` and `c` twice as big as the space between `a` and `b`:
+
+```swift
+  superview.distributeSubviewsVertically() {
+    a <> ~1~ <> b <> ~2~ <> c
   }
 ```
 
@@ -107,7 +133,7 @@ To equally distribute subviews `a`, `b`, and `c` at equal distances along a vert
 
 ```swift
   superview.distributeSubviewsVertically(within: CGRect(x: 0.0, y: 0.0, width: superview.frame.width / 2.0, height: superview.frame.height)) {
-    a <|> .relative(1) <|> b <|> .relative(1) <|> c
+    a <> ~1~ <> b <> ~1~ <> c
   }
 ```
 
