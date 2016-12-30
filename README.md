@@ -6,7 +6,7 @@
 [![License](https://img.shields.io/cocoapods/l/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
 [![Platform](https://img.shields.io/cocoapods/p/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
 
-A DSL for laying out views without Auto Layout in Swift.
+A programmatic layout engine and DSL that provides an alternative to Auto Layout.
 
 ## Installation
 
@@ -43,9 +43,20 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 ## Usage
 
-### Positioning UIViews
+### Programmatic Layout
 
-Positioning views are done by anchoring a corner or edge of a view to another view’s corner or edge, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side.
+There are four basic steps to laying out views programmatically. In `init` or `viewDidLoad`:
+1. Create your views.
+2. Create your view hierarchy with `addSubview()`.
+Then in `layoutSubviews` for a `UIView` or `viewDidLayoutSubviews` for a `UIViewController`:
+3. Size your views.
+4. Position your views.
+
+Note that with the above steps your UI will animate nicely during screen rotations and status bar size changes.
+
+### Anchoring UIViews
+
+Positioning views are done by anchoring a corner or edge of a view to another view’s corner or edge, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side. You can also explicitly align views using the `align(to:xOffset:yOffset)` method in [ViewPosition.swift](Sources/ViewPosition.swift#L105).
 
 #### Examples
 
@@ -69,7 +80,7 @@ To align view `a` to be 10 points below its superview’s top center:
 
 For more examples, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
 
-#### Positioning UILabels
+#### Anchoring UILabels
 
 Relativity makes it easy to position your `UILabel`s to your designer’s spec. Design teams (and design products like [Sketch](https://www.sketchapp.com) and [Zeplin](https://zeplin.io)) measure the vertical distance to a label using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)). Relativity’s `align` methods measure `UILabel` distances the same way. So if your spec says that label `b` should be eight vertical points below label `a`, all you need is:
 
@@ -79,11 +90,11 @@ Relativity makes it easy to position your `UILabel`s to your designer’s spec. 
 
 For a visual example, check out the [FontMetricsVisualization](RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage/Contents.swift) playground page.
 
-### Distributing subviews
+### Flexible distribution of subviews
 
 Since view controllers need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with flexible positioning along an axis.
 
-Subview distribution can be controlled by positioning fixed and flexible spacers in between views. Fixed spaces represent points on screen, and are created with types `Int`, `Float`, `CGFloat`, and `Double`. Flexible spacers represent proportions of the remaining space in the superview after the subviews and fixed spacers have been accounted for. You can create flexible spacers by surrounding an `Int` with a spring `~` operator. A `~2~` represents twice the space that `~1~` does. Views, fixed spacers, and flexible spacers are bound together by a bidirectional anchor `<>` operator.
+Subview distribution can be controlled by positioning fixed and flexible spacers in between views. Fixed spaces represent points on screen. Fixed spaces are created by inserting `CGFloatConvertible` (`Int`, `Float`, `CGFloat`, or `Double`) types into the distribution expression, or by initializing a `.fixed(CGFloatConvertible)` enum case directly. Flexible spacers represent proportions of the remaining space in the superview after the subviews and fixed spacers have been accounted for. You can create flexible spacers by surrounding an `Int` with a spring `~` operator, or by initializing the `.flexible(Int)` enum case directly. A `~2~` represents twice the space that `~1~` does. Views, fixed spacers, and flexible spacers are bound together by a bidirectional anchor `<>` operator.
 
 #### Examples
 
