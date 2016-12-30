@@ -101,11 +101,6 @@ public struct ViewPosition {
     
     // MARK: Public Methods
     
-    /// Aligns the receiver's view to the passed in view/anchor.
-    public func align(to view: UIView, anchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
-        align(to: ViewPosition(view: view, anchor: anchor), xOffset: xOffset, yOffset: yOffset)
-    }
-    
     /// Aligns the receiver's view to the passed in ViewPosition.
     public func align(to otherViewPosition: ViewPosition, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
         guard view.bounds == originalBounds else {
@@ -139,7 +134,11 @@ public struct ViewPosition {
             return
         }
         
-        align(to: superview, anchor: superviewAnchor, xOffset: xOffset, yOffset: yOffset)
+        if let superview = superview as? UILabel {
+            align(to: ViewPosition(label: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
+        } else {
+            align(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
+        }
     }
     
     // MARK: Internal Properties
