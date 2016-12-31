@@ -10,12 +10,12 @@
 		370022931E12E3DD004687C4 /* SubviewDistributor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370022921E12E3DD004687C4 /* SubviewDistributor.swift */; };
 		370022951E12E523004687C4 /* DistributionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370022941E12E523004687C4 /* DistributionItem.swift */; };
 		3713FC091E11BA720075109A /* Relativity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3713FBFF1E11BA720075109A /* Relativity.framework */; };
+		376704CC1E1771CB00AFA0FB /* PixelRounderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376704CA1E1770B700AFA0FB /* PixelRounderTests.swift */; };
 		3782F0EF1E12130E006F76B8 /* FontMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0EA1E12130E006F76B8 /* FontMetrics.swift */; };
 		3782F0F11E12130E006F76B8 /* PixelRounder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0EC1E12130E006F76B8 /* PixelRounder.swift */; };
 		3782F0F21E12130E006F76B8 /* Relativity.h in Headers */ = {isa = PBXBuildFile; fileRef = 3782F0ED1E12130E006F76B8 /* Relativity.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3782F0F31E12130E006F76B8 /* ViewPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0EE1E12130E006F76B8 /* ViewPosition.swift */; };
 		3782F0F61E121321006F76B8 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3782F0F41E121321006F76B8 /* Info.plist */; };
-		3782F0F71E121321006F76B8 /* RelativityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0F51E121321006F76B8 /* RelativityTests.swift */; };
 		3782F0FB1E122074006F76B8 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F0FA1E122074006F76B8 /* Operators.swift */; };
 		3782F1011E125787006F76B8 /* UIView+Relativity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3782F1001E125787006F76B8 /* UIView+Relativity.swift */; };
 /* End PBXBuildFile section */
@@ -35,13 +35,13 @@
 		370022941E12E523004687C4 /* DistributionItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DistributionItem.swift; path = Sources/DistributionItem.swift; sourceTree = SOURCE_ROOT; };
 		3713FBFF1E11BA720075109A /* Relativity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Relativity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3713FC081E11BA720075109A /* RelativityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelativityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		376704CA1E1770B700AFA0FB /* PixelRounderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PixelRounderTests.swift; path = Tests/PixelRounderTests.swift; sourceTree = SOURCE_ROOT; };
 		3782F0EA1E12130E006F76B8 /* FontMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontMetrics.swift; path = Sources/FontMetrics.swift; sourceTree = SOURCE_ROOT; };
 		3782F0EB1E12130E006F76B8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Sources/Info.plist; sourceTree = SOURCE_ROOT; };
 		3782F0EC1E12130E006F76B8 /* PixelRounder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PixelRounder.swift; path = Sources/PixelRounder.swift; sourceTree = SOURCE_ROOT; };
 		3782F0ED1E12130E006F76B8 /* Relativity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Relativity.h; path = Sources/Relativity.h; sourceTree = SOURCE_ROOT; };
 		3782F0EE1E12130E006F76B8 /* ViewPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewPosition.swift; path = Sources/ViewPosition.swift; sourceTree = SOURCE_ROOT; };
 		3782F0F41E121321006F76B8 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tests/Info.plist; sourceTree = SOURCE_ROOT; };
-		3782F0F51E121321006F76B8 /* RelativityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RelativityTests.swift; path = Tests/RelativityTests.swift; sourceTree = SOURCE_ROOT; };
 		3782F0FA1E122074006F76B8 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/Operators.swift; sourceTree = SOURCE_ROOT; };
 		3782F1001E125787006F76B8 /* UIView+Relativity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+Relativity.swift"; path = "Sources/UIView+Relativity.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -103,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				3782F0F41E121321006F76B8 /* Info.plist */,
-				3782F0F51E121321006F76B8 /* RelativityTests.swift */,
+				376704CA1E1770B700AFA0FB /* PixelRounderTests.swift */,
 			);
 			path = RelativityTests;
 			sourceTree = "<group>";
@@ -235,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3782F0F71E121321006F76B8 /* RelativityTests.swift in Sources */,
+				376704CC1E1771CB00AFA0FB /* PixelRounderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

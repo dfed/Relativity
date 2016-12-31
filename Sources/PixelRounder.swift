@@ -29,15 +29,25 @@ public struct PixelRounder {
     
     public init(for view: UIView) {
         assert(view.window != nil, "Creating PixelRounder with a view that has not been added to a window! Using the main screen's scale instead.")
-        screenScale = (view.window?.screen ?? UIScreen.main).scale
+        self = PixelRounder(withScreenScale: (view.window?.screen ?? UIScreen.main).scale)
     }
     
     public init(for window: UIWindow) {
-        screenScale = window.screen.scale
+        self = PixelRounder(withScreenScale: window.screen.scale)
     }
     
     public init(for screen: UIScreen = UIScreen.main) {
-        screenScale = screen.scale
+        self = PixelRounder(withScreenScale: screen.scale)
+    }
+    
+    internal init(withScreenScale screenScale: CGFloat) {
+        if screenScale.truncatingRemainder(dividingBy: 1.0) == 0.0 {
+            self.screenScale = screenScale
+            
+        } else {
+            assertionFailure("Initializing a PixelRounder with a screenScale that isn't integral.")
+            self.screenScale = round(screenScale)
+        }
     }
     
     // MARK: Public Methods
