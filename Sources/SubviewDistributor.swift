@@ -124,7 +124,11 @@ public struct SubviewDistributor {
             for case let .view(view) in distributionItems {
                 switch direction {
                 case .vertical:
-                    totalFlexibleSpace -= view.frame.size.height
+                    if let view = view as? UILabel {
+                        totalFlexibleSpace -= FontMetrics(for: view.font).textFrame(within: view.frame).size.height
+                    } else {
+                        totalFlexibleSpace -= view.frame.size.height
+                    }
                 case .horizontal:
                     totalFlexibleSpace -= view.frame.size.width
                 }

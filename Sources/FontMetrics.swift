@@ -47,7 +47,7 @@ public struct FontMetrics {
     /// Returns a rect inset by the top and bottom font inset.
     public func textFrame(within rect: CGRect) -> CGRect {
         var textFrame = rect
-        textFrame.origin.y = topInset
+        textFrame.origin.y += topInset
         textFrame.size.height -= topInset + bottomInset
         
         return textFrame
