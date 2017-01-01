@@ -76,7 +76,7 @@ public struct PixelRounder {
         return CGPoint(x: floorToPixel(point.x), y: floorToPixel(point.y))
     }
     
-    // MARK: Private Properties
+    // MARK: Internal Properties
     
-    private let screenScale: CGFloat
+    internal let screenScale: CGFloat
 }
