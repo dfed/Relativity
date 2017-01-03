@@ -56,7 +56,7 @@ Note that with the above steps your UI will animate nicely during screen rotatio
 
 ### Anchoring UIViews
 
-Positioning views are done by anchoring a corner or edge of a view to another view’s corner or edge, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side. You can also explicitly align views using the `align(to:xOffset:yOffset)` method in [ViewPosition.swift](Sources/ViewPosition.swift#L105).
+Positioning views is done by anchoring a corner or edge of a view to another view’s corner or edge, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side. You can also explicitly align views using the `align(to:xOffset:yOffset)` method in [ViewPosition.swift](Sources/ViewPosition.swift#L105).
 
 #### Examples
 
