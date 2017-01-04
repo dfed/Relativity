@@ -45,12 +45,12 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 ### Programmatic Layout
 
-There are four basic steps to laying out views programmatically. In `init` or `viewDidLoad`:
-1. Create your views.
-2. Create your view hierarchy with `addSubview()`.
-Then in `layoutSubviews` for a `UIView` or `viewDidLayoutSubviews` for a `UIViewController`:
-3. Size your views.
-4. Position your views.
+There are four basic steps to laying out views programmatically.
+
+1. **Create your views**. Do this in `init` or `viewDidLoad`.
+2. **Create your view hierarchy** with `addSubview()`. Do this in `init` or `viewDidLoad`.
+3. **Size your views**. Do this in `layoutSubviews` for a `UIView` or `viewDidLayoutSubviews` for a `UIViewController`.
+4. **Position your views**. Do this in `layoutSubviews` for a `UIView` or `viewDidLayoutSubviews` for a `UIViewController`.
 
 Note that with the above steps your UI will animate nicely during screen rotations and status bar size changes.
 
