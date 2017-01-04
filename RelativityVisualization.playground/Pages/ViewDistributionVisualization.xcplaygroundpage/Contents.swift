@@ -25,6 +25,8 @@ import UIKit
 import Relativity
 
 
+//: ### Create views
+
 let containerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 375, height: 667)))
 containerView.backgroundColor = .white
 
@@ -38,10 +40,14 @@ redRect.backgroundColor = .red
 yellowRect.backgroundColor = .yellow
 greenRect.backgroundColor = .green
 
+//: ### Create view hierarchy
+
 containerView.addSubview(blueRect)
 containerView.addSubview(redRect)
 containerView.addSubview(yellowRect)
 containerView.addSubview(greenRect)
+
+//: ### Position views
 
 PlaygroundPage.current.liveView = containerView
 

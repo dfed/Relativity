@@ -25,35 +25,43 @@ import UIKit
 import Relativity
 
 
+//: ### Create views
+
 let containerView = UIView()
 
 let font = UIFont.systemFont(ofSize: 160)
 let label = UILabel()
-label.backgroundColor = UIColor.white
+label.backgroundColor = .white
 label.text = "Sample"
 label.numberOfLines = 0
 label.font = font
-label.sizeToFit()
 
 let topAlignmentMargin = UIView()
 topAlignmentMargin.backgroundColor = .blue
 topAlignmentMargin.alpha = 0.4
-topAlignmentMargin.frame.size = CGSize(width: label.frame.width, height: FontMetrics(for: font).topInset)
 
 let bottomAlignmentMargin = UIView()
 bottomAlignmentMargin.backgroundColor = .blue
 bottomAlignmentMargin.alpha = 0.4
-bottomAlignmentMargin.frame.size = CGSize(width: label.frame.width, height: FontMetrics(for: font).bottomInset)
+
+//: ### Create view hierarchy
 
 containerView.addSubview(label)
-containerView.frame.size = label.frame.size
+containerView.addSubview(topAlignmentMargin)
+containerView.addSubview(bottomAlignmentMargin)
+containerView.sendSubview(toBack: label)
+
+//: ### Size views
+
+label.sizeToFit()
+containerView.frame = label.bounds
 
 PlaygroundPage.current.liveView = containerView
 
-containerView.addSubview(topAlignmentMargin)
-containerView.addSubview(bottomAlignmentMargin)
+topAlignmentMargin.frame.size = CGSize(width: label.frame.width, height: font.capInset(with: PixelRounder(for: topAlignmentMargin)))
+bottomAlignmentMargin.frame.size = CGSize(width: label.frame.width, height: font.baselineInset(with: PixelRounder(for: bottomAlignmentMargin)))
+
+//: ### Position views
 
 topAlignmentMargin.bottom --> label.top
 bottomAlignmentMargin.top --> label.bottom
-
-containerView.sendSubview(toBack: label)

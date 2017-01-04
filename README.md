@@ -47,10 +47,10 @@ To use git submodules, checkout the submodule with `git submodule add git@github
 
 There are four basic steps to laying out views programmatically.
 
-1. **Create your views**. Do this in `init` or `viewDidLoad`.
-2. **Create your view hierarchy** with `addSubview()`. Do this in `init` or `viewDidLoad`.
-3. **Size your views**. Do this in `layoutSubviews` for a `UIView` or `viewDidLayoutSubviews` for a `UIViewController`.
-4. **Position your views**. Do this in `layoutSubviews` for a `UIView` or `viewDidLayoutSubviews` for a `UIViewController`.
+1. **Create views**. Do this in `init` or `viewDidLoad`.
+2. **Create view hierarchy** with `addSubview()`. Do this in `init` or `viewDidLoad`.
+3. **Size views**. Do this in `layoutSubviews`.
+4. **Position views**. Do this in `layoutSubviews`.
 
 Note that with the above steps your UI will animate nicely during screen rotations and status bar size changes.
 
@@ -133,7 +133,7 @@ To pin `a` to be 8pts from the left side, and distribute `b` and `c` with equal 
 To equally distribute subviews `a`, `b`, and `c` at equal distances along a vertical axis, but align the subviews within the left half of `superview`:
 
 ```swift
-  superview.distributeSubviewsVertically(within: CGRect(x: 0.0, y: 0.0, width: superview.frame.width / 2.0, height: superview.frame.height)) {
+  superview.distributeSubviewsVertically(within: CGRect(x: 0.0, y: 0.0, width: superview.bounds.midX, height: superview.bounds.height)) {
     a <> ~1~ <> b <> ~1~ <> c
   }
 ```

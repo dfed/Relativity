@@ -72,7 +72,7 @@ public struct SubviewDistributor {
                     return true
                     
                 case let .view(view):
-                    guard superview.subviews.contains(view) else {
+                    guard view.superview == superview else {
                         assertionFailure("Attempting to distribute a view \(view) that is not a subview of \(superview)!")
                         return false
                     }
@@ -125,12 +125,12 @@ public struct SubviewDistributor {
                 switch direction {
                 case .vertical:
                     if let view = view as? UILabel {
-                        totalFlexibleSpace -= FontMetrics(for: view.font).textFrame(within: view.frame).size.height
+                        totalFlexibleSpace -= view.bounds.insetBy(capAndBaselineOf: view.font, with: PixelRounder(for: view)).size.height
                     } else {
-                        totalFlexibleSpace -= view.frame.size.height
+                        totalFlexibleSpace -= view.bounds.size.height
                     }
                 case .horizontal:
-                    totalFlexibleSpace -= view.frame.size.width
+                    totalFlexibleSpace -= view.bounds.size.width
                 }
             }
             

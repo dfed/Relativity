@@ -74,11 +74,11 @@ public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
 }
 
 public func +(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
-    return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchor.x + rhs.horizontal, y: lhs.anchor.y + rhs.vertical))
+    return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x + rhs.horizontal, y: lhs.anchorPoint.y + rhs.vertical))
 }
 
 public func -(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
-    return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchor.x - rhs.horizontal, y: lhs.anchor.y - rhs.vertical))
+    return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x - rhs.horizontal, y: lhs.anchorPoint.y - rhs.vertical))
 }
 
 public func +(lhs: UIOffset, rhs: ViewPosition) -> ViewPosition {
@@ -147,27 +147,27 @@ public func <>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
 public func <>(lhs: [DistributionItem], rhs: CGFloatConvertible) -> [DistributionItem] {
-    return lhs <> .fixed(rhs)
+    return lhs <> .fixed(CGFloat(rhs))
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: CGFloatConvertible, rhs: DistributionItem) -> [DistributionItem] {
-    return .fixed(lhs) <> rhs
+    return .fixed(CGFloat(lhs)) <> rhs
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: DistributionItem, rhs: CGFloatConvertible) -> [DistributionItem] {
-    return lhs <> .fixed(rhs)
+    return lhs <> .fixed(CGFloat(rhs))
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: UIView, rhs: CGFloatConvertible) -> [DistributionItem] {
-    return .view(lhs) <> .fixed(rhs)
+    return .view(lhs) <> .fixed(CGFloat(rhs))
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: CGFloatConvertible, rhs: UIView) -> [DistributionItem] {
-    return .fixed(lhs) <> .view(rhs)
+    return .fixed(CGFloat(lhs)) <> .view(rhs)
 }
 
 /// Create a .flexible DistributionItem from a HalfFlexibleDistributionItem.

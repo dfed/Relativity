@@ -25,6 +25,8 @@ import UIKit
 import Relativity
 
 
+//: ### Create views
+
 let containerView = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 375, height: 667)))
 containerView.backgroundColor = .white
 
@@ -38,33 +40,36 @@ redRect.backgroundColor = .red
 yellowRect.backgroundColor = .yellow
 greenRect.backgroundColor = .green
 
-containerView.addSubview(blueRect)
-containerView.addSubview(redRect)
-containerView.addSubview(yellowRect)
-containerView.addSubview(greenRect)
-
-PlaygroundPage.current.liveView = containerView
-
-8.horizontalOffset + 8.verticalOffset + .topLeft    <--     blueRect.topLeft
-redRect.topRight                                    -->     -8.horizontalOffset + 8.verticalOffset + .topRight
-yellowRect.bottomRight                              -->     .bottomRight - 8.horizontalOffset - 8.verticalOffset
-8.horizontalOffset - 8.verticalOffset + .bottomLeft <--     greenRect.bottomLeft
-
 let anotherContainerView = UIView()
-containerView.addSubview(anotherContainerView)
-
 let purpleCircle = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
 let orangeCircle = UIView(frame: CGRect(origin: .zero, size: CGSize(width: 100, height: 100)))
 
 purpleCircle.backgroundColor = .purple
 orangeCircle.backgroundColor = .orange
+purpleCircle.layer.cornerRadius = purpleCircle.bounds.midY
+orangeCircle.layer.cornerRadius = orangeCircle.bounds.midY
 
-purpleCircle.layer.cornerRadius = purpleCircle.frame.height / 2.0
-orangeCircle.layer.cornerRadius = orangeCircle.frame.height / 2.0
+//: ### Create view hierarchy
+
+containerView.addSubview(blueRect)
+containerView.addSubview(redRect)
+containerView.addSubview(yellowRect)
+containerView.addSubview(greenRect)
+
+containerView.addSubview(anotherContainerView)
 
 // Note that circles are not in the same coordinate space as the rects above.
 anotherContainerView.addSubview(purpleCircle)
 anotherContainerView.addSubview(orangeCircle)
+
+PlaygroundPage.current.liveView = containerView
+
+//: ### Position views
+
+8.horizontalOffset + 8.verticalOffset + .topLeft    <--     blueRect.topLeft
+redRect.topRight                                    -->     -8.horizontalOffset + 8.verticalOffset + .topRight
+yellowRect.bottomRight                              -->     .bottomRight - 8.horizontalOffset - 8.verticalOffset
+8.horizontalOffset - 8.verticalOffset + .bottomLeft <--     greenRect.bottomLeft
 
 purpleCircle.top --> containerView.bottom
 orangeCircle.top --> containerView.bottom

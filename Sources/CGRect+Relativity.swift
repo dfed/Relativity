@@ -1,9 +1,9 @@
 //
-//  DistributionItem.swift
+//  CGRect+Relativity.swift
 //  Relativity
 //
-//  Created by Dan Federman on 12/27/16.
-//  Copyright © 2016 Dan Federman.
+//  Created by Dan Federman on 1/4/17.
+//  Copyright © 2017 Dan Federman.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,27 +19,18 @@
 //
 
 import CoreGraphics
-import Foundation
 import UIKit
 
 
-// MARK: – DistributionItem
-
-
-public enum DistributionItem {
+public extension CGRect {
     
-    case fixed(CGFloat)
-    case flexible(Int)
-    case view(UIView)
-    
-}
-
-
-// MARK: – HalfFlexibleDistributionItem
-
-
-public struct HalfFlexibleDistributionItem {
-    
-    internal let flexibleSpacerValue: Int
+    public func insetBy(capAndBaselineOf font: UIFont, with pixelRounder: PixelRounder = PixelRounder()) -> CGRect {
+        var textFrame = self
+        
+        textFrame.origin.y += font.capInset(with: pixelRounder)
+        textFrame.size.height -= font.capInset(with: pixelRounder) + font.baselineInset(with: pixelRounder)
+        
+        return textFrame
+    }
     
 }

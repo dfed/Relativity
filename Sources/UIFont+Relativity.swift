@@ -1,9 +1,9 @@
 //
-//  DistributionItem.swift
+//  UIFont+Relativity.swift
 //  Relativity
 //
-//  Created by Dan Federman on 12/27/16.
-//  Copyright © 2016 Dan Federman.
+//  Created by Dan Federman on 1/4/17.
+//  Copyright © 2017 Dan Federman.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -19,27 +19,19 @@
 //
 
 import CoreGraphics
-import Foundation
 import UIKit
 
 
-// MARK: – DistributionItem
-
-
-public enum DistributionItem {
+public extension UIFont {
     
-    case fixed(CGFloat)
-    case flexible(Int)
-    case view(UIView)
+    /// The distance bnetween the top of the line to the top of a capital letter.
+    public func capInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {
+        return pixelRounder.floorToPixel(ascender - capHeight)
+    }
     
-}
-
-
-// MARK: – HalfFlexibleDistributionItem
-
-
-public struct HalfFlexibleDistributionItem {
-    
-    internal let flexibleSpacerValue: Int
+    /// The distance between the bottom of the line and the text baseline.
+    public func baselineInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {
+        return pixelRounder.ceilToPixel(-descender)
+    }
     
 }

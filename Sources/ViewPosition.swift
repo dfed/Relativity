@@ -45,19 +45,19 @@ public struct ViewPosition {
             case .topLeft:
                 return rect.origin
             case .top:
-                return CGPoint(x: rect.maxX / 2.0, y: rect.minY)
+                return CGPoint(x: rect.midX, y: rect.minY)
             case .topRight:
                 return CGPoint(x: rect.maxX, y: rect.minY)
             case .left:
-                return CGPoint(x: rect.minX, y: rect.maxY / 2.0)
+                return CGPoint(x: rect.minX, y: rect.midY)
             case .center:
-                return CGPoint(x: rect.maxX / 2.0, y: rect.maxY / 2.0)
+                return CGPoint(x: rect.midX, y: rect.midY)
             case .right:
-                return CGPoint(x: rect.maxX, y: rect.maxY / 2.0)
+                return CGPoint(x: rect.maxX, y: rect.midY)
             case .bottomLeft:
                 return CGPoint(x: rect.minX, y: rect.maxY)
             case .bottom:
-                return CGPoint(x: rect.maxX / 2.0, y: rect.maxY)
+                return CGPoint(x: rect.midX, y: rect.maxY)
             case .bottomRight:
                 return CGPoint(x: rect.maxX, y: rect.maxY)
             }
@@ -89,12 +89,12 @@ public struct ViewPosition {
     }
     
     public init(label: UILabel, anchor: Anchor) {
-        self = ViewPosition(view: label, position: anchor.anchorPoint(onRect: FontMetrics(for: label.font).textFrame(within: label.bounds)))
+        self = ViewPosition(view: label, position: anchor.anchorPoint(onRect: label.bounds.insetBy(capAndBaselineOf: label.font, with: PixelRounder(for: label))))
     }
     
     public init(view: UIView, position: CGPoint) {
         self.view = view
-        self.anchor = PixelRounder(for: view).roundToPixel(position)
+        self.anchorPoint = PixelRounder(for: view).roundToPixel(position)
         originalBounds = view.bounds
     }
     
@@ -121,8 +121,8 @@ public struct ViewPosition {
         
         let frameOriginToAlignTo = otherSuperview.convert(otherViewPosition.view.frame.origin, to: superview)
         view.frame.origin = PixelRounder(for: view).roundToPixel(
-            CGPoint(x: frameOriginToAlignTo.x + otherViewPosition.anchor.x - anchor.x + xOffset,
-                    y: frameOriginToAlignTo.y + otherViewPosition.anchor.y - anchor.y + yOffset)
+            CGPoint(x: frameOriginToAlignTo.x + otherViewPosition.anchorPoint.x - anchorPoint.x + xOffset,
+                    y: frameOriginToAlignTo.y + otherViewPosition.anchorPoint.y - anchorPoint.y + yOffset)
         )
     }
     
@@ -143,7 +143,7 @@ public struct ViewPosition {
     // MARK: Internal Properties
     
     /// The pixel-rounded anchor point for positioning, in the coordinate space of the bounds.
-    internal let anchor: CGPoint
+    internal let anchorPoint: CGPoint
     
     /// The view being positioned.
     internal let view: UIView
