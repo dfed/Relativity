@@ -30,36 +30,36 @@ public extension UIView {
         return position(with: .topLeft)
     }
     
-    public var topCenter: ViewPosition {
-        return position(with: .topCenter)
+    public var top: ViewPosition {
+        return position(with: .top)
     }
     
     public var topRight: ViewPosition {
         return position(with: .topRight)
     }
     
-    public var bottomLeft: ViewPosition {
-        return position(with: .bottomLeft)
-    }
-    
-    public var bottomCenter: ViewPosition {
-        return position(with: .bottomCenter)
-    }
-    
-    public var bottomRight: ViewPosition {
-        return position(with: .bottomRight)
-    }
-    
-    public var leftCenter: ViewPosition {
-        return position(with: .leftCenter)
-    }
-    
-    public var rightCenter: ViewPosition {
-        return position(with: .rightCenter)
+    public var left: ViewPosition {
+        return position(with: .left)
     }
     
     public var center: ViewPosition {
         return position(with: .center)
+    }
+    
+    public var right: ViewPosition {
+        return position(with: .right)
+    }
+    
+    public var bottomLeft: ViewPosition {
+        return position(with: .bottomLeft)
+    }
+    
+    public var bottom: ViewPosition {
+        return position(with: .bottom)
+    }
+    
+    public var bottomRight: ViewPosition {
+        return position(with: .bottomRight)
     }
     
     // MARK: Public Methods

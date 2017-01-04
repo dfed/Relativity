@@ -29,38 +29,37 @@ public struct ViewPosition {
     public enum Anchor {
         
         case topLeft
-        case topCenter
+        case top
         case topRight
         
-        case bottomLeft
-        case bottomCenter
-        case bottomRight
-        
-        case leftCenter
-        case rightCenter
-        
+        case left
         case center
+        case right
+        
+        case bottomLeft
+        case bottom
+        case bottomRight
         
         public func anchorPoint(onRect rect: CGRect) -> CGPoint {
             switch self {
             case .topLeft:
                 return rect.origin
-            case .topCenter:
+            case .top:
                 return CGPoint(x: rect.maxX / 2.0, y: rect.minY)
             case .topRight:
                 return CGPoint(x: rect.maxX, y: rect.minY)
+            case .left:
+                return CGPoint(x: rect.minX, y: rect.maxY / 2.0)
+            case .center:
+                return CGPoint(x: rect.maxX / 2.0, y: rect.maxY / 2.0)
+            case .right:
+                return CGPoint(x: rect.maxX, y: rect.maxY / 2.0)
             case .bottomLeft:
                 return CGPoint(x: rect.minX, y: rect.maxY)
-            case .bottomCenter:
+            case .bottom:
                 return CGPoint(x: rect.maxX / 2.0, y: rect.maxY)
             case .bottomRight:
                 return CGPoint(x: rect.maxX, y: rect.maxY)
-            case .leftCenter:
-                return CGPoint(x: rect.minX, y: rect.maxY / 2.0)
-            case .rightCenter:
-                return CGPoint(x: rect.maxX, y: rect.maxY / 2.0)
-            case .center:
-                return CGPoint(x: rect.maxX / 2.0, y: rect.maxY / 2.0)
             }
         }
     }

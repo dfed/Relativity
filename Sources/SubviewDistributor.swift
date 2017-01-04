@@ -178,9 +178,9 @@ public struct SubviewDistributor {
             let leadingOffset = UIOffset(horizontal: distributionRect.origin.x, vertical: distributionRect.origin.y)
             switch direction {
             case .vertical:
-                return superview.topCenter + leadingOffset
+                return superview.top + leadingOffset
             case .horizontal:
-                return superview.leftCenter + leadingOffset
+                return superview.left + leadingOffset
             }
         }()
         
@@ -195,11 +195,11 @@ public struct SubviewDistributor {
             case let .view(view):
                 switch direction {
                 case .vertical:
-                    view.topCenter --> leadingViewPosition
-                    leadingViewPosition = view.bottomCenter
+                    view.top --> leadingViewPosition
+                    leadingViewPosition = view.bottom
                 case .horizontal:
-                    view.leftCenter --> leadingViewPosition
-                    leadingViewPosition = view.rightCenter
+                    view.left --> leadingViewPosition
+                    leadingViewPosition = view.right
                 }
             }
         }

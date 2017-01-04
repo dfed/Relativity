@@ -54,38 +54,46 @@ There are four basic steps to laying out views programmatically.
 
 Note that with the above steps your UI will animate nicely during screen rotations and status bar size changes.
 
-### Anchoring UIViews
+### Aligning UIViews
 
-Positioning views is done by anchoring a corner or edge of a view to another view’s corner or edge, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side. You can also explicitly align views using the `align(to:xOffset:yOffset)` method in [ViewPosition.swift](Sources/ViewPosition.swift#L105).
+Each view has nine anchors that are used for alignment.
+
+<table>
+<tr><td>topLeft</td><td align="center">top</td><td align="right">topRight</td></tr>
+<tr><td>left</td><td align="center">center</td><td align="right">right</td></tr>
+<tr><td>bottomLeft</td><td align="center">bottom</td><td align="right">bottomRight</td></tr>
+</table>
+
+Positioning views is done by aligning the desired anchor on a view to another view’s anchor, plus an offset. A `-->` moves the view on the left side to the position described on the right side. A `<--` moves the view on the right side to the position described on the left side. You can also explicitly align views using the `align(to:xOffset:yOffset)` method in [ViewPosition.swift](Sources/ViewPosition.swift#L105).
 
 #### Examples
 
 To align view `a` to be 10 points to the left of view `b`:
 
 ```swift
-  a.rightCenter --> 10.horizontalOffset + b.leftCenter
+  a.right --> 10.horizontalOffset + b.left
 ```
 
 To align view `a` to be 10 points to the right of view `b`:
 
 ```swift
-  b.rightCenter + 10.horizontalOffset <-- a.leftCenter
+  b.right + 10.horizontalOffset <-- a.left
 ```
 
 To align view `a` to be 10 points below its superview’s top center:
 
 ```swift
-  a.topCenter --> 10.verticalOffset + .topCenter
+  a.top --> 10.verticalOffset + .top
 ```
 
 For more examples, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
 
-#### Anchoring UILabels
+#### Aligning UILabels
 
 Relativity makes it easy to position your `UILabel`s to your designer’s spec. Design teams (and design products like [Sketch](https://www.sketchapp.com) and [Zeplin](https://zeplin.io)) measure the vertical distance to a label using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)). Relativity’s `align` methods measure `UILabel` distances the same way. So if your spec says that label `b` should be eight vertical points below label `a`, all you need is:
 
 ```swift
-  a.bottomCenter --> 8.verticalOffset + b.topCenter
+  a.bottom --> 8.verticalOffset + b.top
 ```
 
 For a visual example, check out the [FontMetricsVisualization](RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage/Contents.swift) playground page.

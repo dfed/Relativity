@@ -66,16 +66,16 @@ orangeCircle.layer.cornerRadius = orangeCircle.frame.height / 2.0
 anotherContainerView.addSubview(purpleCircle)
 anotherContainerView.addSubview(orangeCircle)
 
-purpleCircle.topCenter --> containerView.bottomCenter
-orangeCircle.topCenter --> containerView.bottomCenter
+purpleCircle.top --> containerView.bottom
+orangeCircle.top --> containerView.bottom
 
 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(200)) {
     UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
         blueRect.center --> containerView.center + (-blueRect.frame.width / 2.0).horizontalOffset + (-blueRect.frame.height / 2.0).verticalOffset
-        blueRect.rightCenter <-- redRect.leftCenter
+        blueRect.right <-- redRect.left
         blueRect.bottomRight <-- yellowRect.topLeft
-        greenRect.topCenter --> blueRect.bottomCenter
-        purpleCircle.center --> greenRect.bottomCenter
-        orangeCircle.center --> yellowRect.bottomCenter
+        greenRect.top --> blueRect.bottom
+        purpleCircle.center --> greenRect.bottom
+        orangeCircle.center --> yellowRect.bottom
     }, completion: nil)
 }
