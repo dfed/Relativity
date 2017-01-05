@@ -6,44 +6,9 @@
 [![License](https://img.shields.io/cocoapods/l/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
 [![Platform](https://img.shields.io/cocoapods/p/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
 
-A programmatic layout engine and DSL that provides an alternative to Auto Layout.
+Relativity provides a DSL for programmatic layout that makes it easy to achieve pixel-perfect spacing and alignment.
 
-## Installation
-
-### CocoaPods
-
-To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org), add the following to your `Podfile`:
-
-```
-platform :ios, '8.0'
-pod 'Relativity', '~> 0.8.0'
-```
-
-### Carthage
-
-To install Relativity in your iOS project with [Carthage](https://github.com/Carthage/Carthage), add the following to your `Cartfile`:
-
-```ogdl
-github "dfed/Relativity"
-```
-
-Run `carthage` to build the framework and drag the built `Relativity.framework` into your Xcode project.
-
-### Swift Package Manager
-
-To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following definition can be added to the dependencies of your `Project`:
-
-```swift
-  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 0, minor: 8),
-```
-
-### Submodules
-
-To use git submodules, checkout the submodule with `git submodule add git@github.com:dfed/Relativity.git`, drag Relativity.xcodeproj to your project, and add Relativity as a build dependency.
-
-## Usage
-
-### Programmatic Layout
+## Programmatic Layout
 
 There are four basic steps to laying out views programmatically.
 
@@ -52,9 +17,7 @@ There are four basic steps to laying out views programmatically.
 3. **Size views**. Do this in `layoutSubviews`.
 4. **Position views**. Do this in `layoutSubviews`.
 
-Note that with the above steps your UI will animate nicely during screen rotations and status bar size changes.
-
-### Aligning UIViews
+### Positioning Views
 
 Each view has nine anchors that are used for alignment.
 
@@ -88,7 +51,7 @@ To align view `a` to be 10 points below its superview’s top center:
 
 For more examples, check out the [ViewPositionVisualization](RelativityVisualization.playground/Pages/ViewPositionVisualization.xcplaygroundpage/Contents.swift) playground page.
 
-#### Aligning UILabels
+#### UILabels
 
 Relativity makes it easy to position your `UILabel`s to your designer’s spec. Design teams (and design products like [Sketch](https://www.sketchapp.com) and [Zeplin](https://zeplin.io)) measure the vertical distance to a label using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)). Relativity’s `align` methods measure `UILabel` distances the same way. So if your spec says that label `b` should be eight vertical points below label `a`, all you need is:
 
@@ -100,7 +63,7 @@ For a visual example, check out the [FontMetricsVisualization](RelativityVisuali
 
 ### Flexible distribution of subviews
 
-Since view controllers need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with flexible positioning along an axis.
+Since views need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with flexible positioning along an axis.
 
 Subview distribution can be controlled by positioning fixed and flexible spacers in between views. Fixed spaces represent points on screen. Fixed spaces are created by inserting `CGFloatConvertible` (`Int`, `Float`, `CGFloat`, or `Double`) types into the distribution expression, or by initializing a `.fixed(CGFloatConvertible)` enum case directly. Flexible spacers represent proportions of the remaining space in the superview after the subviews and fixed spacers have been accounted for. You can create flexible spacers by surrounding an `Int` with a spring `~` operator, or by initializing the `.flexible(Int)` enum case directly. A `~2~` represents twice the space that `~1~` does. Views, fixed spacers, and flexible spacers are bound together by a bidirectional anchor `<>` operator.
 
@@ -149,6 +112,39 @@ Relativity ensures that you never align a frame to a non-integral pixel, so no n
 * Xcode 8.0 or later.
 * iOS 8 or later.
 * Swift 3.0 or later.
+
+## Installation
+
+### CocoaPods
+
+To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org), add the following to your `Podfile`:
+
+```
+platform :ios, '8.0'
+pod 'Relativity', '~> 0.8.0'
+```
+
+### Carthage
+
+To install Relativity in your iOS project with [Carthage](https://github.com/Carthage/Carthage), add the following to your `Cartfile`:
+
+```ogdl
+github "dfed/Relativity"
+```
+
+Run `carthage` to build the framework and drag the built `Relativity.framework` into your Xcode project.
+
+### Swift Package Manager
+
+To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following definition can be added to the dependencies of your `Project`:
+
+```swift
+  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 0, minor: 8),
+```
+
+### Submodules
+
+To use git submodules, checkout the submodule with `git submodule add git@github.com:dfed/Relativity.git`, drag Relativity.xcodeproj to your project, and add Relativity as a build dependency.
 
 ## Contributing
 
