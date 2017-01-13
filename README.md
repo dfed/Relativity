@@ -23,7 +23,7 @@ Each view has nine anchors that are used for alignment.
 
 <table>
 <tr><td>topLeft</td><td align="center">top</td><td align="right">topRight</td></tr>
-<tr><td>left</td><td align="center">center</td><td align="right">right</td></tr>
+<tr><td>left</td><td align="center">middle</td><td align="right">right</td></tr>
 <tr><td>bottomLeft</td><td align="center">bottom</td><td align="right">bottomRight</td></tr>
 </table>
 
@@ -121,7 +121,7 @@ To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org)
 
 ```
 platform :ios, '8.0'
-pod 'Relativity', '~> 0.8.0'
+pod 'Relativity', '~> 0.9.0'
 ```
 
 ### Carthage
@@ -139,7 +139,7 @@ Run `carthage` to build the framework and drag the built `Relativity.framework` 
 To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following definition can be added to the dependencies of your `Project`:
 
 ```swift
-  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 0, minor: 8),
+  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 0, minor: 9),
 ```
 
 ### Submodules
