@@ -33,7 +33,7 @@ public struct ViewPosition {
         case topRight
         
         case left
-        case center
+        case middle
         case right
         
         case bottomLeft
@@ -50,7 +50,7 @@ public struct ViewPosition {
                 return CGPoint(x: rect.maxX, y: rect.minY)
             case .left:
                 return CGPoint(x: rect.minX, y: rect.midY)
-            case .center:
+            case .middle:
                 return CGPoint(x: rect.midX, y: rect.midY)
             case .right:
                 return CGPoint(x: rect.maxX, y: rect.midY)

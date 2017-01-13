@@ -76,11 +76,11 @@ orangeCircle.top --> containerView.bottom
 
 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(200)) {
     UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-        blueRect.center --> containerView.center + (-blueRect.frame.width / 2.0).horizontalOffset + (-blueRect.frame.height / 2.0).verticalOffset
+        blueRect.middle --> containerView.middle + (-blueRect.frame.width / 2.0).horizontalOffset + (-blueRect.frame.height / 2.0).verticalOffset
         blueRect.right <-- redRect.left
         blueRect.bottomRight <-- yellowRect.topLeft
         greenRect.top --> blueRect.bottom
-        purpleCircle.center --> greenRect.bottom
-        orangeCircle.center --> yellowRect.bottom
+        purpleCircle.middle --> greenRect.bottom
+        orangeCircle.middle --> yellowRect.bottom
     }, completion: nil)
 }

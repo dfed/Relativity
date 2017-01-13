@@ -42,8 +42,8 @@ public extension UIView {
         return position(with: .left)
     }
     
-    public var center: ViewPosition {
-        return position(with: .center)
+    public var middle: ViewPosition {
+        return position(with: .middle)
     }
     
     public var right: ViewPosition {
