@@ -119,11 +119,14 @@ public struct ViewPosition {
             return
         }
         
-        let frameOriginToAlignTo = otherSuperview.convert(otherViewPosition.view.frame.origin, to: superview)
-        view.frame.origin = PixelRounder(for: view).roundToPixel(
-            CGPoint(x: frameOriginToAlignTo.x + otherViewPosition.anchorPoint.x - anchorPoint.x + xOffset,
-                    y: frameOriginToAlignTo.y + otherViewPosition.anchorPoint.y - anchorPoint.y + yOffset)
-        )
+        let frameCenterToAlignTo = otherSuperview.convert(otherViewPosition.view.center, to: superview)
+        // Find the desired unrounded center.
+        let unroundedCenter = CGPoint(x: frameCenterToAlignTo.x + (otherViewPosition.anchorPoint.x - otherViewPosition.view.bounds.midX) - (anchorPoint.x - view.bounds.midX) + xOffset,
+                                      y: frameCenterToAlignTo.y + (otherViewPosition.anchorPoint.y - otherViewPosition.view.bounds.midY) - (anchorPoint.y - view.bounds.midY) + yOffset)
+        // Find and round the frame origin (ignoring any transforms).
+        let roundedFrameOrigin = PixelRounder(for: view).roundToPixel(CGPoint(x: unroundedCenter.x - view.bounds.midX, y: unroundedCenter.y - view.bounds.midY))
+        // Find the center again based off of the rounded frame origin, and set it.
+        view.center = CGPoint(x: roundedFrameOrigin.x + view.bounds.midX, y: roundedFrameOrigin.y + view.bounds.midY)
     }
     
     /// Convenience to align the receiver's view to the superview's anchor.

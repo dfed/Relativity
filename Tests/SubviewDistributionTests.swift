@@ -180,7 +180,6 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqualWithAccuracy((a.frame.minY + a.font.capInset(with: pixelRounder)), relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqualWithAccuracy((b.frame.minY - a.frame.maxY + a.font.baselineInset(with: pixelRounder) + b.font.capInset(with: pixelRounder)), 8, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqualWithAccuracy((c.frame.minY - b.frame.maxY + b.font.baselineInset(with: pixelRounder)), 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqualWithAccuracy((view.frame.maxY - c.frame.maxY), relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
         XCTAssertEqualWithAccuracy(a.frame.origin, a.frame.origin, accuracy: pixelRounder.pixelAccuracy)
