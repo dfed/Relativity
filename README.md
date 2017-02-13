@@ -105,7 +105,7 @@ For a visual example, check out the [ViewPositionVisualization](RelativityVisual
 
 ### Pixel Rounding
 
-Relativity ensures that you never align a frame to a non-integral pixel, so no need to worry about blurry UI! I’ve also vended a public [PixelRounder](Sources/PixelRounder.h) for those who want to use it for frame sizing.
+Relativity ensures that you never align a frame to a non-integral pixel, so no need to worry about blurry UI! I’ve also vended a public [PixelRounder](Sources/PixelRounder.swift) for those who want to use it for frame sizing.
 
 ## Requirements
 
