@@ -28,6 +28,7 @@ import UIKit
 
 infix operator --> : AssignmentPrecedence
 infix operator <-- : AssignmentPrecedence
+infix operator |--| : AdditionPrecedence
 infix operator <> : AdditionPrecedence
 postfix operator ~
 
@@ -71,6 +72,46 @@ public func <--(lhs: ViewPosition.Anchor, rhs: ViewPosition) {
 /// - parameter rhs: The ViewPosition to align.
 public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
     rhs --> lhs
+}
+
+/// Measures the distance between lhs and rhs in points.
+/// - parameter lhs: The position on lhs from which to measure.
+/// - parameter rhs: The position on rhs to which to measure.
+/// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+public func |--|(lhs: ViewPosition, rhs: ViewPosition) -> CGSize {
+    return lhs.measureDistance(to: rhs)
+}
+
+/// Measures the distance between lhs and rhs in points.
+/// - parameter lhs: The position on lhs from which to measure.
+/// - parameter rhs: The position on lhs's superview to which to measure.
+/// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+public func |--|(lhs: ViewPosition, rhs: ViewPosition.Anchor) -> CGSize {
+    return lhs.measureDistance(toSuperviewAnchor: rhs)
+}
+
+/// Measures the distance between lhs and rhs in points.
+/// - parameter lhs: The position on rhs's superview from which to measure.
+/// - parameter rhs: The position on rhs to which to measure.
+/// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+public func |--|(lhs: ViewPosition.Anchor, rhs: ViewPosition) -> CGSize {
+    return rhs |--| lhs
+}
+
+/// Measures the distance between lhs and rhs in points.
+/// - parameter lhs: The position on lhs from which to measure.
+/// - parameter rhs: The position on lhs's superview to which to measure.
+/// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+public func |--|(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) -> CGSize {
+    return lhs.measureDistance(toSuperviewAnchor: rhs.anchor, xOffset: rhs.offset.horizontal, yOffset: rhs.offset.vertical)
+}
+
+/// Measures the distance between lhs and rhs in points.
+/// - parameter lhs: The position on rhs's superview from which to measure.
+/// - parameter rhs: The position on rhs to which to measure.
+/// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+public func |--|(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) -> CGSize {
+    return rhs |--| lhs
 }
 
 public func +(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
@@ -202,6 +243,18 @@ public func *(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
 
 public prefix func -(offset: UIOffset) -> UIOffset {
     return UIOffset(horizontal: -offset.horizontal, vertical: -offset.vertical)
+}
+
+public func +(lhs: CGSize, rhs: UIOffset) -> CGSize {
+    return CGSize(width: lhs.width + rhs.horizontal, height: lhs.height + rhs.vertical)
+}
+
+public func +(lhs: UIOffset, rhs: CGSize) -> CGSize {
+    return CGSize(width: rhs.width + lhs.horizontal, height: rhs.height + lhs.vertical)
+}
+
+public func -(lhs: CGSize, rhs: UIOffset) -> CGSize {
+    return CGSize(width: lhs.width - rhs.horizontal, height: lhs.height - rhs.vertical)
 }
 
 

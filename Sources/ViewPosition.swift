@@ -139,6 +139,46 @@ public struct ViewPosition {
         }
     }
     
+    /// Measures distance from the receiver to the passed in ViewPosition.
+    public func measureDistance(to otherViewPosition: ViewPosition, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) -> CGSize {
+        guard view.bounds == originalBounds else {
+            assertionFailure("Bounds of view to measure have changed since ViewPosition was created! \(originalBounds) -> \(view.bounds)")
+            return .zero
+        }
+        guard otherViewPosition.view.bounds == otherViewPosition.originalBounds else {
+            assertionFailure("Bounds of view to measure to have changed since ViewPosition was created! \(otherViewPosition.originalBounds) -> \(otherViewPosition.view.bounds)")
+            return .zero
+        }
+
+        guard let superview = view.superview else {
+            assertionFailure("Attempting to measure view but no superview exists! \(view)")
+            return .zero
+        }
+        
+        let x = view.center.x - view.bounds.midX + anchorPoint.x
+        let y = view.center.y - view.bounds.midY + anchorPoint.y
+        
+        let otherFrameCenter = untransformedCenter(of: otherViewPosition.view, inCoordinateSpaceOf: superview)
+        let otherX = otherFrameCenter.x - otherViewPosition.view.bounds.midX + otherViewPosition.anchorPoint.x
+        let otherY = otherFrameCenter.y - otherViewPosition.view.bounds.midY + otherViewPosition.anchorPoint.y
+        
+        return CGSize(width: abs(otherX - x + xOffset), height: abs(otherY - y + yOffset))
+    }
+    
+    /// Convenience to measure the distance from receiver's anchor to the superview's anchor.
+    public func measureDistance(toSuperviewAnchor superviewAnchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) -> CGSize {
+        guard let superview = view.superview else {
+            assertionFailure("Trying to measure to \(view)'s superview but no superview exists")
+            return .zero
+        }
+        
+        if let superview = superview as? UILabel {
+            return measureDistance(to: ViewPosition(label: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
+        } else {
+            return measureDistance(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
+        }
+    }
+    
     // MARK: Internal Properties
     
     /// The pixel-rounded anchor point for positioning, in the coordinate space of the bounds.
