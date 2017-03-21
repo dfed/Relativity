@@ -61,13 +61,13 @@ public func <--(lhs: ViewPosition, rhs: ViewPosition) {
 
 /// Aligns rhs to the lhs's position on the rhs's superview.
 /// - parameter lhs: The ViewPosition to align.
-/// - parameter rhs: The position on the rhs's superview to which lhs is aligned.
+/// - parameter rhs: The position on the rhs's superview to which rhs is aligned.
 public func <--(lhs: ViewPosition.Anchor, rhs: ViewPosition) {
     rhs --> lhs
 }
 
 /// Aligns rhs to the lhs's position on the rhs's superview.
-/// - parameter lhs: The position on the hhs's superview to which hhs is aligned.
+/// - parameter lhs: The position on the rhs's superview to which rhs is aligned.
 /// - parameter rhs: The ViewPosition to align.
 public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
     rhs --> lhs
