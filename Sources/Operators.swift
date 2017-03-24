@@ -253,10 +253,6 @@ public func +(lhs: UIOffset, rhs: CGSize) -> CGSize {
     return CGSize(width: rhs.width + lhs.horizontal, height: rhs.height + lhs.vertical)
 }
 
-public func -(lhs: CGSize, rhs: UIOffset) -> CGSize {
-    return CGSize(width: lhs.width - rhs.horizontal, height: lhs.height - rhs.vertical)
-}
-
 
 // MARK: CGFloatConvertible
 

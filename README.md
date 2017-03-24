@@ -122,7 +122,7 @@ To size view `b` to fit between views `a` and `c`:
 To size view `b` to fit between views `a` and `c` with a 16 point horizontal inset:
 
 ```swift
-  b.bounds.size = a.topRight |--| c.bottomLeft - 16.horizontalOffset
+  b.bounds.size = a.topRight |--| c.bottomLeft + -16.horizontalOffset
 ```
 
 To size view `b` to be the same height as view `a`, and fit between `a` and the right side of `a`'s superview:
