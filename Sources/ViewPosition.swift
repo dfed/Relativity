@@ -114,12 +114,8 @@ public struct ViewPosition {
             assertionFailure("Attempting to align view but no superview exists! \(view)")
             return
         }
-        guard let otherSuperview = otherViewPosition.view.superview else {
-            assertionFailure("Attempting to align view but no superview exists! \(otherViewPosition.view)")
-            return
-        }
         
-        let frameCenterToAlignTo = otherSuperview.convert(otherViewPosition.view.center, to: superview)
+        let frameCenterToAlignTo = untransformedCenter(of: otherViewPosition.view, inCoordinateSpaceOf: superview)
         // Find the desired unrounded center.
         let unroundedCenter = CGPoint(x: frameCenterToAlignTo.x + (otherViewPosition.anchorPoint.x - otherViewPosition.view.bounds.midX) - (anchorPoint.x - view.bounds.midX) + xOffset,
                                       y: frameCenterToAlignTo.y + (otherViewPosition.anchorPoint.y - otherViewPosition.view.bounds.midY) - (anchorPoint.y - view.bounds.midY) + yOffset)
@@ -155,4 +151,28 @@ public struct ViewPosition {
     
     /// The bounds of the view at initialization time. Used to check bounds changes at alignment-time.
     private let originalBounds: CGRect
+    
+    // MARK: Private Methods
+    
+    private func untransformedCenter(of view: UIView, inCoordinateSpaceOf otherView: UIView) -> CGPoint {
+        guard let superview = view.superview else {
+            assertionFailure("Attempting to find center of view but no superview exists! \(view)")
+            return .zero
+        }
+        
+        let viewTransformToRestore = view.transform
+        let superviewTransformToRestore = superview.transform
+        let otherViewTranformToRestore = otherView.transform
+        defer {
+            view.transform = viewTransformToRestore
+            superview.transform = superviewTransformToRestore
+            otherView.transform = otherViewTranformToRestore
+        }
+        
+        view.transform = .identity
+        superview.transform = .identity
+        otherView.transform = .identity
+        
+        return superview.convert(view.center, to: otherView)
+    }
 }
