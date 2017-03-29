@@ -288,7 +288,7 @@ extension CGFloat: CGFloatConvertible {
         } else if let int = convertible as? Int {
             self = CGFloat(int)
         } else {
-            assertionFailure("Can not convert \(convertible) to CGFloat!")
+            ErrorHandler.assertionFailure("Can not convert \(convertible) to CGFloat!")
             self = 0.0
         }
     }

@@ -27,6 +27,8 @@ class ViewPositionTests: XCTestCase {
     // MARK: XCTestCase
     
     public override func setUp() {
+        super.setUp()
+        
         window.subviews.forEach { $0.removeFromSuperview() }
         view.subviews.forEach { $0.removeFromSuperview() }
         subview1.subviews.forEach { $0.removeFromSuperview() }
@@ -51,6 +53,12 @@ class ViewPositionTests: XCTestCase {
         view.addSubview(subview2)
     }
     
+    public override func tearDown() {
+        super.tearDown()
+        
+        Relativity.ErrorHandler.customAssertBody = nil
+    }
+    
     // MARK: Behavior Tests
     
     public func test_measureDistance_measuresToPixelBoundaries() {
@@ -59,7 +67,7 @@ class ViewPositionTests: XCTestCase {
         
         view.addSubview(subview1)
         view.addSubview(subview2)
-
+        
         let pixelRounder = PixelRounder(for: window)
         XCTAssertEqualWithAccuracy(subview1.left |--| subview2.right,
                                    CGSize(width: abs(pixelRounder.roundToPixel(subview1.frame.minX) - pixelRounder.roundToPixel(subview2.frame.maxX)),
@@ -70,7 +78,24 @@ class ViewPositionTests: XCTestCase {
     public func test_measureDistance_isCommutative() {
         XCTAssertEqualWithAccuracy(subview1.topLeft |--| subview2.bottomRight, subview2.bottomRight |--| subview1.topLeft, accuracy: 1e-10)
     }
-
+    
+    public func test_measureDistance_assertsOriginIsOnPixelBoundary() {
+        subview1.frame.origin.x += 0.54321
+        subview2.frame.origin.y += 0.12345
+        
+        let viewOriginRoundedToPixelAssertMessage = "Measuring distance with a ViewPosition whose origin is not pixel aligned!"
+        var assertBodyCalledForOriginPixelAlignmentTest = false
+        Relativity.ErrorHandler.customAssertBody = { condition, message, _, _ in
+            if message == viewOriginRoundedToPixelAssertMessage {
+                XCTAssertFalse(condition)
+                assertBodyCalledForOriginPixelAlignmentTest = true
+            }
+        }
+        
+        let _ = subview1.left |--| subview2.right
+        XCTAssertTrue(assertBodyCalledForOriginPixelAlignmentTest)
+    }
+    
     public func test_measureDistance_ignoresTransforms() {
         let preTransformDistance = subview1.bottom |--| subview2.top
         
