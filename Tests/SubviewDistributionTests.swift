@@ -204,6 +204,6 @@ extension PixelRounder {
 }
 
 public func XCTAssertEqualWithAccuracy(_ point1: CGPoint, _ point2: CGPoint, accuracy: CGFloat, _ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) {
-    XCTAssertEqualWithAccuracy(point1.x, point2.x, accuracy: accuracy)
-    XCTAssertEqualWithAccuracy(point1.y, point2.y, accuracy: accuracy)
+    XCTAssertEqualWithAccuracy(point1.x, point2.x, accuracy: accuracy, message, file: file, line: line)
+    XCTAssertEqualWithAccuracy(point1.y, point2.y, accuracy: accuracy, message, file: file, line: line)
 }
