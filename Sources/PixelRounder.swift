@@ -25,6 +25,10 @@ import UIKit
 
 public struct PixelRounder {
     
+    // MARK: Public Static Properties
+    
+    public static let significantPrecision: CGFloat = 1e-7
+    
     // MARK: Initialization
     
     public init(for view: UIView) {
@@ -77,11 +81,11 @@ public struct PixelRounder {
     }
     
     public func isRoundedToPixel(_ float: CGFloat) -> Bool {
-        return abs(float - roundToPixel(float)) < 1e-10
+        return abs(float - roundToPixel(float)) < PixelRounder.significantPrecision
     }
     
     public func isRoundedToPixel(_ point: CGPoint) -> Bool {
-        return abs(point.x - roundToPixel(point.x)) < 1e-10 && abs(point.y - roundToPixel(point.y)) < 1e-10
+        return abs(point.x - roundToPixel(point.x)) < PixelRounder.significantPrecision && abs(point.y - roundToPixel(point.y)) < PixelRounder.significantPrecision
     }
     
     // MARK: Internal Properties

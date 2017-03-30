@@ -51,9 +51,9 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqualWithAccuracy((c.bottom |--| .bottom).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_relativeAndFixedSpacers() {
@@ -83,9 +83,9 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqualWithAccuracy((c.bottom |--| .bottom).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_leadingFixedSpace() {
@@ -115,9 +115,9 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqual((b.bottom |--| c.top).height, 8)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_trailingFixedSpace() {
@@ -147,9 +147,9 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqual((c.bottom |--| .bottom).height, 16)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_labelDistributionRespectsFontBounds() {
@@ -183,9 +183,9 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqualWithAccuracy((b.bottom |--| c.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
 
 }

@@ -72,11 +72,11 @@ class ViewPositionTests: XCTestCase {
         XCTAssertEqualWithAccuracy(subview1.left |--| subview2.right,
                                    CGSize(width: abs(pixelRounder.roundToPixel(subview1.frame.minX) - pixelRounder.roundToPixel(subview2.frame.maxX)),
                                           height: abs(pixelRounder.roundToPixel(subview1.frame.midY) - pixelRounder.roundToPixel(subview2.frame.midY))),
-                                   accuracy: 1e-10)
+                                   accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_measureDistance_isCommutative() {
-        XCTAssertEqualWithAccuracy(subview1.topLeft |--| subview2.bottomRight, subview2.bottomRight |--| subview1.topLeft, accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(subview1.topLeft |--| subview2.bottomRight, subview2.bottomRight |--| subview1.topLeft, accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_measureDistance_assertsOriginIsOnPixelBoundary() {
