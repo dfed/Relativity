@@ -103,15 +103,15 @@ public struct ViewPosition {
     /// Aligns the receiver's view to the passed in ViewPosition.
     public func align(to otherViewPosition: ViewPosition, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
         guard view.bounds == originalBounds else {
-            assertionFailure("Bounds of view to align have changed since ViewPosition was created! \(originalBounds) -> \(view.bounds)")
+            ErrorHandler.assertionFailure("Bounds of view to align have changed since ViewPosition was created! \(originalBounds) -> \(view.bounds)")
             return
         }
         guard otherViewPosition.view.bounds == otherViewPosition.originalBounds else {
-            assertionFailure("Bounds of view to align to have changed since ViewPosition was created! \(otherViewPosition.originalBounds) -> \(otherViewPosition.view.bounds)")
+            ErrorHandler.assertionFailure("Bounds of view to align to have changed since ViewPosition was created! \(otherViewPosition.originalBounds) -> \(otherViewPosition.view.bounds)")
             return
         }
         guard let superview = view.superview else {
-            assertionFailure("Attempting to align view but no superview exists! \(view)")
+            ErrorHandler.assertionFailure("Attempting to align view but no superview exists! \(view)")
             return
         }
         
@@ -128,7 +128,7 @@ public struct ViewPosition {
     /// Convenience to align the receiver's view to the superview's anchor.
     public func align(toSuperviewAnchor superviewAnchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
         guard let superview = view.superview else {
-            assertionFailure("Trying to align to \(view)'s superview but no superview exists")
+            ErrorHandler.assertionFailure("Trying to align to \(view)'s superview but no superview exists")
             return
         }
         
@@ -136,6 +136,50 @@ public struct ViewPosition {
             align(to: ViewPosition(label: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
         } else {
             align(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
+        }
+    }
+    
+    /// Measures distance from the receiver to the passed in ViewPosition.
+    public func measureDistance(to otherViewPosition: ViewPosition, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) -> CGSize {
+        guard view.bounds == originalBounds else {
+            ErrorHandler.assertionFailure("Bounds of view to measure have changed since ViewPosition was created! \(originalBounds) -> \(view.bounds)")
+            return .zero
+        }
+        guard otherViewPosition.view.bounds == otherViewPosition.originalBounds else {
+            ErrorHandler.assertionFailure("Bounds of view to measure to have changed since ViewPosition was created! \(otherViewPosition.originalBounds) -> \(otherViewPosition.view.bounds)")
+            return .zero
+        }
+
+        guard let superview = view.superview else {
+            ErrorHandler.assertionFailure("Attempting to measure view but no superview exists! \(view)")
+            return .zero
+        }
+        
+        let x = view.center.x - view.bounds.midX + anchorPoint.x
+        let y = view.center.y - view.bounds.midY + anchorPoint.y
+        
+        let otherFrameCenter = untransformedCenter(of: otherViewPosition.view, inCoordinateSpaceOf: superview)
+        let otherX = otherFrameCenter.x - otherViewPosition.view.bounds.midX + otherViewPosition.anchorPoint.x
+        let otherY = otherFrameCenter.y - otherViewPosition.view.bounds.midY + otherViewPosition.anchorPoint.y
+        
+        let pixelRounder = PixelRounder(for: view)
+        ErrorHandler.assert(pixelRounder.isRoundedToPixel(x) && pixelRounder.isRoundedToPixel(y), "Measuring distance with a ViewPosition whose origin is not pixel aligned!")
+        ErrorHandler.assert(pixelRounder.isRoundedToPixel(otherX) && pixelRounder.isRoundedToPixel(otherY), "Measuring distance with a ViewPosition whose origin is not pixel aligned!")
+        
+        return CGSize(width: abs(otherX - x + xOffset), height: abs(otherY - y + yOffset))
+    }
+    
+    /// Convenience to measure the distance from receiver's anchor to the superview's anchor.
+    public func measureDistance(toSuperviewAnchor superviewAnchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) -> CGSize {
+        guard let superview = view.superview else {
+            ErrorHandler.assertionFailure("Trying to measure to \(view)'s superview but no superview exists")
+            return .zero
+        }
+        
+        if let superview = superview as? UILabel {
+            return measureDistance(to: ViewPosition(label: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
+        } else {
+            return measureDistance(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
         }
     }
     
@@ -156,7 +200,7 @@ public struct ViewPosition {
     
     private func untransformedCenter(of view: UIView, inCoordinateSpaceOf otherView: UIView) -> CGPoint {
         guard let superview = view.superview else {
-            assertionFailure("Attempting to find center of view but no superview exists! \(view)")
+            ErrorHandler.assertionFailure("Attempting to find center of view but no superview exists! \(view)")
             return .zero
         }
         

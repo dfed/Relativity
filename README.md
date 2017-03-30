@@ -107,6 +107,30 @@ For a visual example, check out the [ViewPositionVisualization](RelativityVisual
 
 Relativity ensures that you never align a frame to a non-integral pixel, so no need to worry about blurry UI! I’ve also vended a public [PixelRounder](Sources/PixelRounder.swift) for those who want to use it for frame sizing.
 
+### Sizing Views
+
+Relativity makes it easy to size views based on the space between previously laid-out content. Use the `|--|` operator to determine the size between view anchors.
+
+#### Examples
+
+To size view `b` to fit between views `a` and `c`:
+
+```swift
+  b.bounds.size = a.topRight |--| c.bottomLeft
+```
+
+To size view `b` to fit between views `a` and `c` with a 16 point horizontal inset:
+
+```swift
+  b.bounds.size = a.topRight |--| c.bottomLeft + -16.horizontalOffset
+```
+
+To size view `b` to be the same height as view `a`, and fit between `a` and the right side of `a`'s superview:
+
+```swift
+  b.bounds.size = CGSize(width: (a.right |--| .right).width, height: a.bounds.height)
+```
+
 ## Requirements
 
 * Xcode 8.0 or later.

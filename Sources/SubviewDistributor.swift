@@ -65,7 +65,7 @@ public struct SubviewDistributor {
                     
                 case let .flexible(spacer):
                     guard spacer > 0 else {
-                        assertionFailure("Attempting to distribute a flexible spacer \(spacer), which is less than 1!")
+                        ErrorHandler.assertionFailure("Attempting to distribute a flexible spacer \(spacer), which is less than 1!")
                         return false
                     }
                     
@@ -73,7 +73,7 @@ public struct SubviewDistributor {
                     
                 case let .view(view):
                     guard view.superview == superview else {
-                        assertionFailure("Attempting to distribute a view \(view) that is not a subview of \(superview)!")
+                        ErrorHandler.assertionFailure("Attempting to distribute a view \(view) that is not a subview of \(superview)!")
                         return false
                     }
                     
@@ -138,7 +138,7 @@ public struct SubviewDistributor {
         }()
         
         if totalFlexibleSpaceForDistribution < 0 {
-            assertionFailure("Views are too large to fit in distribution.")
+            ErrorHandler.assertionFailure("Views are too large to fit in distribution.")
             // Make the space we're distributing in big enough to fit the views. This will look bad, but it is a better option than bailing out entirely.
             switch direction {
             case .vertical:

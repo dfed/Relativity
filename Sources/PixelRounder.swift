@@ -25,10 +25,14 @@ import UIKit
 
 public struct PixelRounder {
     
+    // MARK: Public Static Properties
+    
+    public static let significantPrecision: CGFloat = 1e-7
+    
     // MARK: Initialization
     
     public init(for view: UIView) {
-        assert(view.window != nil, "Creating PixelRounder with a view that has not been added to a window! Using the main screen's scale instead.")
+        ErrorHandler.assert(view.window != nil, "Creating PixelRounder with a view that has not been added to a window! Using the main screen's scale instead.")
         self = PixelRounder(withScreenScale: (view.window?.screen ?? UIScreen.main).scale)
     }
     
@@ -45,7 +49,7 @@ public struct PixelRounder {
             self.screenScale = screenScale
             
         } else {
-            assertionFailure("Initializing a PixelRounder with a screenScale that isn't integral.")
+            ErrorHandler.assertionFailure("Initializing a PixelRounder with a screenScale that isn't integral.")
             self.screenScale = round(screenScale)
         }
     }
@@ -74,6 +78,14 @@ public struct PixelRounder {
     
     public func floorToPixel(_ point: CGPoint) -> CGPoint {
         return CGPoint(x: floorToPixel(point.x), y: floorToPixel(point.y))
+    }
+    
+    public func isRoundedToPixel(_ float: CGFloat) -> Bool {
+        return abs(float - roundToPixel(float)) < PixelRounder.significantPrecision
+    }
+    
+    public func isRoundedToPixel(_ point: CGPoint) -> Bool {
+        return abs(point.x - roundToPixel(point.x)) < PixelRounder.significantPrecision && abs(point.y - roundToPixel(point.y)) < PixelRounder.significantPrecision
     }
     
     // MARK: Internal Properties

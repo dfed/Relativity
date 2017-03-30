@@ -41,18 +41,19 @@ class SubviewDistributionTests: XCTestCase {
             a <> ~1~ <> b <> ~2~ <> c
         }
         
-        let relative1Space = a.frame.minY
+        // Space before a is implicity ~1~.
+        let relative1Space = (a.top |--| .top).height
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqualWithAccuracy(b.frame.minY - a.frame.maxY, relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqualWithAccuracy(c.frame.minY - b.frame.maxY, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqualWithAccuracy((view.frame.maxY - c.frame.maxY), relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((a.bottom |--| b.top).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((b.bottom |--| c.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((c.bottom |--| .bottom).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_relativeAndFixedSpacers() {
@@ -73,18 +74,18 @@ class SubviewDistributionTests: XCTestCase {
         }
         
         // Space before a is implicity ~1~.
-        let relative1Space = a.frame.minY
+        let relative1Space = (a.top |--| .top).height
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqualWithAccuracy(b.frame.minY - a.frame.maxY, 3 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual(c.frame.minY - b.frame.maxY, 8)
-        XCTAssertEqualWithAccuracy(view.frame.maxY - c.frame.maxY, relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((a.bottom |--| b.top).height, 3 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.bottom |--| c.top).height, 8)
+        XCTAssertEqualWithAccuracy((c.bottom |--| .bottom).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_leadingFixedSpace() {
@@ -105,18 +106,18 @@ class SubviewDistributionTests: XCTestCase {
         }
         
         // Space after c is implicity ~1~.
-        let relative1Space = (view.frame.maxY - c.frame.maxY)
+        let relative1Space = (c.bottom |--| .bottom).height
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqual(a.frame.minY, 8)
-        XCTAssertEqualWithAccuracy(b.frame.minY - a.frame.maxY, 3 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual(c.frame.minY - b.frame.maxY, 8)
+        XCTAssertEqual((a.top |--| .top).height, 8)
+        XCTAssertEqualWithAccuracy((a.bottom |--| b.top).height, 3 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.bottom |--| c.top).height, 8)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_trailingFixedSpace() {
@@ -137,18 +138,18 @@ class SubviewDistributionTests: XCTestCase {
         }
         
         // Space before a is implicity ~1~.
-        let relative1Space = a.frame.minY
+        let relative1Space = (a.top |--| .top).height
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqualWithAccuracy((b.frame.minY - a.frame.maxY), 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual(c.frame.minY - b.frame.maxY, 8)
-        XCTAssertEqual(view.frame.maxY - c.frame.maxY, 16)
+        XCTAssertEqualWithAccuracy((a.bottom |--| b.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.bottom |--| c.top).height, 8)
+        XCTAssertEqual((c.bottom |--| .bottom).height, 16)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
     
     public func test_distributeSubviewsVertically_labelDistributionRespectsFontBounds() {
@@ -173,18 +174,18 @@ class SubviewDistributionTests: XCTestCase {
         }
         
         // Space after c is implicity ~1~.
-        let relative1Space = (view.frame.maxY - c.frame.maxY)
+        let relative1Space = (c.bottom |--| .bottom).height
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqualWithAccuracy((a.frame.minY + a.font.capInset(with: pixelRounder)), relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqualWithAccuracy((b.frame.minY - a.frame.maxY + a.font.baselineInset(with: pixelRounder) + b.font.capInset(with: pixelRounder)), 8, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqualWithAccuracy((c.frame.minY - b.frame.maxY + b.font.baselineInset(with: pixelRounder)), 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((a.top |--| .top).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((a.bottom |--| b.top).height, 8, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((b.bottom |--| c.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
-        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: 1e-10)
-        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: 1e-10)
+        XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
+        XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
 
 }
@@ -203,6 +204,6 @@ extension PixelRounder {
 }
 
 public func XCTAssertEqualWithAccuracy(_ point1: CGPoint, _ point2: CGPoint, accuracy: CGFloat, _ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) {
-    XCTAssertEqualWithAccuracy(point1.x, point2.x, accuracy: accuracy)
-    XCTAssertEqualWithAccuracy(point1.y, point2.y, accuracy: accuracy)
+    XCTAssertEqualWithAccuracy(point1.x, point2.x, accuracy: accuracy, message, file: file, line: line)
+    XCTAssertEqualWithAccuracy(point1.y, point2.y, accuracy: accuracy, message, file: file, line: line)
 }
