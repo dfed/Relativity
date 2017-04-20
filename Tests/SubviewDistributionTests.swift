@@ -187,6 +187,84 @@ class SubviewDistributionTests: XCTestCase {
         XCTAssertEqualWithAccuracy(b.frame.origin, pixelRounder.roundToPixel(b.frame.origin), accuracy: PixelRounder.significantPrecision)
         XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
     }
+    
+    public func test_distributeSubviewsVerticallyWithinRect_distributesWithinBounds() {
+        let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
+        let view = UIView(frame: window.frame)
+        window.addSubview(view)
+        
+        let a = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0))
+        let b = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0))
+        let c = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 25.0, height: 25.0))
+        
+        view.addSubview(a)
+        view.addSubview(b)
+        view.addSubview(c)
+        
+        let subviewDistributionRect = CGRect(x: 75.0, y: 0.0, width: a.bounds.width, height: 200.0)
+        let verticalDistanceBetweenAToB: CGFloat = 5.0
+        view.distributeSubviewsVertically(within: subviewDistributionRect) { () -> [DistributionItem] in
+            a <> verticalDistanceBetweenAToB <> b <> ~2~ <> c
+        }
+        
+        // Assert that our views were laid out within the right distribution rect.
+        XCTAssertTrue(subviewDistributionRect.contains(a.frame))
+        XCTAssertTrue(subviewDistributionRect.contains(b.frame))
+        XCTAssertTrue(subviewDistributionRect.contains(c.frame))
+        
+        let pixelRounder = PixelRounder(for: view)
+        // Assert that we centered our views horizontally within the distribution rect.
+        XCTAssertEqualWithAccuracy((a.left |--| .left).width, subviewDistributionRect.minX + (subviewDistributionRect.width - a.bounds.width) / 2.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((b.left |--| .left).width, subviewDistributionRect.minX + (subviewDistributionRect.width - b.bounds.width) / 2.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((c.left |--| .left).width, subviewDistributionRect.minX + (subviewDistributionRect.width - c.bounds.width) / 2.0, accuracy: pixelRounder.pixelAccuracy)
+        
+        // Space before a is implicity ~1~.
+        let relative1Space = (a.top |--| .top).height - subviewDistributionRect.minY
+        
+        // Assert that our vertical spacing is correct.
+        XCTAssertEqualWithAccuracy((a.bottom |--| b.top).height, verticalDistanceBetweenAToB, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((b.bottom |--| c.top).height, relative1Space * 2.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy(subviewDistributionRect.maxY - c.frame.maxY, relative1Space, accuracy: pixelRounder.pixelAccuracy)
+    }
+    
+    public func test_distributeSubviewsHorizontallyWithinRect_distributesWithinBounds() {
+        let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
+        let view = UIView(frame: window.frame)
+        window.addSubview(view)
+        
+        let a = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 100.0, height: 25.0))
+        let b = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 100.0))
+        let c = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 25.0, height: 50.0))
+        
+        view.addSubview(a)
+        view.addSubview(b)
+        view.addSubview(c)
+        
+        let subviewDistributionRect = CGRect(x: 35.0, y: 0.0, width: 220, height: 200.0)
+        let horizontalDistanceBetweenLeftEdgeAndA: CGFloat = 12.0
+        view.distributeSubviewsHorizontally(within: subviewDistributionRect) { () -> [DistributionItem] in
+            horizontalDistanceBetweenLeftEdgeAndA <> a <> ~1~ <> b <> ~4~ <> c
+        }
+        
+        // Assert that our views were laid out within the right distribution rect.
+        XCTAssertTrue(subviewDistributionRect.contains(a.frame))
+        XCTAssertTrue(subviewDistributionRect.contains(b.frame))
+        XCTAssertTrue(subviewDistributionRect.contains(c.frame))
+        
+        let pixelRounder = PixelRounder(for: view)
+        // Assert that we centered our views vertically within the distribution rect.
+        XCTAssertEqualWithAccuracy((a.top |--| .top).height, subviewDistributionRect.minY + (subviewDistributionRect.height - a.bounds.height) / 2.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((b.top |--| .top).height, subviewDistributionRect.minY + (subviewDistributionRect.height - b.bounds.height) / 2.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((c.top |--| .top).height, subviewDistributionRect.minY + (subviewDistributionRect.height - c.bounds.height) / 2.0, accuracy: pixelRounder.pixelAccuracy)
+        
+        // Space between a and b is ~1~.
+        let relative1Space = (a.right |--| b.left).width
+
+        // Assert that our vertical spacing is correct.
+        XCTAssertEqualWithAccuracy(a.frame.minX - subviewDistributionRect.minX, horizontalDistanceBetweenLeftEdgeAndA, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy((b.right |--| c.left).width, relative1Space * 4.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqualWithAccuracy(subviewDistributionRect.maxX - c.frame.maxX, relative1Space, accuracy: pixelRounder.pixelAccuracy)
+    }
 
 }
 

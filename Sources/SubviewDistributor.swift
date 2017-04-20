@@ -175,12 +175,18 @@ public struct SubviewDistributor {
         // Calculate the ViewPosition (e.g. the Anchor) on `superview` for aligning. Make sure to take the `rect` into account.
         
         var leadingViewPosition: ViewPosition = {
-            let leadingOffset = UIOffset(horizontal: distributionRect.origin.x, vertical: distributionRect.origin.y)
+            let leftHorizontalInset = distributionRect.minX
+            let rightHorizontalInset = (superview.bounds.maxX - distributionRect.maxX)
+            let topVeritcalInset = distributionRect.minY
+            let bottomVerticalInset = (superview.bounds.maxY - distributionRect.maxY)
+            
             switch direction {
             case .vertical:
-                return superview.top + leadingOffset
+                return superview.top + UIOffset(horizontal: (leftHorizontalInset - rightHorizontalInset) / 2.0,
+                                                vertical: topVeritcalInset)
             case .horizontal:
-                return superview.left + leadingOffset
+                return superview.left + UIOffset(horizontal: leftHorizontalInset,
+                                                 vertical: (topVeritcalInset - bottomVerticalInset) / 2.0)
             }
         }()
         
