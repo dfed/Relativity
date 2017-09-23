@@ -34,9 +34,9 @@ class PixelRounderTests: XCTestCase {
         XCTAssertEqual(PixelRounder(withScreenScale: 2.0).roundToPixel(1.75), 2.0)
         XCTAssertEqual(PixelRounder(withScreenScale: 2.0).roundToPixel(CGPoint(x: 1.75, y: 1.25)), CGPoint(x: 2.0, y: 1.5))
         
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).roundToPixel(1.5), 1.667, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).roundToPixel(CGPoint(x: 1.75, y: 1.25).x), 1.667, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).roundToPixel(CGPoint(x: 1.75, y: 1.25).y), 1.333, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).roundToPixel(1.5), 1.667, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).roundToPixel(CGPoint(x: 1.75, y: 1.25).x), 1.667, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).roundToPixel(CGPoint(x: 1.75, y: 1.25).y), 1.333, accuracy: 0.001)
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).roundToPixel(CGPoint(x: 1.0, y: 2.0)), CGPoint(x: 1.0, y: 2.0))
     }
     
@@ -50,10 +50,10 @@ class PixelRounderTests: XCTestCase {
         XCTAssertEqual(PixelRounder(withScreenScale: 2.0).ceilToPixel(1.75), 2.0)
         XCTAssertEqual(PixelRounder(withScreenScale: 2.0).ceilToPixel(CGPoint(x: 1.75, y: 1.25)), CGPoint(x: 2.0, y: 1.5))
         
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).ceilToPixel(1.1), 1.333, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).ceilToPixel(1.5), 1.667, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).ceilToPixel(1.1), 1.333, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).ceilToPixel(1.5), 1.667, accuracy: 0.001)
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).ceilToPixel(CGPoint(x: 1.75, y: 1.25).x), 2.0)
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).ceilToPixel(CGPoint(x: 1.75, y: 1.25).y), 1.333, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).ceilToPixel(CGPoint(x: 1.75, y: 1.25).y), 1.333, accuracy: 0.001)
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).ceilToPixel(CGPoint(x: 1.0, y: 2.0)), CGPoint(x: 1.0, y: 2.0))
     }
     
@@ -68,8 +68,8 @@ class PixelRounderTests: XCTestCase {
         XCTAssertEqual(PixelRounder(withScreenScale: 2.0).floorToPixel(CGPoint(x: 1.75, y: 1.25)), CGPoint(x: 1.5, y: 1.0))
         
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).floorToPixel(1.1), 1.0)
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).floorToPixel(1.5), 1.333, accuracy: 0.001)
-        XCTAssertEqualWithAccuracy(PixelRounder(withScreenScale: 3.0).floorToPixel(CGPoint(x: 1.75, y: 1.25).x), 1.667, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).floorToPixel(1.5), 1.333, accuracy: 0.001)
+        XCTAssertEqual(PixelRounder(withScreenScale: 3.0).floorToPixel(CGPoint(x: 1.75, y: 1.25).x), 1.667, accuracy: 0.001)
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).floorToPixel(CGPoint(x: 1.75, y: 1.25).y), 1.0)
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).floorToPixel(CGPoint(x: 1.0, y: 2.0)), CGPoint(x: 1.0, y: 2.0))
     }
