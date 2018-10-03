@@ -58,10 +58,10 @@ containerView.frame = label.bounds
 
 PlaygroundPage.current.liveView = containerView
 
-topAlignmentMargin.bounds.size = (label.topLeft |--| .topRight)
-bottomAlignmentMargin.bounds.size = (label.bottomLeft |--| .bottomRight)
+topAlignmentMargin.bounds.size = (label.capLeft |--| .topRight)
+bottomAlignmentMargin.bounds.size = (label.baselineLeft |--| .bottomRight)
 
 //: ### Position views
 
-topAlignmentMargin.bottom --> label.top
-bottomAlignmentMargin.top --> label.bottom
+topAlignmentMargin.bottom --> label.cap
+bottomAlignmentMargin.top --> label.baseline

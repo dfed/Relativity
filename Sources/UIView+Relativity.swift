@@ -75,11 +75,6 @@ public extension UIView {
     // MARK: Private Methods
     
     private func position(with anchor: ViewPosition.Anchor) -> ViewPosition {
-        if let label = self as? UILabel {
-            return ViewPosition(label: label, anchor: anchor)
-            
-        } else {
-            return ViewPosition(view: self, anchor: anchor)
-        }
+        return ViewPosition(view: self, anchor: anchor)
     }
 }
