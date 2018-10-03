@@ -49,7 +49,7 @@ bottomAlignmentMargin.alpha = 0.4
 containerView.addSubview(label)
 containerView.addSubview(topAlignmentMargin)
 containerView.addSubview(bottomAlignmentMargin)
-containerView.sendSubview(toBack: label)
+containerView.sendSubviewToBack(label)
 
 //: ### Size views
 

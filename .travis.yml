@@ -3,5 +3,7 @@ osx_image: xcode9
 before_script:
     - bundle install
 script:
-    - xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone SE"
+    - xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPad 2" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test
+    - xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 7" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test
+    - xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 7 Plus" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test
     - pod lib lint --verbose --fail-fast
