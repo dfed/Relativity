@@ -47,7 +47,7 @@ class SubviewDistributionTests: XCTestCase {
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
         XCTAssertEqual((a.bottom |--| b.top).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual((b.bottom |--| c.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.bottom |--| c.top).height / 2.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual((c.bottom |--| .bottom).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
@@ -78,7 +78,7 @@ class SubviewDistributionTests: XCTestCase {
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqual((a.bottom |--| b.top).height, 3 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((a.bottom |--| b.top).height / 3.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual((b.bottom |--| c.top).height, 8)
         XCTAssertEqual((c.bottom |--| .bottom).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
@@ -112,7 +112,7 @@ class SubviewDistributionTests: XCTestCase {
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
         XCTAssertEqual((a.top |--| .top).height, 8)
-        XCTAssertEqual((a.bottom |--| b.top).height, 3 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((a.bottom |--| b.top).height / 3.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual((b.bottom |--| c.top).height, 8)
         
         // Assert that everything is rounded to the pixel.
@@ -143,7 +143,7 @@ class SubviewDistributionTests: XCTestCase {
         
         let pixelRounder = PixelRounder(for: view)
         // Assert that our spacing is correct above.
-        XCTAssertEqual((a.bottom |--| b.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((a.bottom |--| b.top).height / 2.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual((b.bottom |--| c.top).height, 8)
         XCTAssertEqual((c.bottom |--| .bottom).height, 16)
         
@@ -181,7 +181,7 @@ class SubviewDistributionTests: XCTestCase {
         // Assert that our spacing is correct above.
         XCTAssertEqual((a.top |--| .top).height, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual((a.bottom |--| b.top).height, 8, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual((b.bottom |--| c.top).height, 2 * relative1Space, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.bottom |--| c.top).height / 2.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         
         // Assert that everything is rounded to the pixel.
         XCTAssertEqualWithAccuracy(a.frame.origin, pixelRounder.roundToPixel(a.frame.origin), accuracy: PixelRounder.significantPrecision)
@@ -224,7 +224,7 @@ class SubviewDistributionTests: XCTestCase {
         
         // Assert that our vertical spacing is correct.
         XCTAssertEqual((a.bottom |--| b.top).height, verticalDistanceBetweenAToB, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual((b.bottom |--| c.top).height, relative1Space * 2.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.bottom |--| c.top).height / 2.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual(subviewDistributionRect.maxY - c.frame.maxY, relative1Space, accuracy: pixelRounder.pixelAccuracy)
     }
     
@@ -263,7 +263,7 @@ class SubviewDistributionTests: XCTestCase {
 
         // Assert that our vertical spacing is correct.
         XCTAssertEqual(a.frame.minX - subviewDistributionRect.minX, horizontalDistanceBetweenLeftEdgeAndA, accuracy: pixelRounder.pixelAccuracy)
-        XCTAssertEqual((b.right |--| c.left).width, relative1Space * 4.0, accuracy: pixelRounder.pixelAccuracy)
+        XCTAssertEqual((b.right |--| c.left).width / 4.0, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         XCTAssertEqual(subviewDistributionRect.maxX - c.frame.maxX, relative1Space, accuracy: pixelRounder.pixelAccuracy)
     }
 
