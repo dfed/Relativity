@@ -152,7 +152,7 @@ To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org)
 
 ```
 platform :ios, '8.0'
-pod 'Relativity', '~> 1.0.0'
+pod 'Relativity', '~> 1.0'
 ```
 
 ### Carthage
