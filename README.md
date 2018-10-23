@@ -2,9 +2,9 @@
 
 [![CI Status](https://travis-ci.org/dfed/Relativity.svg?branch=master)](https://travis-ci.org/dfed/Relativity)
 [![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-e2c245.svg)](https://github.com/Carthage/Carthage/)
-[![Version](https://img.shields.io/cocoapods/v/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
-[![License](https://img.shields.io/cocoapods/l/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
-[![Platform](https://img.shields.io/cocoapods/p/Relativity.svg)](http://cocoadocs.org/docsets/Relativity)
+[![Version](https://img.shields.io/cocoapods/v/Relativity.svg)](https://cocoapods.org/pods/Relativity)
+[![License](https://img.shields.io/cocoapods/l/Relativity.svg)](https://cocoapods.org/pods/Relativity)
+[![Platform](https://img.shields.io/cocoapods/p/Relativity.svg)](https://cocoapods.org/pods/Relativity)
 
 Relativity provides a DSL for programmatic layout that makes it easy to achieve pixel-perfect spacing and alignment.
 
