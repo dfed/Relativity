@@ -87,11 +87,7 @@ public struct ViewPosition {
     public init(view: UIView, anchor: Anchor) {
         self = ViewPosition(view: view, position: anchor.anchorPoint(onRect: view.bounds))
     }
-    
-    public init(label: UILabel, anchor: Anchor) {
-        self = ViewPosition(view: label, position: anchor.anchorPoint(onRect: label.bounds.insetBy(capAndBaselineOf: label.font, with: PixelRounder(for: label))))
-    }
-    
+
     public init(view: UIView, position: CGPoint) {
         self.view = view
         self.anchorPoint = PixelRounder(for: view).roundToPixel(position)
@@ -132,11 +128,7 @@ public struct ViewPosition {
             return
         }
         
-        if let superview = superview as? UILabel {
-            align(to: ViewPosition(label: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
-        } else {
-            align(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
-        }
+        align(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
     }
     
     /// Measures distance from the receiver to the passed in ViewPosition.
@@ -176,11 +168,7 @@ public struct ViewPosition {
             return .zero
         }
         
-        if let superview = superview as? UILabel {
-            return measureDistance(to: ViewPosition(label: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
-        } else {
-            return measureDistance(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
-        }
+        return measureDistance(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
     }
     
     // MARK: Internal Properties

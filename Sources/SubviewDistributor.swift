@@ -124,11 +124,7 @@ public struct SubviewDistributor {
             for case let .view(view) in distributionItems {
                 switch direction {
                 case .vertical:
-                    if let view = view as? UILabel {
-                        totalFlexibleSpace -= view.bounds.insetBy(capAndBaselineOf: view.font, with: PixelRounder(for: view)).size.height
-                    } else {
-                        totalFlexibleSpace -= view.bounds.size.height
-                    }
+                    totalFlexibleSpace -= view.bounds.size.height
                 case .horizontal:
                     totalFlexibleSpace -= view.bounds.size.width
                 }
@@ -175,18 +171,11 @@ public struct SubviewDistributor {
         // Calculate the ViewPosition (e.g. the Anchor) on `superview` for aligning. Make sure to take the `rect` into account.
         
         var leadingViewPosition: ViewPosition = {
-            let leftHorizontalOffset = distributionRect.minX
-            let horizontalMidpoint = distributionRect.midX - leftHorizontalOffset
-            let topVerticalOffset = distributionRect.minY
-            let verticalMidpoint = distributionRect.midY - topVerticalOffset
-
             switch direction {
             case .vertical:
-                return superview.topLeft + UIOffset(horizontal: (leftHorizontalOffset + horizontalMidpoint),
-                                                    vertical: topVerticalOffset)
+                return superview.topLeft + UIOffset(horizontal: distributionRect.midX, vertical: distributionRect.minY)
             case .horizontal:
-                return superview.topLeft + UIOffset(horizontal: leftHorizontalOffset,
-                                                    vertical: (topVerticalOffset + verticalMidpoint))
+                return superview.topLeft + UIOffset(horizontal: distributionRect.minX, vertical: distributionRect.midY)
             }
         }()
         

@@ -53,10 +53,17 @@ For more examples, check out the [ViewPositionVisualization](RelativityVisualiza
 
 #### UILabels
 
-Relativity makes it easy to position your `UILabel`s to your designer’s spec. Design teams (and design products like [Sketch](https://www.sketchapp.com) and [Zeplin](https://zeplin.io)) measure the vertical distance to a label using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)). Relativity’s `align` methods measure `UILabel` distances the same way. So if your spec says that label `b` should be eight vertical points below label `a`, all you need is:
+Relativity makes it easy to position your `UILabel`s using the font’s [cap height](https://en.wikipedia.org/wiki/Cap_height) and [baseline](https://en.wikipedia.org/wiki/Baseline_(typography)) by adding six anchors specifically for labels.
+
+<table>
+<tr><td>capLeft</td><td align="center">cap</td><td align="right">capRight</td></tr>
+<tr><td>baselineLeft</td><td align="center">baseline</td><td align="right">baselineRight</td></tr>
+</table>
+
+If your spec says that the top of your `underlineView` should align with the baseline of label `a`, all you need is:
 
 ```swift
-  a.bottom --> 8.verticalOffset + b.top
+  underlineView.top --> a.baseline
 ```
 
 For a visual example, check out the [FontMetricsVisualization](RelativityVisualization.playground/Pages/FontMetricsVisualization.xcplaygroundpage/Contents.swift) playground page.
@@ -133,9 +140,9 @@ To size view `b` to be the same height as view `a`, and fit between `a` and the 
 
 ## Requirements
 
-* Xcode 8.0 or later.
+* Xcode 10.0 or later.
 * iOS 8 or later.
-* Swift 3.0 or later.
+* Swift 4.2 or later.
 
 ## Installation
 
@@ -145,7 +152,7 @@ To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org)
 
 ```
 platform :ios, '8.0'
-pod 'Relativity', '~> 0.9.0'
+pod 'Relativity', '~> 1.0'
 ```
 
 ### Carthage
@@ -163,7 +170,7 @@ Run `carthage` to build the framework and drag the built `Relativity.framework` 
 To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following definition can be added to the dependencies of your `Project`:
 
 ```swift
-  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 0, minor: 9),
+  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 1, minor: 0),
 ```
 
 ### Submodules
