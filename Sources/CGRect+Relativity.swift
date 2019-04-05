@@ -22,7 +22,7 @@ import CoreGraphics
 import UIKit
 
 
-public extension CGRect {
+extension CGRect {
     
     public func insetBy(capAndBaselineOf font: UIFont, with pixelRounder: PixelRounder = PixelRounder()) -> CGRect {
         var textFrame = self
