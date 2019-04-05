@@ -118,6 +118,6 @@ class ViewPositionTests: XCTestCase {
 
 
 public func XCTAssertEqualWithAccuracy(_ size1: CGSize, _ size2: CGSize, accuracy: CGFloat, _ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) {
-    XCTAssertEqual(size1.width, size2.width, accuracy: accuracy, message, file: file, line: line)
-    XCTAssertEqual(size1.height, size2.height, accuracy: accuracy, message, file: file, line: line)
+    XCTAssertEqual(size1.width, size2.width, accuracy: accuracy, message(), file: file, line: line)
+    XCTAssertEqual(size1.height, size2.height, accuracy: accuracy, message(), file: file, line: line)
 }
