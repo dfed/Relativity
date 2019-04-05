@@ -260,7 +260,7 @@ public func +(lhs: UIOffset, rhs: CGSize) -> CGSize {
 public protocol CGFloatConvertible {}
 
 
-public extension CGFloatConvertible {
+extension CGFloatConvertible {
     
     public var horizontalOffset: UIOffset {
         return UIOffset(horizontal: CGFloat(self), vertical: 0.0)

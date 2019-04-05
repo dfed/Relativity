@@ -22,7 +22,7 @@ import CoreGraphics
 import UIKit
 
 
-public extension UIFont {
+extension UIFont {
     
     /// The distance bnetween the top of the line to the top of a capital letter.
     public func capInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {

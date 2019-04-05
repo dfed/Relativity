@@ -22,7 +22,7 @@ import CoreGraphics
 import UIKit
 
 
-public extension UIView {
+extension UIView {
     
     // MARK: Public Properties
     

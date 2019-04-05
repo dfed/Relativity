@@ -21,7 +21,7 @@
 import UIKit
 
 
-public extension UILabel {
+extension UILabel {
 
     // MARK: Public Properties
 
