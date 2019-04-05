@@ -188,27 +188,27 @@ public func <>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
 public func <>(lhs: [DistributionItem], rhs: CGFloatConvertible) -> [DistributionItem] {
-    return lhs <> .fixed(CGFloat(rhs))
+    return lhs <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: CGFloatConvertible, rhs: DistributionItem) -> [DistributionItem] {
-    return .fixed(CGFloat(lhs)) <> rhs
+    return .fixed(lhs.asCGFloat) <> rhs
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: DistributionItem, rhs: CGFloatConvertible) -> [DistributionItem] {
-    return lhs <> .fixed(CGFloat(rhs))
+    return lhs <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: UIView, rhs: CGFloatConvertible) -> [DistributionItem] {
-    return .view(lhs) <> .fixed(CGFloat(rhs))
+    return .view(lhs) <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: CGFloatConvertible, rhs: UIView) -> [DistributionItem] {
-    return .fixed(CGFloat(lhs)) <> .view(rhs)
+    return .fixed(lhs.asCGFloat) <> .view(rhs)
 }
 
 /// Create a .flexible DistributionItem from a HalfFlexibleDistributionItem.
@@ -263,37 +263,35 @@ public protocol CGFloatConvertible {}
 extension CGFloatConvertible {
     
     public var horizontalOffset: UIOffset {
-        return UIOffset(horizontal: CGFloat(self), vertical: 0.0)
+        return UIOffset(horizontal: self.asCGFloat, vertical: 0.0)
     }
     
     public var verticalOffset: UIOffset {
-        return UIOffset(horizontal: 0.0, vertical: CGFloat(self))
+        return UIOffset(horizontal: 0.0, vertical: self.asCGFloat)
     }
-    
+
+    internal var asCGFloat: CGFloat {
+        if let cgFloat = self as? CGFloat {
+            return cgFloat
+        } else if let double = self as? Double {
+            return CGFloat(double)
+        } else if let float = self as? Float {
+            return CGFloat(float)
+        } else if let int = self as? Int {
+            return CGFloat(int)
+        } else {
+            ErrorHandler.assertionFailure("Can not convert \(self) to CGFloat!")
+            return 0.0
+        }
+    }
+
 }
 
 
 // MARK: – CGFloat Extension
 
 
-extension CGFloat: CGFloatConvertible {
-    
-    public init(_ convertible: CGFloatConvertible) {
-        if let cgFloat = convertible as? CGFloat {
-            self = cgFloat
-        } else if let double = convertible as? Double {
-            self = CGFloat(double)
-        } else if let float = convertible as? Float {
-            self = CGFloat(float)
-        } else if let int = convertible as? Int {
-            self = CGFloat(int)
-        } else {
-            ErrorHandler.assertionFailure("Can not convert \(convertible) to CGFloat!")
-            self = 0.0
-        }
-    }
-    
-}
+extension CGFloat: CGFloatConvertible {}
 
 
 // MARK: – Double Extension
