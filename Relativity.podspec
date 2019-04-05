@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'Relativity'
-  s.version  = '1.0.0'
+  s.version  = '1.0.1'
   s.license  = 'Apache License, Version 2.0'
   s.summary  = 'A programmatic layout engine and DSL that provides an alternative to Auto Layout.'
   s.homepage = 'https://github.com/dfed/Relativity'
