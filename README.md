@@ -167,10 +167,12 @@ Run `carthage` to build the framework and drag the built `Relativity.framework` 
 
 ### Swift Package Manager
 
-To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following definition can be added to the dependencies of your `Project`:
+To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following lines can be added to your `Package.swift` file:
 
 ```swift
-  .Package(url: "https://github.com/dfed/Relativity.git", majorVersion: 1, minor: 0),
+dependencies: [
+    .package(url: "https://github.com/dfed/Relativity", from: "1.0.1"),
+]
 ```
 
 ### Submodules
