@@ -53,6 +53,7 @@
 		1677F4D722A98694002393CB /* ViewPositionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewPositionTests.swift; path = RelativityTests/ViewPositionTests.swift; sourceTree = "<group>"; };
 		1677F4D822A98694002393CB /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XCTestManifests.swift; path = RelativityTests/XCTestManifests.swift; sourceTree = "<group>"; };
 		1677F4D922A98694002393CB /* PixelRounderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PixelRounderTests.swift; path = RelativityTests/PixelRounderTests.swift; sourceTree = "<group>"; };
+		32C0033F27D3DBDC00685A6C /* RelativityVisualization.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RelativityVisualization.playground; sourceTree = "<group>"; };
 		3713FBFF1E11BA720075109A /* Relativity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Relativity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3713FC081E11BA720075109A /* RelativityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelativityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -118,6 +119,7 @@
 		3713FBF51E11BA720075109A = {
 			isa = PBXGroup;
 			children = (
+				32C0033F27D3DBDC00685A6C /* RelativityVisualization.playground */,
 				1673C43C2164541100A1EF97 /* Sources */,
 				1673C43D2164541900A1EF97 /* Tests */,
 				3713FC001E11BA720075109A /* Products */,
@@ -161,6 +163,8 @@
 			dependencies = (
 			);
 			name = Relativity;
+			packageProductDependencies = (
+			);
 			productName = Relativity;
 			productReference = 3713FBFF1E11BA720075109A /* Relativity.framework */;
 			productType = "com.apple.product-type.framework";
@@ -190,7 +194,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = "Dan Federman";
 				TargetAttributes = {
 					3713FBFE1E11BA720075109A = {
@@ -214,6 +218,8 @@
 				Base,
 			);
 			mainGroup = 3713FBF51E11BA720075109A;
+			packageReferences = (
+			);
 			productRefGroup = 3713FC001E11BA720075109A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
