@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Relativity",
     platforms: [
-        .iOS(.v8),
+        .iOS(.v9),
     ],
     products: [
         .library(

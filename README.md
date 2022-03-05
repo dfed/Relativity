@@ -171,7 +171,7 @@ To install Relativity in your iOS project with [Swift Package Manager](https://g
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/dfed/Relativity", from: "1.0.1"),
+    .package(url: "https://github.com/dfed/Relativity", from: "2.0.0"),
 ]
 ```
 
