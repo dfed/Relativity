@@ -45,7 +45,10 @@ public struct PixelRounder {
     }
     
     internal init(withScreenScale screenScale: CGFloat) {
-        if screenScale.truncatingRemainder(dividingBy: 1.0) == 0.0 {
+        if let screenScaleOverride = PixelRounder.screenScaleOverride {
+            self.screenScale = screenScaleOverride
+
+        } else if screenScale.truncatingRemainder(dividingBy: 1.0) == 0.0 {
             self.screenScale = screenScale
             
         } else {
@@ -87,7 +90,11 @@ public struct PixelRounder {
     public func isRoundedToPixel(_ point: CGPoint) -> Bool {
         return abs(point.x - roundToPixel(point.x)) < PixelRounder.significantPrecision && abs(point.y - roundToPixel(point.y)) < PixelRounder.significantPrecision
     }
-    
+
+    // MARK: Internal Static Properties
+
+    internal static var screenScaleOverride: CGFloat? = nil
+
     // MARK: Internal Properties
     
     internal let screenScale: CGFloat
