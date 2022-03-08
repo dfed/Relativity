@@ -169,10 +169,10 @@ class SubviewDistributionTests: XCTestCase {
 
             let a = UILabel()
             a.text = "Some text"
-            a.sizeToFit()
+            a.bounds.size = CGSize(width: 80, height: 25)
             let b = UILabel()
             b.text = "needs to be laid out"
-            b.sizeToFit()
+            b.bounds.size = CGSize(width: 150, height: 25)
             let c = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 25.0, height: 25.0))
 
             view.addSubview(a)
