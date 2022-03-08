@@ -185,6 +185,10 @@ I’m glad you’re interested in Relativity, and I’d love to see where you ta
 
 Thanks, and happy positioning!
 
+## Default branch
+
+The default branch of this repository is `main`. Between the initial commit and https://github.com/dfed/Relativity/commit/7b113bc644ebfd5981231f06c946ad9bc9d262f2, the default branch of this repository was `master`. See #19 for more details on why this change was made.
+
 ## Attribution
 
 Shout out to [Peter Westen](https://twitter.com/pwesten) who inspired the creation of this library.
