@@ -187,7 +187,7 @@ Thanks, and happy positioning!
 
 ## Default branch
 
-The default branch of this repository is `main`. Between the initial commit and https://github.com/dfed/Relativity/commit/7b113bc644ebfd5981231f06c946ad9bc9d262f2, the default branch of this repository was `master`. See #19 for more details on why this change was made.
+The default branch of this repository is `main`. Between the initial commit and [7b113bc](https://github.com/dfed/Relativity/commit/7b113bc644ebfd5981231f06c946ad9bc9d262f2), the default branch of this repository was `master`. See #19 for more details on why this change was made.
 
 ## Attribution
 
