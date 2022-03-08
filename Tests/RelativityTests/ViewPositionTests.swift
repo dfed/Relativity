@@ -25,19 +25,92 @@ import XCTest
 class ViewPositionTests: XCTestCase {
     
     // MARK: XCTestCase
-    
-    public override func setUp() {
-        super.setUp()
+
+    public override func tearDown() {
+        super.tearDown()
         
+        Relativity.ErrorHandler.customAssertBody = nil
+    }
+    
+    // MARK: Behavior Tests
+    
+    public func test_measureDistance_measuresToPixelBoundaries() {
+        runTestOnAllScreenScales {
+            setUpWithCurrentScreenScale()
+            subview1.frame.size.height += 1.2345
+            subview2.frame.size.width += 0.54321
+
+            view.addSubview(subview1)
+            view.addSubview(subview2)
+
+            let pixelRounder = PixelRounder(for: window)
+            XCTAssertEqualWithAccuracy(subview1.left |--| subview2.right,
+                                       CGSize(width: abs(pixelRounder.roundToPixel(subview1.frame.minX) - pixelRounder.roundToPixel(subview2.frame.maxX)),
+                                              height: abs(pixelRounder.roundToPixel(subview1.frame.midY) - pixelRounder.roundToPixel(subview2.frame.midY))),
+                                       accuracy: PixelRounder.significantPrecision)
+        }
+    }
+    
+    public func test_measureDistance_isCommutative() {
+        runTestOnAllScreenScales {
+            setUpWithCurrentScreenScale()
+            XCTAssertEqualWithAccuracy(subview1.topLeft |--| subview2.bottomRight, subview2.bottomRight |--| subview1.topLeft, accuracy: PixelRounder.significantPrecision)
+        }
+    }
+    
+    public func test_measureDistance_assertsOriginIsOnPixelBoundary() {
+        runTestOnAllScreenScales {
+            setUpWithCurrentScreenScale()
+            subview1.frame.origin.x += 0.54321
+            subview2.frame.origin.y += 0.12345
+
+            let viewOriginRoundedToPixelAssertMessage = "Measuring distance with a ViewPosition whose origin is not pixel aligned!"
+            var assertBodyCalledForOriginPixelAlignmentTest = false
+            Relativity.ErrorHandler.customAssertBody = { condition, message, _, _ in
+                if message == viewOriginRoundedToPixelAssertMessage {
+                    XCTAssertFalse(condition)
+                    assertBodyCalledForOriginPixelAlignmentTest = true
+                }
+            }
+
+            let _ = subview1.left |--| subview2.right
+            XCTAssertTrue(assertBodyCalledForOriginPixelAlignmentTest)
+        }
+    }
+    
+    public func test_measureDistance_ignoresTransforms() {
+        runTestOnAllScreenScales {
+            setUpWithCurrentScreenScale()
+            let preTransformDistance = subview1.bottom |--| subview2.top
+
+            subview1.transform = CGAffineTransform(translationX: 50.0, y: -11.0)
+            subview2.transform = CGAffineTransform(scaleX: 2.0, y: -1.2)
+
+            XCTAssertEqual(subview1.bottom |--| subview2.top, preTransformDistance)
+        }
+    }
+    
+    // MARK: Private Properties
+    
+    private let window = UIWindow()
+    private let view = UIView()
+    private var subview1 = UIView()
+    private var subview2 = UIView()
+
+    // MARK: Private Helpers
+
+    public func setUpWithCurrentScreenScale() {
         window.subviews.forEach { $0.removeFromSuperview() }
         view.subviews.forEach { $0.removeFromSuperview() }
         subview1.subviews.forEach { $0.removeFromSuperview() }
         subview2.subviews.forEach { $0.removeFromSuperview() }
-        
+        subview1 = UIView()
+        subview2 = UIView()
+
         window.frame = CGRect(x: 0.0, y: 0.0, width: 375, height: 667)
         view.frame = window.bounds
         window.addSubview(view)
-        
+
         let pixelRounder = PixelRounder(for: window)
         func randomFrameWithinWindow() -> CGRect {
             let subviewOrigin = CGPoint(x: pixelRounder.floorToPixel(CGFloat(arc4random_uniform(UInt32(window.bounds.width - 1)))),
@@ -48,69 +121,11 @@ class ViewPositionTests: XCTestCase {
         }
         subview1.frame = randomFrameWithinWindow()
         subview2.frame = randomFrameWithinWindow()
-        
+
         view.addSubview(subview1)
         view.addSubview(subview2)
     }
-    
-    public override func tearDown() {
-        super.tearDown()
-        
-        Relativity.ErrorHandler.customAssertBody = nil
-    }
-    
-    // MARK: Behavior Tests
-    
-    public func test_measureDistance_measuresToPixelBoundaries() {
-        subview1.frame.size.height += 1.2345
-        subview2.frame.size.width += 0.54321
-        
-        view.addSubview(subview1)
-        view.addSubview(subview2)
-        
-        let pixelRounder = PixelRounder(for: window)
-        XCTAssertEqualWithAccuracy(subview1.left |--| subview2.right,
-                                   CGSize(width: abs(pixelRounder.roundToPixel(subview1.frame.minX) - pixelRounder.roundToPixel(subview2.frame.maxX)),
-                                          height: abs(pixelRounder.roundToPixel(subview1.frame.midY) - pixelRounder.roundToPixel(subview2.frame.midY))),
-                                   accuracy: PixelRounder.significantPrecision)
-    }
-    
-    public func test_measureDistance_isCommutative() {
-        XCTAssertEqualWithAccuracy(subview1.topLeft |--| subview2.bottomRight, subview2.bottomRight |--| subview1.topLeft, accuracy: PixelRounder.significantPrecision)
-    }
-    
-    public func test_measureDistance_assertsOriginIsOnPixelBoundary() {
-        subview1.frame.origin.x += 0.54321
-        subview2.frame.origin.y += 0.12345
-        
-        let viewOriginRoundedToPixelAssertMessage = "Measuring distance with a ViewPosition whose origin is not pixel aligned!"
-        var assertBodyCalledForOriginPixelAlignmentTest = false
-        Relativity.ErrorHandler.customAssertBody = { condition, message, _, _ in
-            if message == viewOriginRoundedToPixelAssertMessage {
-                XCTAssertFalse(condition)
-                assertBodyCalledForOriginPixelAlignmentTest = true
-            }
-        }
-        
-        let _ = subview1.left |--| subview2.right
-        XCTAssertTrue(assertBodyCalledForOriginPixelAlignmentTest)
-    }
-    
-    public func test_measureDistance_ignoresTransforms() {
-        let preTransformDistance = subview1.bottom |--| subview2.top
-        
-        subview1.transform = CGAffineTransform(translationX: 50.0, y: -11.0)
-        subview2.transform = CGAffineTransform(scaleX: 2.0, y: -1.2)
-        
-        XCTAssertEqual(subview1.bottom |--| subview2.top, preTransformDistance)
-    }
-    
-    // MARK: Private Properties
-    
-    private let window = UIWindow()
-    private let view = UIView()
-    private let subview1 = UIView()
-    private let subview2 = UIView()
+
 }
 
 

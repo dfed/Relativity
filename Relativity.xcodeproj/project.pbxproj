@@ -22,6 +22,7 @@
 		1677F4DB22A98694002393CB /* ViewPositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1677F4D722A98694002393CB /* ViewPositionTests.swift */; };
 		1677F4DC22A98694002393CB /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1677F4D822A98694002393CB /* XCTestManifests.swift */; };
 		1677F4DD22A98694002393CB /* PixelRounderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1677F4D922A98694002393CB /* PixelRounderTests.swift */; };
+		3237944A27D7CC87005E89F8 /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3237944927D7CC87005E89F8 /* TestHelpers.swift */; };
 		3713FC091E11BA720075109A /* Relativity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3713FBFF1E11BA720075109A /* Relativity.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		1677F4D722A98694002393CB /* ViewPositionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewPositionTests.swift; path = RelativityTests/ViewPositionTests.swift; sourceTree = "<group>"; };
 		1677F4D822A98694002393CB /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XCTestManifests.swift; path = RelativityTests/XCTestManifests.swift; sourceTree = "<group>"; };
 		1677F4D922A98694002393CB /* PixelRounderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PixelRounderTests.swift; path = RelativityTests/PixelRounderTests.swift; sourceTree = "<group>"; };
+		3237944927D7CC87005E89F8 /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestHelpers.swift; path = RelativityTests/TestHelpers.swift; sourceTree = "<group>"; };
 		32C0033F27D3DBDC00685A6C /* RelativityVisualization.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RelativityVisualization.playground; sourceTree = "<group>"; };
 		3713FBFF1E11BA720075109A /* Relativity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Relativity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3713FC081E11BA720075109A /* RelativityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RelativityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				1677F4D922A98694002393CB /* PixelRounderTests.swift */,
+				3237944927D7CC87005E89F8 /* TestHelpers.swift */,
 				1677F4D622A98694002393CB /* SubviewDistributionTests.swift */,
 				1677F4D722A98694002393CB /* ViewPositionTests.swift */,
 				1677F4D822A98694002393CB /* XCTestManifests.swift */,
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1677F4DA22A98694002393CB /* SubviewDistributionTests.swift in Sources */,
+				3237944A27D7CC87005E89F8 /* TestHelpers.swift in Sources */,
 				1677F4DB22A98694002393CB /* ViewPositionTests.swift in Sources */,
 				1677F4DD22A98694002393CB /* PixelRounderTests.swift in Sources */,
 				1677F4DC22A98694002393CB /* XCTestManifests.swift in Sources */,
