@@ -141,7 +141,7 @@ To size view `b` to be the same height as view `a`, and fit between `a` and the 
 ## Requirements
 
 * Xcode 10.0 or later.
-* iOS 8 or later.
+* iOS 9 or later.
 * Swift 4.2 or later.
 
 ## Installation
