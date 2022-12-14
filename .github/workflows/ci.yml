@@ -46,4 +46,4 @@ jobs:
       - name: Select Xcode Version
         run: sudo xcode-select --switch /Applications/Xcode_11.7.app/Contents/Developer
       - name: Run Tests
-        run: xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 7" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test
+        run: xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test
