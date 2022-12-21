@@ -1,6 +1,6 @@
 # Relativity
 
-[![CI Status](https://img.shields.io/github/workflow/status/dfed/Relativity/CI/main)](https://github.com/dfed/Relativity/actions?query=workflow%3ACI+branch%3Amain)
+[![CI Status](https://img.shields.io/github/actions/workflow/status/dfed/relativity/ci.yml?branch=main)](https://github.com/dfed/Relativity/actions?query=workflow%3ACI+branch%3Amain)
 [![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-e2c245.svg)](https://github.com/Carthage/Carthage/)
 [![Version](https://img.shields.io/cocoapods/v/Relativity.svg)](https://cocoapods.org/pods/Relativity)
 [![License](https://img.shields.io/cocoapods/l/Relativity.svg)](https://cocoapods.org/pods/Relativity)
