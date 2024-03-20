@@ -23,23 +23,23 @@ import UIKit
 
 
 public struct ViewPosition {
-    
+
     // MARK: – Anchor
-    
+
     public enum Anchor {
-        
+
         case topLeft
         case top
         case topRight
-        
+
         case left
         case middle
         case right
-        
+
         case bottomLeft
         case bottom
         case bottomRight
-        
+
         public func anchorPoint(onRect rect: CGRect) -> CGPoint {
             switch self {
             case .topLeft:
@@ -63,27 +63,27 @@ public struct ViewPosition {
             }
         }
     }
-    
+
     // MARK: – OffsetAnchor
-    
+
     public struct OffsetAnchor {
-        
+
         // MARK: Initialization
-        
+
         public init(offset: UIOffset, anchor: Anchor) {
             self.offset = offset
             self.anchor = anchor
         }
-        
+
         // MARK: Internal Properties
-        
+
         internal var offset: UIOffset
         internal var anchor: Anchor
-        
+
     }
-    
+
     // MARK: Initialization
-    
+
     public init(view: UIView, anchor: Anchor) {
         self = ViewPosition(view: view, position: anchor.anchorPoint(onRect: view.bounds))
     }
@@ -93,9 +93,9 @@ public struct ViewPosition {
         self.anchorPoint = PixelRounder(for: view).roundToPixel(position)
         originalBounds = view.bounds
     }
-    
+
     // MARK: Public Methods
-    
+
     /// Aligns the receiver's view to the passed in ViewPosition.
     public func align(to otherViewPosition: ViewPosition, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
         guard view.bounds == originalBounds else {
@@ -110,7 +110,7 @@ public struct ViewPosition {
             ErrorHandler.assertionFailure("Attempting to align view but no superview exists! \(view)")
             return
         }
-        
+
         let frameCenterToAlignTo = untransformedCenter(of: otherViewPosition.view, inCoordinateSpaceOf: superview)
         // Find the desired unrounded center.
         let unroundedCenter = CGPoint(x: frameCenterToAlignTo.x + (otherViewPosition.anchorPoint.x - otherViewPosition.view.bounds.midX) - (anchorPoint.x - view.bounds.midX) + xOffset,
@@ -120,17 +120,17 @@ public struct ViewPosition {
         // Find the center again based off of the rounded frame origin, and set it.
         view.center = CGPoint(x: roundedFrameOrigin.x + view.bounds.midX, y: roundedFrameOrigin.y + view.bounds.midY)
     }
-    
+
     /// Convenience to align the receiver's view to the superview's anchor.
     public func align(toSuperviewAnchor superviewAnchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) {
         guard let superview = view.superview else {
             ErrorHandler.assertionFailure("Trying to align to \(view)'s superview but no superview exists")
             return
         }
-        
+
         align(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
     }
-    
+
     /// Measures distance from the receiver to the passed in ViewPosition.
     public func measureDistance(to otherViewPosition: ViewPosition, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) -> CGSize {
         guard view.bounds == originalBounds else {
@@ -146,52 +146,52 @@ public struct ViewPosition {
             ErrorHandler.assertionFailure("Attempting to measure view but no superview exists! \(view)")
             return .zero
         }
-        
+
         let x = view.center.x - view.bounds.midX + anchorPoint.x
         let y = view.center.y - view.bounds.midY + anchorPoint.y
-        
+
         let otherFrameCenter = untransformedCenter(of: otherViewPosition.view, inCoordinateSpaceOf: superview)
         let otherX = otherFrameCenter.x - otherViewPosition.view.bounds.midX + otherViewPosition.anchorPoint.x
         let otherY = otherFrameCenter.y - otherViewPosition.view.bounds.midY + otherViewPosition.anchorPoint.y
-        
+
         let pixelRounder = PixelRounder(for: view)
         ErrorHandler.assert(pixelRounder.isRoundedToPixel(x) && pixelRounder.isRoundedToPixel(y), "Measuring distance with a ViewPosition whose origin is not pixel aligned!")
         ErrorHandler.assert(pixelRounder.isRoundedToPixel(otherX) && pixelRounder.isRoundedToPixel(otherY), "Measuring distance with a ViewPosition whose origin is not pixel aligned!")
-        
+
         return CGSize(width: abs(otherX - x + xOffset), height: abs(otherY - y + yOffset))
     }
-    
+
     /// Convenience to measure the distance from receiver's anchor to the superview's anchor.
     public func measureDistance(toSuperviewAnchor superviewAnchor: Anchor, xOffset: CGFloat = 0.0, yOffset: CGFloat = 0.0) -> CGSize {
         guard let superview = view.superview else {
             ErrorHandler.assertionFailure("Trying to measure to \(view)'s superview but no superview exists")
             return .zero
         }
-        
+
         return measureDistance(to: ViewPosition(view: superview, anchor: superviewAnchor), xOffset: xOffset, yOffset: yOffset)
     }
-    
+
     // MARK: Internal Properties
-    
+
     /// The pixel-rounded anchor point for positioning, in the coordinate space of the bounds.
     internal let anchorPoint: CGPoint
-    
+
     /// The view being positioned.
     internal let view: UIView
-    
+
     // MARK: Private Properties
-    
+
     /// The bounds of the view at initialization time. Used to check bounds changes at alignment-time.
     private let originalBounds: CGRect
-    
+
     // MARK: Private Methods
-    
+
     private func untransformedCenter(of view: UIView, inCoordinateSpaceOf otherView: UIView) -> CGPoint {
         guard let superview = view.superview else {
             ErrorHandler.assertionFailure("Attempting to find center of view but no superview exists! \(view)")
             return .zero
         }
-        
+
         let viewTransformToRestore = view.transform
         let superviewTransformToRestore = superview.transform
         let otherViewTranformToRestore = otherView.transform
@@ -200,11 +200,11 @@ public struct ViewPosition {
             superview.transform = superviewTransformToRestore
             otherView.transform = otherViewTranformToRestore
         }
-        
+
         view.transform = .identity
         superview.transform = .identity
         otherView.transform = .identity
-        
+
         return superview.convert(view.center, to: otherView)
     }
 }

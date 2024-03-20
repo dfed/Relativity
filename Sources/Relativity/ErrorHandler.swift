@@ -22,27 +22,27 @@ import Foundation
 
 
 public final class ErrorHandler {
-    
+
     // MARK: Public Static Properties
-    
+
     public static var customAssertBody: ((_ condition: Bool, _ message: String, _ file: StaticString, _ line: UInt) -> Void)? = nil
-    
+
     public static let defaultAssertBody: (_ condition: Bool, _ message: String, _ file: StaticString, _ line: UInt) -> Void = { condition, message, file, line in
         guard !condition else {
             return
         }
-        
+
         Swift.assertionFailure(message, file: file, line: line)
     }
-    
+
     // MARK: Public Static Methods
-    
+
     public static func assert(_ condition: Bool, _ message: String, file: StaticString = #file, line: UInt = #line) -> Void {
         (ErrorHandler.customAssertBody ?? ErrorHandler.defaultAssertBody)(condition, message, file, line)
     }
-    
+
     public static func assertionFailure(_ message: String, file: StaticString = #file, line: UInt = #line) -> Void {
         assert(false, message, file: file, line: line)
     }
-    
+
 }

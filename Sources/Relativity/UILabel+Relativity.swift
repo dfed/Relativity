@@ -27,38 +27,38 @@ extension UILabel {
 
     /// The left of the cap line given the current font.
     public var capLeft: ViewPosition {
-        return position(for: .topLeft)
+        position(for: .topLeft)
     }
 
     /// The middle of the cap line given the current font.
     public var cap: ViewPosition {
-        return position(for: .top)
+        position(for: .top)
     }
 
     /// The right of the cap line given the current font.
     public var capRight: ViewPosition {
-        return position(for: .topRight)
+        position(for: .topRight)
     }
 
     /// The left of the baseline given the current font.
     public var baselineLeft: ViewPosition {
-        return position(for: .bottomLeft)
+        position(for: .bottomLeft)
     }
 
     /// The middle of the baseline given the current font.
     public var baseline: ViewPosition {
-        return position(for: .bottom)
+        position(for: .bottom)
     }
 
     /// The right of the baseline given the current font.
     public var baselineRight: ViewPosition {
-        return position(for: .bottomRight)
+        position(for: .bottomRight)
     }
 
     // MARK: Private Methods
 
     private func position(for anchor: ViewPosition.Anchor) -> ViewPosition {
-        return ViewPosition(view: self, position: anchor.anchorPoint(onRect: bounds.insetBy(capAndBaselineOf: font, with: PixelRounder(for: self))))
+        ViewPosition(view: self, position: anchor.anchorPoint(onRect: bounds.insetBy(capAndBaselineOf: font, with: PixelRounder(for: self))))
     }
 
 }
