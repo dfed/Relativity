@@ -38,8 +38,12 @@ class SubviewDistributionTests: XCTestCase {
             view.addSubview(b)
             view.addSubview(c)
 
-            view.distributeSubviewsVertically { () -> [DistributionItem] in
-                a <> ~1~ <> b <> ~2~ <> c
+            view.distributeSubviewsVertically {
+                a
+                ~1~
+                b
+                ~2~
+                c
             }
 
             // Space before a is implicity ~1~.
@@ -72,8 +76,12 @@ class SubviewDistributionTests: XCTestCase {
             view.addSubview(b)
             view.addSubview(c)
 
-            view.distributeSubviewsVertically { () -> [DistributionItem] in
-                a <> ~3~ <> b <> 8 <> c
+            view.distributeSubviewsVertically {
+                a
+                ~3~
+                b
+                8
+                c
             }
 
             // Space before a is implicity ~1~.
@@ -107,8 +115,13 @@ class SubviewDistributionTests: XCTestCase {
             view.addSubview(b)
             view.addSubview(c)
 
-            view.distributeSubviewsVertically { () -> [DistributionItem] in
-                8 <> a <> ~3~ <> b <> 8 <> c
+            view.distributeSubviewsVertically {
+                8
+                a
+                ~3~
+                b
+                8
+                c
             }
 
             // Space after c is implicity ~1~.
@@ -141,8 +154,13 @@ class SubviewDistributionTests: XCTestCase {
             view.addSubview(b)
             view.addSubview(c)
 
-            view.distributeSubviewsVertically { () -> [DistributionItem] in
-                a <> ~2~ <> b <> 8 <> c <> 16
+            view.distributeSubviewsVertically {
+                a
+                ~2~
+                b
+                8
+                c
+                16
             }
 
             // Space before a is implicity ~1~.
@@ -179,8 +197,12 @@ class SubviewDistributionTests: XCTestCase {
             view.addSubview(b)
             view.addSubview(c)
 
-            view.distributeSubviewsVertically { () -> [DistributionItem] in
-                a <> 8 <> b <> ~2~ <> c
+            view.distributeSubviewsVertically {
+                a
+                8
+                b
+                ~2~
+                c
             }
 
             // Space after c is implicity ~1~.
@@ -215,8 +237,12 @@ class SubviewDistributionTests: XCTestCase {
 
             let subviewDistributionRect = CGRect(x: 75.0, y: 0.0, width: a.bounds.width, height: 200.0)
             let verticalDistanceBetweenAToB: CGFloat = 5.0
-            view.distributeSubviewsVertically(within: subviewDistributionRect) { () -> [DistributionItem] in
-                a <> verticalDistanceBetweenAToB <> b <> ~2~ <> c
+            view.distributeSubviewsVertically(within: subviewDistributionRect) {
+                a
+                verticalDistanceBetweenAToB
+                b
+                ~2~
+                c
             }
 
             // Assert that our views were laid out within the right distribution rect.
@@ -256,8 +282,13 @@ class SubviewDistributionTests: XCTestCase {
             
             let subviewDistributionRect = CGRect(x: 35.0, y: 0.0, width: 220, height: 200.0)
             let horizontalDistanceBetweenLeftEdgeAndA: CGFloat = 12.0
-            view.distributeSubviewsHorizontally(within: subviewDistributionRect) { () -> [DistributionItem] in
-                horizontalDistanceBetweenLeftEdgeAndA <> a <> ~1~ <> b <> ~4~ <> c
+            view.distributeSubviewsHorizontally(within: subviewDistributionRect) {
+                horizontalDistanceBetweenLeftEdgeAndA
+                a
+                ~1~
+                b
+                ~4~
+                c
             }
             
             // Assert that our views were laid out within the right distribution rect.

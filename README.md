@@ -72,7 +72,7 @@ For a visual example, check out the [FontMetricsVisualization](RelativityVisuali
 
 Since views need to be laid out flexibly over various iOS device sizes, Relativity has the ability to easily distribute subviews with flexible positioning along an axis.
 
-Subview distribution can be controlled by positioning fixed and flexible spacers in between views. Fixed spaces represent points on screen. Fixed spaces are created by inserting `CGFloatConvertible` (`Int`, `Float`, `CGFloat`, or `Double`) types into the distribution expression, or by initializing a `.fixed(CGFloatConvertible)` enum case directly. Flexible spacers represent proportions of the remaining space in the superview after the subviews and fixed spacers have been accounted for. You can create flexible spacers by surrounding an `Int` with a spring `~` operator, or by initializing the `.flexible(Int)` enum case directly. A `~2~` represents twice the space that `~1~` does. Views, fixed spacers, and flexible spacers are bound together by a bidirectional anchor `<>` operator.
+Subview distribution can be controlled by positioning fixed and flexible spacers in between views. Fixed spaces represent points on screen. Fixed spaces are created by inserting `CGFloatConvertible` (`Int`, `Float`, `CGFloat`, or `Double`) types into the distribution expression, or by initializing a `.fixed(CGFloatConvertible)` enum case directly. Flexible spacers represent proportions of the remaining space in the superview after the subviews and fixed spacers have been accounted for. You can create flexible spacers by surrounding an `Int` with a spring `~` operator, or by initializing the `.flexible(Int)` enum case directly. A `~2~` represents twice the space that `~1~` does. Views, fixed spacers, and flexible spacers are bound together by a bidirectional anchor `<>` operator, or via a operatorless result builder.
 
 #### Examples
 
@@ -104,7 +104,11 @@ To equally distribute subviews `a`, `b`, and `c` at equal distances along a vert
 
 ```swift
   superview.distributeSubviewsVertically(within: CGRect(x: 0.0, y: 0.0, width: superview.bounds.midX, height: superview.bounds.height)) {
-    a <> ~1~ <> b <> ~1~ <> c
+    a
+    ~1~
+    b
+    ~1~
+    c
   }
 ```
 
