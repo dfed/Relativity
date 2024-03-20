@@ -64,11 +64,11 @@ extension UIView {
 
     // MARK: Public Methods
 
-    public func distributeSubviewsVertically(within rect: CGRect = .zero, subviewDistributionCreationBlock: () -> [DistributionItem]) {
+    public func distributeSubviewsVertically(within rect: CGRect = .zero, @DistributionItemsBuilder subviewDistributionCreationBlock: () -> [DistributionItem]) {
         SubviewDistributor.newVerticalSubviewDistributor(with: self).distribute(subviewDistribution: subviewDistributionCreationBlock(), within: rect)
     }
 
-    public func distributeSubviewsHorizontally(within rect: CGRect = .zero, subviewDistributionCreationBlock: () -> [DistributionItem]) {
+    public func distributeSubviewsHorizontally(within rect: CGRect = .zero, @DistributionItemsBuilder subviewDistributionCreationBlock: () -> [DistributionItem]) {
         SubviewDistributor.newHorizontalSubviewDistributor(with: self).distribute(subviewDistribution: subviewDistributionCreationBlock(), within: rect)
     }
 

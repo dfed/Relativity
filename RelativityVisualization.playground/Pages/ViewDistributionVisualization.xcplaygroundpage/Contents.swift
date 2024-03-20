@@ -53,17 +53,11 @@ PlaygroundPage.current.liveView = containerView
 
 containerView.distributeSubviewsVertically() {
     blueRect
-        <>
-        ~2~
-        <>
-        redRect
-        <>
-        20
-        <>
-        yellowRect
-        <>
-        ~1~
-        <>
+    ~2~
+    redRect
+    20
+    yellowRect
+    ~1~
     greenRect
 }
 
@@ -82,7 +76,11 @@ DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterva
         }) { (_) in
             UIView.animate(withDuration: 1.0, animations: {
                 containerView.distributeSubviewsVertically() {
-                    ~1~ <> 50 <> blueRect <> ~2~ <> greenRect
+                    ~1~
+                    50
+                    blueRect
+                    ~2~
+                    greenRect
                 }
                 containerView.distributeSubviewsHorizontally() {
                     ~17~ <> redRect <> ~3~ <> yellowRect <> ~17~
