@@ -24,71 +24,71 @@ import UIKit
 
 
 public struct PixelRounder {
-    
+
     // MARK: Public Static Properties
-    
+
     public static let significantPrecision: CGFloat = 1e-7
-    
+
     // MARK: Initialization
-    
+
     public init(for view: UIView) {
         ErrorHandler.assert(view.window != nil, "Creating PixelRounder with a view that has not been added to a window! Using the main screen's scale instead.")
         self = PixelRounder(withScreenScale: (view.window?.screen ?? UIScreen.main).scale)
     }
-    
+
     public init(for window: UIWindow) {
         self = PixelRounder(withScreenScale: window.screen.scale)
     }
-    
+
     public init(for screen: UIScreen = UIScreen.main) {
         self = PixelRounder(withScreenScale: screen.scale)
     }
-    
+
     internal init(withScreenScale screenScale: CGFloat) {
         if let screenScaleOverride = PixelRounder.screenScaleOverride {
             self.screenScale = screenScaleOverride
 
         } else if screenScale.truncatingRemainder(dividingBy: 1.0) == 0.0 {
             self.screenScale = screenScale
-            
+
         } else {
             ErrorHandler.assertionFailure("Initializing a PixelRounder with a screenScale that isn't integral.")
             self.screenScale = round(screenScale)
         }
     }
-    
+
     // MARK: Public Methods
-    
+
     public func roundToPixel(_ float: CGFloat) -> CGFloat {
-        return round(float * screenScale) / screenScale
+        round(float * screenScale) / screenScale
     }
-    
+
     public func ceilToPixel(_ float: CGFloat) -> CGFloat {
-        return ceil(float * screenScale) / screenScale
+        ceil(float * screenScale) / screenScale
     }
-    
+
     public func floorToPixel(_ float: CGFloat) -> CGFloat {
-        return floor(float * screenScale) / screenScale
+        floor(float * screenScale) / screenScale
     }
-    
+
     public func roundToPixel(_ point: CGPoint) -> CGPoint {
-        return CGPoint(x: roundToPixel(point.x), y: roundToPixel(point.y))
+        CGPoint(x: roundToPixel(point.x), y: roundToPixel(point.y))
     }
-    
+
     public func ceilToPixel(_ point: CGPoint) -> CGPoint {
-        return CGPoint(x: ceilToPixel(point.x), y: ceilToPixel(point.y))
+        CGPoint(x: ceilToPixel(point.x), y: ceilToPixel(point.y))
     }
-    
+
     public func floorToPixel(_ point: CGPoint) -> CGPoint {
-        return CGPoint(x: floorToPixel(point.x), y: floorToPixel(point.y))
+        CGPoint(x: floorToPixel(point.x), y: floorToPixel(point.y))
     }
-    
+
     public func isRoundedToPixel(_ float: CGFloat) -> Bool {
-        return abs(float - roundToPixel(float)) < PixelRounder.significantPrecision
+        abs(float - roundToPixel(float)) < PixelRounder.significantPrecision
     }
-    
+
     public func isRoundedToPixel(_ point: CGPoint) -> Bool {
-        return abs(point.x - roundToPixel(point.x)) < PixelRounder.significantPrecision && abs(point.y - roundToPixel(point.y)) < PixelRounder.significantPrecision
+        abs(point.x - roundToPixel(point.x)) < PixelRounder.significantPrecision && abs(point.y - roundToPixel(point.y)) < PixelRounder.significantPrecision
     }
 
     // MARK: Internal Static Properties
@@ -96,6 +96,6 @@ public struct PixelRounder {
     internal static var screenScaleOverride: CGFloat? = nil
 
     // MARK: Internal Properties
-    
+
     internal let screenScale: CGFloat
 }

@@ -26,12 +26,12 @@ extension UIFont {
     
     /// The distance bnetween the top of the line to the top of a capital letter.
     public func capInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {
-        return pixelRounder.floorToPixel(ascender - capHeight)
+        pixelRounder.floorToPixel(ascender - capHeight)
     }
     
     /// The distance between the bottom of the line and the text baseline.
     public func baselineInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {
-        return pixelRounder.ceilToPixel(-descender)
+        pixelRounder.ceilToPixel(-descender)
     }
     
 }

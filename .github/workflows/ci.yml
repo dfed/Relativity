@@ -9,41 +9,27 @@ on:
 jobs:
   pod-lint:
     name: Pod Lint
-    runs-on: macOS-11
+    runs-on: macOS-14
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Bundle Install
         run: bundle install
       - name: Select Xcode Version
-        run: sudo xcode-select --switch /Applications/Xcode_11.7.app/Contents/Developer
+        run: sudo xcode-select --switch /Applications/Xcode_15.2.app/Contents/Developer
       - name: Lint Podspec
         run: bundle exec pod lib lint --verbose --fail-fast
-  carthage:
-    name: Carthage
-    runs-on: macOS-11
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-      - name: Bundle Install
-        run: bundle install
-      - name: Select Xcode Version
-        run: sudo xcode-select --switch /Applications/Xcode_11.7.app/Contents/Developer
-      - name: Install Carthage
-        run: brew outdated carthage || brew upgrade carthage
-      - name: Build Framework
-        run: carthage build --project-directory . --verbose --no-skip-current
   tests:
     name: Test
-    runs-on: macOS-11
+    runs-on: macOS-14
     strategy:
       fail-fast: false
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Bundle Install
         run: bundle install
       - name: Select Xcode Version
-        run: sudo xcode-select --switch /Applications/Xcode_11.7.app/Contents/Developer
+        run: sudo xcode-select --switch /Applications/Xcode_15.2.app/Contents/Developer
       - name: Run Tests
-        run: xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 8" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test
+        run: xcodebuild -project Relativity.xcodeproj -scheme Relativity -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 14" -configuration Debug -PBXBuildsContinueAfterErrors=0 build test

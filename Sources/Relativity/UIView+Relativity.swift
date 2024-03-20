@@ -23,58 +23,58 @@ import UIKit
 
 
 extension UIView {
-    
+
     // MARK: Public Properties
-    
+
     public var topLeft: ViewPosition {
-        return position(with: .topLeft)
+        position(with: .topLeft)
     }
-    
+
     public var top: ViewPosition {
-        return position(with: .top)
+        position(with: .top)
     }
-    
+
     public var topRight: ViewPosition {
-        return position(with: .topRight)
+        position(with: .topRight)
     }
-    
+
     public var left: ViewPosition {
-        return position(with: .left)
+        position(with: .left)
     }
-    
+
     public var middle: ViewPosition {
-        return position(with: .middle)
+        position(with: .middle)
     }
-    
+
     public var right: ViewPosition {
-        return position(with: .right)
+        position(with: .right)
     }
-    
+
     public var bottomLeft: ViewPosition {
-        return position(with: .bottomLeft)
+        position(with: .bottomLeft)
     }
-    
+
     public var bottom: ViewPosition {
-        return position(with: .bottom)
+        position(with: .bottom)
     }
-    
+
     public var bottomRight: ViewPosition {
-        return position(with: .bottomRight)
+        position(with: .bottomRight)
     }
-    
+
     // MARK: Public Methods
-    
+
     public func distributeSubviewsVertically(within rect: CGRect = .zero, subviewDistributionCreationBlock: () -> [DistributionItem]) {
         SubviewDistributor.newVerticalSubviewDistributor(with: self).distribute(subviewDistribution: subviewDistributionCreationBlock(), within: rect)
     }
-    
+
     public func distributeSubviewsHorizontally(within rect: CGRect = .zero, subviewDistributionCreationBlock: () -> [DistributionItem]) {
         SubviewDistributor.newHorizontalSubviewDistributor(with: self).distribute(subviewDistribution: subviewDistributionCreationBlock(), within: rect)
     }
-    
+
     // MARK: Private Methods
-    
+
     private func position(with anchor: ViewPosition.Anchor) -> ViewPosition {
-        return ViewPosition(view: self, anchor: anchor)
+        ViewPosition(view: self, anchor: anchor)
     }
 }

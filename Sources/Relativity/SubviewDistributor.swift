@@ -24,103 +24,103 @@ import UIKit
 
 
 public struct SubviewDistributor {
-    
+
     // MARK: Direction
-    
+
     private enum Direction {
         case vertical
         case horizontal
     }
-    
+
     // MARK: Public Static Methods
-    
+
     public static func newVerticalSubviewDistributor(with superview: UIView) -> SubviewDistributor {
-        return SubviewDistributor(with: superview, direction: .vertical)
+        SubviewDistributor(with: superview, direction: .vertical)
     }
-    
+
     public static func newHorizontalSubviewDistributor(with superview: UIView) -> SubviewDistributor {
-        return SubviewDistributor(with: superview, direction: .horizontal)
+        SubviewDistributor(with: superview, direction: .horizontal)
     }
-    
+
     // MARK: Initialization
-    
+
     private init(with superview: UIView, direction: Direction) {
         self.superview = superview
         self.direction = direction
     }
-    
+
     // MARK: Public Methods
-    
+
     public func distribute(subviewDistribution: [DistributionItem], within rect: CGRect = .zero) {
         var distributionRect = rect
         if distributionRect == .zero {
             distributionRect = superview.bounds
         }
-        
+
         let distributionItems: [DistributionItem] = {
             var distributionItems = subviewDistribution.filter { (distributionItem) -> Bool in
                 switch distributionItem {
                 case .fixed:
                     return true
-                    
+
                 case let .flexible(spacer):
                     guard spacer > 0 else {
                         ErrorHandler.assertionFailure("Attempting to distribute a flexible spacer \(spacer), which is less than 1!")
                         return false
                     }
-                    
+
                     return true
-                    
+
                 case let .view(view):
                     guard view.superview == superview else {
                         ErrorHandler.assertionFailure("Attempting to distribute a view \(view) that is not a subview of \(superview)!")
                         return false
                     }
-                    
+
                     return true
                 }
             }
-            
+
             // Ensure our first element is a spacer.
             if let firstDistributionItem = distributionItems.first {
                 switch firstDistributionItem {
                 case .fixed, .flexible:
                     // Nothing to do here. Our first element is already a spacer.
                     break
-                    
+
                 case .view:
                     distributionItems.insert(.flexible(1), at: 0)
                 }
             }
-                
+
             if let lastDistributionItem = distributionItems.last {
                 switch lastDistributionItem {
                 case .fixed, .flexible:
                     // Nothing to do here. Our last element is already a spacer.
                     break
-                    
+
                 case .view:
                     distributionItems.append(.flexible(1))
                 }
             }
-            
+
             return distributionItems
         }()
-        
+
         let totalFlexibleSpaceForDistribution: CGFloat = {
             var totalFlexibleSpace: CGFloat
-            
+
             switch direction {
             case .vertical:
                 totalFlexibleSpace = distributionRect.size.height
             case .horizontal:
                 totalFlexibleSpace = distributionRect.size.width
             }
-            
+
             for case let .fixed(space) in distributionItems {
                 totalFlexibleSpace -= CGFloat(space)
             }
-            
+
             for case let .view(view) in distributionItems {
                 switch direction {
                 case .vertical:
@@ -129,10 +129,10 @@ public struct SubviewDistributor {
                     totalFlexibleSpace -= view.bounds.size.width
                 }
             }
-            
+
             return totalFlexibleSpace
         }()
-        
+
         if totalFlexibleSpaceForDistribution < 0 {
             ErrorHandler.assertionFailure("Views are too large to fit in distribution.")
             // Make the space we're distributing in big enough to fit the views. This will look bad, but it is a better option than bailing out entirely.
@@ -143,50 +143,50 @@ public struct SubviewDistributor {
                 distributionRect = distributionRect.insetBy(dx: totalFlexibleSpaceForDistribution, dy: 0.0)
             }
         }
-        
+
         var flexibleSpacers = [Int]()
         for case let .flexible(space) in distributionItems {
             flexibleSpacers.append(space)
         }
-        
+
         let cumulativeFlexibleSpace: Int = {
             var cumulativeFlexibleSpace = 0
             flexibleSpacers.forEach { cumulativeFlexibleSpace += $0 }
             return cumulativeFlexibleSpace
         }()
-        
+
         func offset(forFixedSpacer fixedSpacer: CGFloat) -> UIOffset {
             switch direction {
             case .vertical:
-                return fixedSpacer.verticalOffset
+                fixedSpacer.verticalOffset
             case .horizontal:
-                return fixedSpacer.horizontalOffset
+                fixedSpacer.horizontalOffset
             }
         }
-        
+
         func offset(forFlexibleSpacer flexibleSpacer: Int) -> UIOffset {
-            return offset(forFixedSpacer: totalFlexibleSpaceForDistribution * CGFloat(flexibleSpacer) / CGFloat(cumulativeFlexibleSpace))
+            offset(forFixedSpacer: totalFlexibleSpaceForDistribution * CGFloat(flexibleSpacer) / CGFloat(cumulativeFlexibleSpace))
         }
-        
+
         // Calculate the ViewPosition (e.g. the Anchor) on `superview` for aligning. Make sure to take the `rect` into account.
-        
+
         var leadingViewPosition: ViewPosition = {
             switch direction {
             case .vertical:
-                return superview.topLeft + UIOffset(horizontal: distributionRect.midX, vertical: distributionRect.minY)
+                superview.topLeft + UIOffset(horizontal: distributionRect.midX, vertical: distributionRect.minY)
             case .horizontal:
-                return superview.topLeft + UIOffset(horizontal: distributionRect.minX, vertical: distributionRect.midY)
+                superview.topLeft + UIOffset(horizontal: distributionRect.minX, vertical: distributionRect.midY)
             }
         }()
-        
+
         for distributionItem in distributionItems {
             switch distributionItem {
             case let .fixed(spacer):
                 leadingViewPosition = leadingViewPosition + offset(forFixedSpacer: CGFloat(spacer))
-                
+
             case let .flexible(spacer):
                 leadingViewPosition = leadingViewPosition + offset(forFlexibleSpacer: spacer)
-                
+
             case let .view(view):
                 switch direction {
                 case .vertical:
@@ -199,10 +199,10 @@ public struct SubviewDistributor {
             }
         }
     }
-    
+
     // MARK: Private Properties
-    
+
     private let direction: Direction
     private let superview: UIView
-    
+
 }

@@ -140,30 +140,11 @@ To size view `b` to be the same height as view `a`, and fit between `a` and the 
 
 ## Requirements
 
-* Xcode 10.0 or later.
-* iOS 9 or later.
-* Swift 4.2 or later.
+* Xcode 15.0 or later.
+* iOS 13 or later.
+* Swift 5.9 or later.
 
 ## Installation
-
-### CocoaPods
-
-To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org), add the following to your `Podfile`:
-
-```
-platform :ios, '8.0'
-pod 'Relativity', '~> 1.0'
-```
-
-### Carthage
-
-To install Relativity in your iOS project with [Carthage](https://github.com/Carthage/Carthage), add the following to your `Cartfile`:
-
-```ogdl
-github "dfed/Relativity"
-```
-
-Run `carthage` to build the framework and drag the built `Relativity.framework` into your Xcode project.
 
 ### Swift Package Manager
 
@@ -171,8 +152,17 @@ To install Relativity in your iOS project with [Swift Package Manager](https://g
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/dfed/Relativity", from: "2.0.0"),
+    .package(url: "https://github.com/dfed/Relativity", from: "3.0.0"),
 ]
+```
+
+### CocoaPods
+
+To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org), add the following to your `Podfile`:
+
+```
+platform :ios, '12.0'
+pod 'Relativity', '~> 3.0'
 ```
 
 ### Submodules

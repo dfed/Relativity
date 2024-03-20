@@ -79,7 +79,7 @@ public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
 /// - parameter rhs: The position on rhs to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
 public func |--|(lhs: ViewPosition, rhs: ViewPosition) -> CGSize {
-    return lhs.measureDistance(to: rhs)
+    lhs.measureDistance(to: rhs)
 }
 
 /// Measures the distance between lhs and rhs in points.
@@ -87,7 +87,7 @@ public func |--|(lhs: ViewPosition, rhs: ViewPosition) -> CGSize {
 /// - parameter rhs: The position on lhs's superview to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
 public func |--|(lhs: ViewPosition, rhs: ViewPosition.Anchor) -> CGSize {
-    return lhs.measureDistance(toSuperviewAnchor: rhs)
+    lhs.measureDistance(toSuperviewAnchor: rhs)
 }
 
 /// Measures the distance between lhs and rhs in points.
@@ -95,7 +95,7 @@ public func |--|(lhs: ViewPosition, rhs: ViewPosition.Anchor) -> CGSize {
 /// - parameter rhs: The position on rhs to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
 public func |--|(lhs: ViewPosition.Anchor, rhs: ViewPosition) -> CGSize {
-    return rhs |--| lhs
+    rhs |--| lhs
 }
 
 /// Measures the distance between lhs and rhs in points.
@@ -103,7 +103,7 @@ public func |--|(lhs: ViewPosition.Anchor, rhs: ViewPosition) -> CGSize {
 /// - parameter rhs: The position on lhs's superview to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
 public func |--|(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) -> CGSize {
-    return lhs.measureDistance(toSuperviewAnchor: rhs.anchor, xOffset: rhs.offset.horizontal, yOffset: rhs.offset.vertical)
+    lhs.measureDistance(toSuperviewAnchor: rhs.anchor, xOffset: rhs.offset.horizontal, yOffset: rhs.offset.vertical)
 }
 
 /// Measures the distance between lhs and rhs in points.
@@ -111,43 +111,43 @@ public func |--|(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) -> CGSize {
 /// - parameter rhs: The position on rhs to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
 public func |--|(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) -> CGSize {
-    return rhs |--| lhs
+    rhs |--| lhs
 }
 
 public func +(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
-    return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x + rhs.horizontal, y: lhs.anchorPoint.y + rhs.vertical))
+    ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x + rhs.horizontal, y: lhs.anchorPoint.y + rhs.vertical))
 }
 
 public func -(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
-    return ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x - rhs.horizontal, y: lhs.anchorPoint.y - rhs.vertical))
+    ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x - rhs.horizontal, y: lhs.anchorPoint.y - rhs.vertical))
 }
 
 public func +(lhs: UIOffset, rhs: ViewPosition) -> ViewPosition {
-    return rhs + lhs
+    rhs + lhs
 }
 
 public func +(lhs: ViewPosition.Anchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
-    return ViewPosition.OffsetAnchor(offset: rhs, anchor: lhs)
+    ViewPosition.OffsetAnchor(offset: rhs, anchor: lhs)
 }
 
 public func -(lhs: ViewPosition.Anchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
-    return ViewPosition.OffsetAnchor(offset: -rhs, anchor: lhs)
+    ViewPosition.OffsetAnchor(offset: -rhs, anchor: lhs)
 }
 
 public func +(lhs: UIOffset, rhs: ViewPosition.Anchor) -> ViewPosition.OffsetAnchor {
-    return rhs + lhs
+    rhs + lhs
 }
 
 public func +(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
-    return ViewPosition.OffsetAnchor(offset: lhs.offset + rhs, anchor: lhs.anchor)
+    ViewPosition.OffsetAnchor(offset: lhs.offset + rhs, anchor: lhs.anchor)
 }
 
 public func -(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
-    return ViewPosition.OffsetAnchor(offset: lhs.offset - rhs, anchor: lhs.anchor)
+    ViewPosition.OffsetAnchor(offset: lhs.offset - rhs, anchor: lhs.anchor)
 }
 
 public func +(lhs: UIOffset, rhs: ViewPosition.OffsetAnchor) -> ViewPosition.OffsetAnchor {
-    return rhs + lhs
+    rhs + lhs
 }
 
 
@@ -156,7 +156,7 @@ public func +(lhs: UIOffset, rhs: ViewPosition.OffsetAnchor) -> ViewPosition.Off
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
-    return [lhs, rhs]
+    [lhs, rhs]
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
@@ -168,57 +168,57 @@ public func <>(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionI
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
 public func <>(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
-    return lhs <> .view(rhs)
+    lhs <> .view(rhs)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
-    return .view(lhs) <> rhs
+    .view(lhs) <> rhs
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: UIView, rhs: UIView) -> [DistributionItem] {
-    return .view(lhs) <> .view(rhs)
+    .view(lhs) <> .view(rhs)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
-    return lhs <> .view(rhs)
+    lhs <> .view(rhs)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
 public func <>(lhs: [DistributionItem], rhs: CGFloatConvertible) -> [DistributionItem] {
-    return lhs <> .fixed(rhs.asCGFloat)
+    lhs <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: CGFloatConvertible, rhs: DistributionItem) -> [DistributionItem] {
-    return .fixed(lhs.asCGFloat) <> rhs
+    .fixed(lhs.asCGFloat) <> rhs
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: DistributionItem, rhs: CGFloatConvertible) -> [DistributionItem] {
-    return lhs <> .fixed(rhs.asCGFloat)
+    lhs <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: UIView, rhs: CGFloatConvertible) -> [DistributionItem] {
-    return .view(lhs) <> .fixed(rhs.asCGFloat)
+    .view(lhs) <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
 public func <>(lhs: CGFloatConvertible, rhs: UIView) -> [DistributionItem] {
-    return .fixed(lhs.asCGFloat) <> .view(rhs)
+    .fixed(lhs.asCGFloat) <> .view(rhs)
 }
 
 /// Create a .flexible DistributionItem from a HalfFlexibleDistributionItem.
 public prefix func ~(flexibleSpacerHalf: HalfFlexibleDistributionItem) -> DistributionItem {
-    return .flexible(flexibleSpacerHalf.flexibleSpacerValue)
+    .flexible(flexibleSpacerHalf.flexibleSpacerValue)
 }
 
 /// Create half of a .flexible DistributionItem from an integer.
 public postfix func ~(flexibleSpacer: Int) -> HalfFlexibleDistributionItem {
-    return HalfFlexibleDistributionItem(flexibleSpacerValue: flexibleSpacer)
+    HalfFlexibleDistributionItem(flexibleSpacerValue: flexibleSpacer)
 }
 
 
@@ -226,31 +226,31 @@ public postfix func ~(flexibleSpacer: Int) -> HalfFlexibleDistributionItem {
 
 
 public func +(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
-    return UIOffset(horizontal: lhs.horizontal + rhs.horizontal, vertical: lhs.vertical + rhs.vertical)
+    UIOffset(horizontal: lhs.horizontal + rhs.horizontal, vertical: lhs.vertical + rhs.vertical)
 }
 
 public func -(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
-    return UIOffset(horizontal: lhs.horizontal - rhs.horizontal, vertical: lhs.vertical - rhs.vertical)
+    UIOffset(horizontal: lhs.horizontal - rhs.horizontal, vertical: lhs.vertical - rhs.vertical)
 }
 
 public func /(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
-    return UIOffset(horizontal: lhs.horizontal / rhs.horizontal, vertical: lhs.vertical / rhs.vertical)
+    UIOffset(horizontal: lhs.horizontal / rhs.horizontal, vertical: lhs.vertical / rhs.vertical)
 }
 
 public func *(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
-    return UIOffset(horizontal: lhs.horizontal * rhs.horizontal, vertical: lhs.vertical * rhs.vertical)
+    UIOffset(horizontal: lhs.horizontal * rhs.horizontal, vertical: lhs.vertical * rhs.vertical)
 }
 
 public prefix func -(offset: UIOffset) -> UIOffset {
-    return UIOffset(horizontal: -offset.horizontal, vertical: -offset.vertical)
+    UIOffset(horizontal: -offset.horizontal, vertical: -offset.vertical)
 }
 
 public func +(lhs: CGSize, rhs: UIOffset) -> CGSize {
-    return CGSize(width: lhs.width + rhs.horizontal, height: lhs.height + rhs.vertical)
+    CGSize(width: lhs.width + rhs.horizontal, height: lhs.height + rhs.vertical)
 }
 
 public func +(lhs: UIOffset, rhs: CGSize) -> CGSize {
-    return CGSize(width: rhs.width + lhs.horizontal, height: rhs.height + lhs.vertical)
+    CGSize(width: rhs.width + lhs.horizontal, height: rhs.height + lhs.vertical)
 }
 
 
@@ -261,13 +261,13 @@ public protocol CGFloatConvertible {}
 
 
 extension CGFloatConvertible {
-    
+
     public var horizontalOffset: UIOffset {
-        return UIOffset(horizontal: self.asCGFloat, vertical: 0.0)
+        UIOffset(horizontal: self.asCGFloat, vertical: 0.0)
     }
-    
+
     public var verticalOffset: UIOffset {
-        return UIOffset(horizontal: 0.0, vertical: self.asCGFloat)
+        UIOffset(horizontal: 0.0, vertical: self.asCGFloat)
     }
 
     internal var asCGFloat: CGFloat {
