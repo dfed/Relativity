@@ -35,6 +35,7 @@ postfix operator ~
 /// Aligns lhs to rhs.
 /// - parameter lhs: The ViewPosition to align.
 /// - parameter rhs: The position to which lhs is aligned.
+@MainActor
 public func -->(lhs: ViewPosition, rhs: ViewPosition) {
     lhs.align(to: rhs)
 }
@@ -42,6 +43,7 @@ public func -->(lhs: ViewPosition, rhs: ViewPosition) {
 /// Aligns lhs to the rhs's position on the lhs's superview.
 /// - parameter lhs: The ViewPosition to align.
 /// - parameter rhs: The position on the lhs's superview to which lhs is aligned.
+@MainActor
 public func -->(lhs: ViewPosition, rhs: ViewPosition.Anchor) {
     lhs.align(toSuperviewAnchor: rhs)
 }
@@ -49,6 +51,7 @@ public func -->(lhs: ViewPosition, rhs: ViewPosition.Anchor) {
 /// Aligns lhs to the rhs's position on the lhs's superview.
 /// - parameter lhs: The ViewPosition to align.
 /// - parameter rhs: The position on the lhs's superview to which lhs is aligned.
+@MainActor
 public func -->(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) {
     lhs.align(toSuperviewAnchor: rhs.anchor, xOffset: rhs.offset.horizontal, yOffset: rhs.offset.vertical)
 }
@@ -56,6 +59,7 @@ public func -->(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) {
 /// Aligns rhs to lhs.
 /// - parameter lhs: The position to which rhs is aligned.
 /// - parameter rhs: The ViewPosition to align.
+@MainActor
 public func <--(lhs: ViewPosition, rhs: ViewPosition) {
     rhs --> lhs
 }
@@ -63,6 +67,7 @@ public func <--(lhs: ViewPosition, rhs: ViewPosition) {
 /// Aligns rhs to the lhs's position on the rhs's superview.
 /// - parameter lhs: The ViewPosition to align.
 /// - parameter rhs: The position on the rhs's superview to which rhs is aligned.
+@MainActor
 public func <--(lhs: ViewPosition.Anchor, rhs: ViewPosition) {
     rhs --> lhs
 }
@@ -70,6 +75,7 @@ public func <--(lhs: ViewPosition.Anchor, rhs: ViewPosition) {
 /// Aligns rhs to the lhs's position on the rhs's superview.
 /// - parameter lhs: The position on the rhs's superview to which rhs is aligned.
 /// - parameter rhs: The ViewPosition to align.
+@MainActor
 public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
     rhs --> lhs
 }
@@ -78,6 +84,7 @@ public func <--(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) {
 /// - parameter lhs: The position on lhs from which to measure.
 /// - parameter rhs: The position on rhs to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+@MainActor
 public func |--|(lhs: ViewPosition, rhs: ViewPosition) -> CGSize {
     lhs.measureDistance(to: rhs)
 }
@@ -86,6 +93,7 @@ public func |--|(lhs: ViewPosition, rhs: ViewPosition) -> CGSize {
 /// - parameter lhs: The position on lhs from which to measure.
 /// - parameter rhs: The position on lhs's superview to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+@MainActor
 public func |--|(lhs: ViewPosition, rhs: ViewPosition.Anchor) -> CGSize {
     lhs.measureDistance(toSuperviewAnchor: rhs)
 }
@@ -94,6 +102,7 @@ public func |--|(lhs: ViewPosition, rhs: ViewPosition.Anchor) -> CGSize {
 /// - parameter lhs: The position on rhs's superview from which to measure.
 /// - parameter rhs: The position on rhs to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+@MainActor
 public func |--|(lhs: ViewPosition.Anchor, rhs: ViewPosition) -> CGSize {
     rhs |--| lhs
 }
@@ -102,6 +111,7 @@ public func |--|(lhs: ViewPosition.Anchor, rhs: ViewPosition) -> CGSize {
 /// - parameter lhs: The position on lhs from which to measure.
 /// - parameter rhs: The position on lhs's superview to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+@MainActor
 public func |--|(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) -> CGSize {
     lhs.measureDistance(toSuperviewAnchor: rhs.anchor, xOffset: rhs.offset.horizontal, yOffset: rhs.offset.vertical)
 }
@@ -110,42 +120,52 @@ public func |--|(lhs: ViewPosition, rhs: ViewPosition.OffsetAnchor) -> CGSize {
 /// - parameter lhs: The position on rhs's superview from which to measure.
 /// - parameter rhs: The position on rhs to which to measure.
 /// - returns: The distance between lhs and rhs. Width and height values will always be positive.
+@MainActor
 public func |--|(lhs: ViewPosition.OffsetAnchor, rhs: ViewPosition) -> CGSize {
     rhs |--| lhs
 }
 
+@MainActor
 public func +(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
     ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x + rhs.horizontal, y: lhs.anchorPoint.y + rhs.vertical))
 }
 
+@MainActor
 public func -(lhs: ViewPosition, rhs: UIOffset) -> ViewPosition {
     ViewPosition(view: lhs.view, position: CGPoint(x: lhs.anchorPoint.x - rhs.horizontal, y: lhs.anchorPoint.y - rhs.vertical))
 }
 
+@MainActor
 public func +(lhs: UIOffset, rhs: ViewPosition) -> ViewPosition {
     rhs + lhs
 }
 
+@MainActor
 public func +(lhs: ViewPosition.Anchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
     ViewPosition.OffsetAnchor(offset: rhs, anchor: lhs)
 }
 
+@MainActor
 public func -(lhs: ViewPosition.Anchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
     ViewPosition.OffsetAnchor(offset: -rhs, anchor: lhs)
 }
 
+@MainActor
 public func +(lhs: UIOffset, rhs: ViewPosition.Anchor) -> ViewPosition.OffsetAnchor {
     rhs + lhs
 }
 
+@MainActor
 public func +(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
     ViewPosition.OffsetAnchor(offset: lhs.offset + rhs, anchor: lhs.anchor)
 }
 
+@MainActor
 public func -(lhs: ViewPosition.OffsetAnchor, rhs: UIOffset) -> ViewPosition.OffsetAnchor {
     ViewPosition.OffsetAnchor(offset: lhs.offset - rhs, anchor: lhs.anchor)
 }
 
+@MainActor
 public func +(lhs: UIOffset, rhs: ViewPosition.OffsetAnchor) -> ViewPosition.OffsetAnchor {
     rhs + lhs
 }
@@ -155,11 +175,13 @@ public func +(lhs: UIOffset, rhs: ViewPosition.OffsetAnchor) -> ViewPosition.Off
 
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: DistributionItem, rhs: DistributionItem) -> [DistributionItem] {
     [lhs, rhs]
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
+@MainActor
 public func <>(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionItem] {
     var bothSides = lhs
     bothSides.append(rhs)
@@ -167,46 +189,55 @@ public func <>(lhs: [DistributionItem], rhs: DistributionItem) -> [DistributionI
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
+@MainActor
 public func <>(lhs: [DistributionItem], rhs: UIView) -> [DistributionItem] {
     lhs <> .view(rhs)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: UIView, rhs: DistributionItem) -> [DistributionItem] {
     .view(lhs) <> rhs
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: UIView, rhs: UIView) -> [DistributionItem] {
     .view(lhs) <> .view(rhs)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: DistributionItem, rhs: UIView) -> [DistributionItem] {
     lhs <> .view(rhs)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to the last item in lhs.
+@MainActor
 public func <>(lhs: [DistributionItem], rhs: CGFloatConvertible) -> [DistributionItem] {
     lhs <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: CGFloatConvertible, rhs: DistributionItem) -> [DistributionItem] {
     .fixed(lhs.asCGFloat) <> rhs
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: DistributionItem, rhs: CGFloatConvertible) -> [DistributionItem] {
     lhs <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: UIView, rhs: CGFloatConvertible) -> [DistributionItem] {
     .view(lhs) <> .fixed(rhs.asCGFloat)
 }
 
 /// Create a DistributionItem array denoting that rhs should be aligned next to lhs.
+@MainActor
 public func <>(lhs: CGFloatConvertible, rhs: UIView) -> [DistributionItem] {
     .fixed(lhs.asCGFloat) <> .view(rhs)
 }
@@ -225,18 +256,22 @@ public postfix func ~(flexibleSpacer: Int) -> HalfFlexibleDistributionItem {
 // MARK: – UIOffset Operators
 
 
+@MainActor
 public func +(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
     UIOffset(horizontal: lhs.horizontal + rhs.horizontal, vertical: lhs.vertical + rhs.vertical)
 }
 
+@MainActor
 public func -(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
     UIOffset(horizontal: lhs.horizontal - rhs.horizontal, vertical: lhs.vertical - rhs.vertical)
 }
 
+@MainActor
 public func /(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
     UIOffset(horizontal: lhs.horizontal / rhs.horizontal, vertical: lhs.vertical / rhs.vertical)
 }
 
+@MainActor
 public func *(lhs: UIOffset, rhs: UIOffset) -> UIOffset {
     UIOffset(horizontal: lhs.horizontal * rhs.horizontal, vertical: lhs.vertical * rhs.vertical)
 }
@@ -245,10 +280,12 @@ public prefix func -(offset: UIOffset) -> UIOffset {
     UIOffset(horizontal: -offset.horizontal, vertical: -offset.vertical)
 }
 
+@MainActor
 public func +(lhs: CGSize, rhs: UIOffset) -> CGSize {
     CGSize(width: lhs.width + rhs.horizontal, height: lhs.height + rhs.vertical)
 }
 
+@MainActor
 public func +(lhs: UIOffset, rhs: CGSize) -> CGSize {
     CGSize(width: rhs.width + lhs.horizontal, height: rhs.height + lhs.vertical)
 }
@@ -272,16 +309,15 @@ extension CGFloatConvertible {
 
     internal var asCGFloat: CGFloat {
         if let cgFloat = self as? CGFloat {
-            return cgFloat
+            cgFloat
         } else if let double = self as? Double {
-            return CGFloat(double)
+            CGFloat(double)
         } else if let float = self as? Float {
-            return CGFloat(float)
+            CGFloat(float)
         } else if let int = self as? Int {
-            return CGFloat(int)
+            CGFloat(int)
         } else {
-            ErrorHandler.assertionFailure("Can not convert \(self) to CGFloat!")
-            return 0.0
+            0.0
         }
     }
 

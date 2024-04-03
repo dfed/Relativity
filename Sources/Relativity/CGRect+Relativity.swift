@@ -24,8 +24,11 @@ import UIKit
 
 extension CGRect {
 
-    public func insetBy(capAndBaselineOf font: UIFont, with pixelRounder: PixelRounder = PixelRounder()) -> CGRect {
+    @MainActor
+    public func insetBy(capAndBaselineOf font: UIFont, with pixelRounder: PixelRounder? = nil) -> CGRect {
         var textFrame = self
+
+        let pixelRounder = pixelRounder ?? PixelRounder()
 
         textFrame.origin.y += font.capInset(with: pixelRounder)
         textFrame.size.height -= font.capInset(with: pixelRounder) + font.baselineInset(with: pixelRounder)

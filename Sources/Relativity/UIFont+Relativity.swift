@@ -25,13 +25,15 @@ import UIKit
 extension UIFont {
     
     /// The distance bnetween the top of the line to the top of a capital letter.
-    public func capInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {
-        pixelRounder.floorToPixel(ascender - capHeight)
+    @MainActor
+    public func capInset(with pixelRounder: PixelRounder? = nil) -> CGFloat {
+        (pixelRounder ?? PixelRounder()).floorToPixel(ascender - capHeight)
     }
     
     /// The distance between the bottom of the line and the text baseline.
-    public func baselineInset(with pixelRounder: PixelRounder = PixelRounder()) -> CGFloat {
-        pixelRounder.ceilToPixel(-descender)
+    @MainActor
+    public func baselineInset(with pixelRounder: PixelRounder? = nil) -> CGFloat {
+        (pixelRounder ?? PixelRounder()).ceilToPixel(-descender)
     }
     
 }

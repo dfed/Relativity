@@ -22,18 +22,11 @@ import XCTest
 @testable import Relativity
 
 
-class ViewPositionTests: XCTestCase {
-    
-    // MARK: XCTestCase
+final class ViewPositionTests: XCTestCase {
 
-    public override func tearDown() {
-        super.tearDown()
-        
-        Relativity.ErrorHandler.customAssertBody = nil
-    }
-    
     // MARK: Behavior Tests
-    
+
+    @MainActor
     public func test_measureDistance_measuresToPixelBoundaries() {
         runTestOnAllScreenScales {
             setUpWithCurrentScreenScale()
@@ -50,14 +43,16 @@ class ViewPositionTests: XCTestCase {
                                        accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_measureDistance_isCommutative() {
         runTestOnAllScreenScales {
             setUpWithCurrentScreenScale()
             XCTAssertEqualWithAccuracy(subview1.topLeft |--| subview2.bottomRight, subview2.bottomRight |--| subview1.topLeft, accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_measureDistance_assertsOriginIsOnPixelBoundary() {
         runTestOnAllScreenScales {
             setUpWithCurrentScreenScale()
@@ -72,12 +67,14 @@ class ViewPositionTests: XCTestCase {
                     assertBodyCalledForOriginPixelAlignmentTest = true
                 }
             }
+            defer { Relativity.ErrorHandler.customAssertBody = nil }
 
             let _ = subview1.left |--| subview2.right
             XCTAssertTrue(assertBodyCalledForOriginPixelAlignmentTest)
         }
     }
-    
+
+    @MainActor
     public func test_measureDistance_ignoresTransforms() {
         runTestOnAllScreenScales {
             setUpWithCurrentScreenScale()
@@ -91,14 +88,19 @@ class ViewPositionTests: XCTestCase {
     }
     
     // MARK: Private Properties
-    
+
+    @MainActor
     private let window = UIWindow()
+    @MainActor
     private let view = UIView()
+    @MainActor
     private var subview1 = UIView()
+    @MainActor
     private var subview2 = UIView()
 
     // MARK: Private Helpers
 
+    @MainActor
     public func setUpWithCurrentScreenScale() {
         window.subviews.forEach { $0.removeFromSuperview() }
         view.subviews.forEach { $0.removeFromSuperview() }

@@ -22,6 +22,8 @@ import CoreGraphics
 
 @testable import Relativity
 
+
+@MainActor
 func runTestOnAllScreenScales(_ test: () throws -> Void) rethrows {
     for screenScale in 1...3 {
         PixelRounder.screenScaleOverride = CGFloat(screenScale)

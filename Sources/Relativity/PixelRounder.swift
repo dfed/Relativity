@@ -23,6 +23,7 @@ import Foundation
 import UIKit
 
 
+@MainActor
 public struct PixelRounder {
 
     // MARK: Public Static Properties
@@ -40,8 +41,8 @@ public struct PixelRounder {
         self = PixelRounder(withScreenScale: window.screen.scale)
     }
 
-    public init(for screen: UIScreen = UIScreen.main) {
-        self = PixelRounder(withScreenScale: screen.scale)
+    public init(for screen: UIScreen? = nil) {
+        self = PixelRounder(withScreenScale: (screen ?? UIScreen.main).scale)
     }
 
     internal init(withScreenScale screenScale: CGFloat) {

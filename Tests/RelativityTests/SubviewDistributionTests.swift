@@ -22,8 +22,9 @@ import XCTest
 @testable import Relativity
 
 
-class SubviewDistributionTests: XCTestCase {
+final class SubviewDistributionTests: XCTestCase {
 
+    @MainActor
     public func test_distributeSubviewsVertically_relativeSpacers() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
@@ -61,7 +62,8 @@ class SubviewDistributionTests: XCTestCase {
             XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_distributeSubviewsVertically_relativeAndFixedSpacers() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
@@ -100,7 +102,8 @@ class SubviewDistributionTests: XCTestCase {
             XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_distributeSubviewsVertically_leadingFixedSpace() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
@@ -139,7 +142,8 @@ class SubviewDistributionTests: XCTestCase {
             XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_distributeSubviewsVertically_trailingFixedSpace() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
@@ -178,7 +182,8 @@ class SubviewDistributionTests: XCTestCase {
             XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_distributeSubviewsVertically_labelDistributionRespectsFontBounds() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
@@ -220,7 +225,8 @@ class SubviewDistributionTests: XCTestCase {
             XCTAssertEqualWithAccuracy(c.frame.origin, pixelRounder.roundToPixel(c.frame.origin), accuracy: PixelRounder.significantPrecision)
         }
     }
-    
+
+    @MainActor
     public func test_distributeSubviewsVerticallyWithinRect_distributesWithinBounds() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
@@ -265,7 +271,8 @@ class SubviewDistributionTests: XCTestCase {
             XCTAssertEqual(subviewDistributionRect.maxY - c.frame.maxY, relative1Space, accuracy: pixelRounder.pixelAccuracy)
         }
     }
-    
+
+    @MainActor
     public func test_distributeSubviewsHorizontallyWithinRect_distributesWithinBounds() {
         runTestOnAllScreenScales {
             let window = UIWindow(frame: CGRect(x: 0.0, y: 0.0, width: 375, height: 667))
