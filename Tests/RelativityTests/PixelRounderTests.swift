@@ -22,8 +22,9 @@ import XCTest
 @testable import Relativity
 
 
-class PixelRounderTests: XCTestCase {
+final class PixelRounderTests: XCTestCase {
     
+    @MainActor
     public func test_roundToPixel() {
         XCTAssertEqual(PixelRounder(withScreenScale: 1.0).roundToPixel(1.1), 1.0)
         XCTAssertEqual(PixelRounder(withScreenScale: 1.0).roundToPixel(1.5), 2.0)
@@ -40,6 +41,7 @@ class PixelRounderTests: XCTestCase {
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).roundToPixel(CGPoint(x: 1.0, y: 2.0)), CGPoint(x: 1.0, y: 2.0))
     }
     
+    @MainActor
     public func test_ceilToPixel() {
         XCTAssertEqual(PixelRounder(withScreenScale: 1.0).ceilToPixel(1.1), 2.0)
         XCTAssertEqual(PixelRounder(withScreenScale: 1.0).ceilToPixel(1.5), 2.0)
@@ -57,6 +59,7 @@ class PixelRounderTests: XCTestCase {
         XCTAssertEqual(PixelRounder(withScreenScale: 3.0).ceilToPixel(CGPoint(x: 1.0, y: 2.0)), CGPoint(x: 1.0, y: 2.0))
     }
     
+    @MainActor
     public func test_floorToPixel() {
         XCTAssertEqual(PixelRounder(withScreenScale: 1.0).floorToPixel(1.1), 1.0)
         XCTAssertEqual(PixelRounder(withScreenScale: 1.0).floorToPixel(1.5), 1.0)

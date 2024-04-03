@@ -21,6 +21,7 @@
 import Foundation
 
 
+@MainActor
 public final class ErrorHandler {
 
     // MARK: Public Static Properties

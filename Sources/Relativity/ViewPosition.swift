@@ -22,6 +22,7 @@ import CoreGraphics
 import UIKit
 
 
+@MainActor
 public struct ViewPosition {
 
     // MARK: – Anchor

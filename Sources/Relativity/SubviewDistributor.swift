@@ -23,6 +23,7 @@ import Foundation
 import UIKit
 
 
+@MainActor
 public struct SubviewDistributor {
 
     // MARK: Direction
