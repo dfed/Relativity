@@ -8,6 +8,10 @@
 
 Relativity provides a DSL for programmatic layout that makes it easy to achieve pixel-perfect spacing and alignment.
 
+# Deprecated
+
+This library is deprecated in favor of [Block’s Paralayout library](https://github.com/square/Paralayout). Paralayout solves the same set of prolems that Relativity does, and has been actively maintained for longer than Relativity.
+
 ## Programmatic Layout
 
 There are four basic steps to laying out views programmatically.
