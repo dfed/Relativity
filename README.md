@@ -1,7 +1,6 @@
 # Relativity
 
 [![CI Status](https://img.shields.io/github/actions/workflow/status/dfed/relativity/ci.yml?branch=main)](https://github.com/dfed/Relativity/actions?query=workflow%3ACI+branch%3Amain)
-[![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-e2c245.svg)](https://github.com/Carthage/Carthage/)
 
 Relativity provides a DSL for programmatic layout that makes it easy to achieve pixel-perfect spacing and alignment.
 
