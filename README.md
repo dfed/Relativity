@@ -150,8 +150,6 @@ To size view `b` to be the same height as view `a`, and fit between `a` and the 
 
 ## Installation
 
-### Swift Package Manager
-
 To install Relativity in your iOS project with [Swift Package Manager](https://github.com/apple/swift-package-manager), the following lines can be added to your `Package.swift` file:
 
 ```swift
@@ -159,14 +157,6 @@ dependencies: [
     .package(url: "https://github.com/dfed/Relativity", from: "3.0.0"),
 ]
 ```
-
-### CocoaPods
-
-Relativity 3.2.0 and earlier remain available on [CocoaPods](https://cocoapods.org/pods/Relativity). Newer releases are not published there, so use Swift Package Manager to install them.
-
-### Submodules
-
-To use git submodules, checkout the submodule with `git submodule add git@github.com:dfed/Relativity.git`, drag Relativity.xcodeproj to your project, and add Relativity as a build dependency.
 
 ## Contributing
 
