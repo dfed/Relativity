@@ -2,9 +2,6 @@
 
 [![CI Status](https://img.shields.io/github/actions/workflow/status/dfed/relativity/ci.yml?branch=main)](https://github.com/dfed/Relativity/actions?query=workflow%3ACI+branch%3Amain)
 [![Carthage Compatibility](https://img.shields.io/badge/carthage-✓-e2c245.svg)](https://github.com/Carthage/Carthage/)
-[![Version](https://img.shields.io/cocoapods/v/Relativity.svg)](https://cocoapods.org/pods/Relativity)
-[![License](https://img.shields.io/cocoapods/l/Relativity.svg)](https://cocoapods.org/pods/Relativity)
-[![Platform](https://img.shields.io/cocoapods/p/Relativity.svg)](https://cocoapods.org/pods/Relativity)
 
 Relativity provides a DSL for programmatic layout that makes it easy to achieve pixel-perfect spacing and alignment.
 
@@ -166,12 +163,7 @@ dependencies: [
 
 ### CocoaPods
 
-To install Relativity in your iOS project with [CocoaPods](http://cocoapods.org), add the following to your `Podfile`:
-
-```
-platform :ios, '12.0'
-pod 'Relativity', '~> 3.0'
-```
+Relativity 3.2.0 and earlier remain available on [CocoaPods](https://cocoapods.org/pods/Relativity). Newer releases are not published there, so use Swift Package Manager to install them.
 
 ### Submodules
 
